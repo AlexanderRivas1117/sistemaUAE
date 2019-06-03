@@ -1,0 +1,46 @@
+body{
+
+	background-image: url("../images/login/background.jpg");
+	background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+html {
+    height: 100%
+}
+
+.contenedor{
+	margin-top: 300px;
+	height: 300px;
+	width: 270px;
+	margin-top: 5%;
+	margin-left: 39%;
+	position: relative;
+}
+.contenedorTop{
+	height: 100px;
+	width: 110px;
+	background-image: url("../images/login/logoLogin.jpg");
+	margin-left: 90px;
+	background-repeat: no-repeat;
+	margin-top: 128px;
+	background-color: white;
+	position: absolute;
+	z-index: 1;
+	background-size: cover;
+  	background-position: center;
+  	padding-right: 40px;
+/*	-moz-border-radius: 70%;
+    -webkit-border-radius: 70%;
+    border-radius: 70%;*/
+}
+.contenedorBody{
+	height: 250px;
+	width: 300px;
+	position: absolute;
+	top: 120px;
+	z-index: 1;
+	background-color: white;
+	border-radius: 10px 10px 10px 10px;
+   -moz-border-radius: 10px 10px 10px 10px;
+   -webkit-border-radius: 10px 10px 10px 10px;
+}

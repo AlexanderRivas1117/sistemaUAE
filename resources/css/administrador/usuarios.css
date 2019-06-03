@@ -1,0 +1,17 @@
+body{
+	background-color: #eef0f2;
+}
+
+.contenedor{
+	border: solid;
+   	border-color: #0d7e83;
+	border-width: 0.1px;
+	margin-bottom: 40px;
+}
+.textoTop{
+	color: #203541;
+}
+
+html{
+	height: 100%;
+}
