@@ -1,9 +1,11 @@
 $(document).ready(function(){
 
+// $('#informacionAdicional').summernote({
 
+// });
 // MASCARAS
-$('#dimensiones').mask('99.99 x 99.99 cm.');
-$('#precio').mask('$99.99');
+// $('#dimensiones').mask('99.99 x 99.99 cm.');
+// $('#precio').mask('$99.99');
 
 $("#cerrar").click(function(){
   $('#modalAutor').modal('toggle');
@@ -18,30 +20,31 @@ $("#cerrar").click(function(){
 });
 
 $("#listadoLibros").DataTable({
-          "language": {
-              "sProcessing":    "Procesando...",
-              "sLengthMenu":    "Mostrar _MENU_ registros",
-              "sZeroRecords":   "No se encontraron resultados",
-              "sEmptyTable":    "Ningún dato disponible en esta tabla",
-              "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-              "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
-              "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
-              "sInfoPostFix":   "",
-              "sSearch":        "Buscar:",
-              "sUrl":           "",
-              "sInfoThousands":  ",",
-              "sLoadingRecords": "Cargando...",
-              "oPaginate": {
-                  "sFirst":    "Primero",
-                  "sLast":    "Último",
-                  "sNext":    "Siguiente",
-                  "sPrevious": "Anterior"
-              },
-              "oAria": {
-                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-              }
-          }
+
+          // "language": {
+          //     "sProcessing":    "Procesando...",
+          //     "sLengthMenu":    "Mostrar _MENU_ registros",
+          //     "sZeroRecords":   "No se encontraron resultados",
+          //     "sEmptyTable":    "Ningún dato disponible en esta tabla",
+          //     "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+          //     "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
+          //     "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
+          //     "sInfoPostFix":   "",
+          //     "sSearch":        "Buscar:",
+          //     "sUrl":           "",
+          //     "sInfoThousands":  ",",
+          //     "sLoadingRecords": "Cargando...",
+          //     "oPaginate": {
+          //         "sFirst":    "Primero",
+          //         "sLast":    "Último",
+          //         "sNext":    "Siguiente",
+          //         "sPrevious": "Anterior"
+          //     },
+          //     "oAria": {
+          //         "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+          //         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+          //     }
+          // }
           //fin de la configuracion del data table
       });
 
@@ -106,8 +109,8 @@ var current = 1,current_step,next_step,steps;
   });
 
   $(".previous").click(function(){
-    current_step = $(this).parent();
-    next_step = $(this).parent().prev();
+    current_step = $("#data2").parent();
+    next_step = $("#data2").parent().prev();
     next_step.show();
     current_step.hide();
     setProgressBar(--current);
@@ -210,8 +213,8 @@ event.preventDefault();
       //var parametros = $(this).serialize();
       //alert(parametros);
 
-      if(event.isDefaultPrevented)
-      {
+      // if(event.isDefaultPrevented)
+      // {
 
         event.preventDefault();
         // alert("prevent");
@@ -227,7 +230,7 @@ event.preventDefault();
 
         //$("#info1").css("display", "none");
         //$("#info2").css("display", "block");
-      } 
+      // } 
       
     });
 

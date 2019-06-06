@@ -16,6 +16,46 @@ class Libro
 		$this->con = conectar();
 	}
 
+    public function getInfo($id)
+    {
+        $sql = "SELECT l.id,iv.numeroInventario,l.nombre,l.numeroEdicion,l.idEditorial as editorial,
+tLi.nombre as tipoLiteratura,l.autor,l.clasificacion,l.epigrafe,l.asesor,l.contenido,l.fechaPublicacion from libro l
+inner join tipoLiteratura tLi
+    on tLi.id=l.idTipoLiteratura
+inner join inventario iv
+    on iv.idLibro=l.id
+where iv.numeroInventario='{$id}'";
+        mysqli_set_charset($this->con, "utf8");
+        $info = $this->con->query($sql);
+        $obj = array();
+       
+        if($info->num_rows>0)
+        {
+            while($row = mysqli_fetch_array($info)) 
+            { 
+                $id=$row['id'];
+                $nombre=$row['nombre'];
+                $autor = $row['autor'];
+                $clasificacion = $row['clasificacion'];
+                $epigrafe = $row['epigrafe'];
+                $edicion = $row['numeroEdicion'];
+                $editorial = $row['editorial'];
+                $asesor = $row['asesor'];
+                $fecha = $row['fechaPublicacion'];
+                $contenido = $row['contenido'];
+
+
+                $obj[] = array('id'=> $id, 'nombre'=> $nombre,'autor'=> $autor,'clasificacion'=> $clasificacion,'epigrafe'=> $epigrafe,'edicion'=> $edicion,'editorial'=> $editorial,'asesor'=> $asesor,'contenido'=> $contenido,'fecha'=> $fecha);
+
+            }
+        }
+        else
+        {
+            $obj['estado'] = $this->con->error;
+        }
+        return json_encode($obj); 
+    }
+
     public function eliminarLibro($idLibro)
     {
         //echo $idLibro;
@@ -98,6 +138,7 @@ class Libro
                 $json .= $obj.",";
             }
             $json = substr($json,0, strlen($json)-1);
+            mysqli_free_result($innfo);
         }
         else
         {
@@ -124,37 +165,37 @@ class Libro
         $jsonFinal = "";
         $all = [];
         if ($info->num_rows>0) {           
-            $dato = $info;
+            $all = $info;
+            //var_dump($dato);
 
-
-            foreach ($dato as $i => $d) {
-                // echo $d['nombre'];
-                //  echo $d['autor'];
-                //var_dump($d);
-                 $con2  = conectar();
+            // foreach ($dato as $i => $d) {
+            //     // echo $d['nombre'];
+            //     //  echo $d['autor'];
+            //     //var_dump($d);
+            //      $con2  = conectar();
                 
-                 $librosID = $d['id'];  
+            //      $librosID = $d['id'];  
 
-                    $sql2 = "call obtenerAutores('".$librosID."')";
-                    $info2 = $con2->query($sql2); 
-                $autor = "";   
-                while ($filaAutores =$info2->fetch_assoc()) 
-                    {
-                        //$autor.=$filaAutores['nombre']."--LIBRO: ".$librosID."#######";
+            //         $sql2 = "call obtenerAutores('".$librosID."')";
+            //         $info2 = $con2->query($sql2); 
+            //     $autor = "";   
+            //     while ($filaAutores =$info2->fetch_assoc()) 
+            //         {
+            //             //$autor.=$filaAutores['nombre']."--LIBRO: ".$librosID."#######";
                         
-                        $autor.= $filaAutores['nombre'].",";                       
-                    }
-                    $autor = substr($autor,0, strlen($autor)-1);
-                    //echo $autor."#######";;
-                    //unset($d['detalleautorID']);
-                    $d['detalleautorID'] = $autor;
-                    $all[$i] = $d;
-                    //var_dump($d);
-                    //echo "#######" . PHP_EOL;
-                    //echo "\n\n";
-                    //echo $d['detalleautorID'];
+            //             $autor.= $filaAutores['nombre'].",";                       
+            //         }
+            //         $autor = substr($autor,0, strlen($autor)-1);
+            //         //echo $autor."#######";;
+            //         //unset($d['detalleautorID']);
+            //         $d['detalleautorID'] = $autor;
+            //         $all[$i] = $d;
+            //         //var_dump($d);
+            //         //echo "#######" . PHP_EOL;
+            //         //echo "\n\n";
+            //         //echo $d['detalleautorID'];
                     
-            }
+            // }
             
         }else{
             $all[] = false;

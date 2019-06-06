@@ -3,6 +3,7 @@ use bibliotecauae;
 
 -- OBTENER CODIGO INVENTARIO 
 -- drop procedure searchInventario;
+-- call searchInventario(2,'L');
 DELIMITER $$
 DROP PROCEDURE IF exists `bibliotecauae`.`searchInventario` $$
 CREATE PROCEDURE `bibliotecauae`.`searchInventario`(in p_1 int, in p_2 varchar(50))
@@ -19,11 +20,9 @@ BEGIN
  -- BUSQUEDA POR NOMBRE DE AUTOR
   IF p_1=2 THEN
    select l.nombre,inv.id as idInventario,inv.numeroInventario 
-	from autor a 
-		inner join detalleautor dta on a.id=dta.idAutor 
-		inner join libro l on dta.idLibro=l.id 
+	from libro l
 		inner join inventario inv on inv.idLibro=l.id
-	where a.nombre like concat('%', p_2, '%') AND inv.estadoMaterial!='Prestado' AND inv.eliminado!=1 limit 10;
+	where l.autor like concat('%', p_2, '%') AND inv.estadoMaterial!='Prestado' AND inv.eliminado!=1 limit 10;
  END IF;
  
  -- BUSQUEDA POR ISBN
@@ -31,7 +30,24 @@ BEGIN
    select l.nombre,iv.id as idInventario,iv.numeroInventario 
 	from libro l 
     inner join inventario iv on iv.idLibro = l.id 
-where isbn like concat(p_2, '%') AND iv.estadoMaterial!='Prestado' AND inv.eliminado!=1 limit 10;
+where isbn like concat(p_2, '%') AND iv.estadoMaterial!='Prestado' AND iv.eliminado!=1 limit 10;
+ END IF;
+ 
+ 
+ -- BUSQUEDA POR EPIGRAFE
+  IF p_1=4 THEN
+   select l.nombre,iv.id as idInventario,iv.numeroInventario 
+	from libro l 
+    inner join inventario iv on iv.idLibro = l.id 
+where l.epigrafe like concat(p_2, '%') AND iv.estadoMaterial!='Prestado' AND iv.eliminado!=1 limit 10;
+ END IF;
+ 
+  -- BUSQUEDA POR NUMERO INVENTARIO
+  IF p_1=5 THEN
+   select l.nombre,iv.id as idInventario,iv.numeroInventario 
+	from libro l 
+    inner join inventario iv on iv.idLibro = l.id 
+where iv.numeroInventario like concat(p_2, '%') AND iv.estadoMaterial!='Prestado' AND iv.eliminado!=1 limit 10;
  END IF;
 END $$
 DELIMITER ;
@@ -172,7 +188,7 @@ in p_detallesFisicos text,in p_dimensiones text)
 BEGIN
 INSERT INTO `libro` 
 (`nombre`, `cantidadPaginas`,
- `informacionAdicional`, `terminosResumen`, `numeroEdicion`,
+ `informacionAdicional`, `epigrafe`, `numeroEdicion`,
  `referenciaDigital`, `fechaPublicacion`, `idioma`,
  `isbn`, `idEditorial`, `idPais`, `idTipoColeccion`, `idTipoLiteratura`, `eliminado`,
 `iscn`,`asesor`,`notas`,`clasificacion`,`libristica`,
@@ -234,7 +250,7 @@ DROP PROCEDURE IF exists `bibliotecauae`.`infoLibro` $$
 CREATE PROCEDURE `bibliotecauae`.`infoLibro`()
 	BEGIN
 select l.id,iv.numeroInventario,l.nombre,l.numeroEdicion,l.idioma,l.idEditorial as editorial,p.nombre as pais,tCol.nombre as tipoColeccion,
-tLi.nombre as tipoLiteratura,l.idioma as detalleautorID from libro l
+tLi.nombre as tipoLiteratura,l.idioma as detalleautorID,l.autor from libro l
 inner join pais p
 	on p.id=l.idPais
 inner join tipoColeccion tCol
@@ -244,7 +260,7 @@ inner join tipoLiteratura tLi
 inner join inventario iv
 	on iv.idLibro=l.id
 where l.eliminado!=1
-    order by l.id DESC limit 400;    
+    order by l.id DESC limit 3000;    
     END $$
 DELIMITER ;
 -- 

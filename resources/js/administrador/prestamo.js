@@ -382,7 +382,7 @@ $("#txtBusqueda").on("keyup",function(){
 	$("#sinDatos").replaceWith("<tbody id='sinDatos'></body>");
 
 $.each(JSON.parse(data),function(){
-	$("#sinDatos").append("<tr><td>"+this.nombre+"</td><td>"+this.numeroInventario+"</td><td><button type='button' class='btn btn-success btn-circle seleccionar' id="+this.numeroInventario+" ><i class='fas fa-check'></i></button></td></tr>");
+	$("#sinDatos").append("<tr><td>"+this.nombre+"</td><td>"+this.numeroInventario+"</td><td><button type='button' class='btn btn-success btn-circle seleccionar btn-sm' id="+this.numeroInventario+" ><i class='fas fa-check'></i></button>&nbsp;<button type='button' class='btn btn-primary btn-circle info btn-sm' id="+this.numeroInventario+" ><i class='fas fa-info'></i></button></td></tr>");
 							});
 						
 					}
@@ -649,5 +649,55 @@ swal("¡Aviso!",
 
 
 	});
+
+//INFO LIBRO
+$(document).on("click",".info",function(){
+
+	// $("#nuevoPrestamo").hide();
+	
+
+	var id = $(this).attr('id');
+
+
+	$.ajax({
+		type: 'POST',
+		data: {id:id,key:'getInfo'},
+		url: '../../controller/LibroController.php',
+		success: function (data) {
+			data = JSON.parse(data);
+			// alert(data.nombre);
+			$("#txtNombre").html(data[0].nombre);
+			$("#txtAutor").html(data[0].autor);
+			$("#txtInventario").html(id);
+			$("#txtClasificacion").html(data[0].clasificacion);
+			$("#txtEpigrafe").html(data[0].epigrafe);
+			$("#txtEdicion").html(data[0].edicion);
+			$("#txtEditorial").html(data[0].editorial);
+			$("#txtAsesor").html(data[0].asesor);
+			$("#txtFecha").html(data[0].fecha);
+			
+
+
+			$('#modalInventario').modal('toggle');
+			$("#modalInfo").modal({backdrop: 'static',keyboard: false});
+
+		}
+	});
+
+});
+
+$("#cerrarInfo").click(function(){
+
+	$("#modalInventario").modal("show");
+	$('#modalInfo').modal('toggle');
+	// $('#modalInventario').show();
+
+	// $("#modalInventario").show();
+    
+});
+
+
+
+// FIN INFO LIBRO
 
 });

@@ -47,7 +47,7 @@ class Inventario
         }
         else
         {
-            $fila['estado'] = false;
+            $fila['estado'] = $this->con->error;
             $obj = json_encode($fila);
             $json .= $obj;
         }

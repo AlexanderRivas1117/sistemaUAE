@@ -1,0 +1,14 @@
+ultimo id por archivo
+
+1.tesis 04-junio-2019  	-  7826
+2.coleccion general 	-  15536	
+3.coleccion libros 	-  25176 
+4.coleccion nortan 	-  25863
+5.coleccion diplomados	-  26053
+6.coleccion perla	-  26387
+
+mostrar edicion,editorial,mostrar y agregar asesor,fechaPublicacion
+
+buscar por epigrafe, numero de inventario
+
+tipo literatura = tipo de documento

@@ -57,11 +57,23 @@ if (isset($_POST['key'])) {
 		case 'tipoLiteratura':
 			tipoLiteratura();
 			break;
+
+		case 'getInfo':
+			getInfo();
+			break;
 		
 		default:
 			# code...
 			break;
 	}
+}
+
+
+function getInfo()
+{
+	$id = $_REQUEST['id'];
+	$objLibro = new Libro();
+	echo $objLibro->getInfo($id);
 }
 
 function getAutores()

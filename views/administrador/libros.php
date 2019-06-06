@@ -47,6 +47,9 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 
 <link href="../../resources/select2/dist/css/select2.min.css" rel="stylesheet" />
 
+<!-- SUMMERNOTE -->
+
+<!-- SUMMERNOTE -->
 
 </head>
 
@@ -89,7 +92,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
               <h6 class="m-0 font-weight-bold text-primary">Datos de Libros</h6>
             </div>
             <div class="card-body">
-              
+             
                 <!-- INICIO -->
                 <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -130,7 +133,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                                     echo "<tr>
                                             <td class=''>".$value['numeroInventario']."</td>
                                             <td class=''>".$value['nombre']."</td>
-                                            <td class=''>".$value['detalleautorID']."</td>
+                                            <td class=''>".$value['autor']."</td>
                                             <td class=''>".$value['editorial']."</td>
                                             
                                             <td class=''>".$value['tipoColeccion']."</td>
@@ -138,8 +141,8 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                                                 
                                                 
 
-                                                <button type='button' class='btn btn-info btn-circle Editar' id='".$value['id']."' value='Editar'><i class='fas fa-edit'></i></button>
-                                                <button type='button' class='btn btn-danger btn-circle Eliminar' id='".$value['id']."' value='Eliminar'><i class='fas fa-trash'></i></button>
+                                                <button type='button' class='btn btn-info btn-circle Editar btn-sm' id='".$value['id']."' value='Editar'><i class='fas fa-edit'></i></button>
+                                                <button type='button' class='btn btn-danger btn-circle Eliminar btn-sm' id='".$value['id']."' value='Eliminar'><i class='fas fa-trash'></i></button>
                                                 
                                             </td>
                                           </tr>";
@@ -176,6 +179,8 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
           </div>
         </div>
       </footer>
+
+
       <!-- End of Footer -->
 
     </div>
@@ -212,6 +217,10 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
   <script src="../../resources/bootstrap/vendor/jquery/jquery.min.js"></script>
   <script src="../../resources/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+  <!-- SUMMERNOTE -->
+<!--   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script> -->
+  <!-- SUMMERNOTE -->
   <!-- Core plugin JavaScript-->
   <script src="../../resources/bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -271,15 +280,48 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 <div id="infoLibro">
   <fieldset id="info1">
 <form id="data1" method="POST" action="#" autocomplete="off">
-    <h6 class="h6 mb-4 ">INFORMACION DEL LIBRO</h6>  
+    <h6 class="h6 mb-4 ">INFORMACION DEL DOCUMENTO</h6> 
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+        <label>Tipo Coleccion</label>
+        <select id="tipoColeccion" name="tipoColeccion" class="form-control form-control-sm">
+          <option value="">Seleccione</option>
+          <option value="COLECCIÓN GENERAL">COLECCIÓN GENERAL</option>
+          <option value="COLECCIÓN DE TESIS">COLECCIÓN DE TESIS</option>
+          <option value="COLECCIÓN PERLA">COLECCIÓN PERLA</option>
+          <option value="COLECCION DE DIPLOMADO">COLECCION DE DIPLOMADO</option>
+          <option value="COLECCIÓN NORTAR BARTOLO">COLECCIÓN NORTAR BARTOLO</option>
+          <option value="COLECCION DE REFERENCIA">COLECCION DE REFERENCIA</option>
+          <option value="COLECCION GC">COLECCION GC</option>
+          <option value="COLECCION DE AUDIOVISUALES">COLECCION DE AUDIOVISUALES</option>
+
+        </select>
+      </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group required">
+        <label class="">Tipo Documento</label>
+        <select id="tipoDocumento" name="tipoDocumento" class="form-control form-control-sm">
+          <option value="">Seleccione</option>
+          <option value="LIBRO">LIBRO</option>
+          <option value="TESIS">TESIS</option>
+          <option value="REVISTA">REVISTA</option>
+          <option value="MANUALES">MANUALES</option>
+          <option value="RECURSO ELECTRÓNICO">RECURSO ELECTRÓNICO</option>
+          <option value="CD">CD</option>
+          <option value="BRAILE">BRAILE</option>
+          <option value="VIDEO GRABACIÓN">VIDEO GRABACIÓN</option>
+        </select>
+      </div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-md-5">
         <div class="form-group">
-
           <label class="" for="nombre">Título de Documento</label>
           <input type="text" class="form-control required form-control-sm " id="nombre" name="nombre" placeholder="Titulo">
-          
-
         </div>
       </div>
 
@@ -290,42 +332,34 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
           <input type="text" class="form-control required form-control-sm " id="tituloParalelo" name="tituloParalelo" placeholder="Titulo Paralelo">
         </div>
       </div>
+
       <div class="col-md-2">
         <div class="form-group">
           <label class=""for="cantidadPaginas">Cant. Págs.</label>
 <input type="number" class="form-control required form-control-sm" id="cantidadPaginas" name="cantidadPaginas" placeholder="Nº págs">
         </div>
       </div>
+    </div> <!-- row -->
+    <div class="row">
+        <div class="col-md-12">
+          <hr style="background: #4e73df;">
+        </div>
+    </div>
+
+    <div class="row">
+
+      
+
       <div class="col-md-5">
         <div class="form-group">
           <label class=""for="informacionAdicional">Información Adicional</label>
           <input type="textarea" class="form-control form-control-sm" id="informacionAdicional" name="informacionAdicional" placeholder="Información Adicional">
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label class=""for="terminosResumen">Epígrafe</label>
-          <input type="text" class="form-control noRequired form-control-sm " id="terminosResumen" name="terminosResumen" placeholder="Epígrafe">
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-group">
-          <label class=""for="numeroEdicion">Número de Edición</label>
-          <input type="number" class="form-control required form-control-sm " id="numeroEdicion" name="numeroEdicion" placeholder="Nº Edición">
-        </div>
-      </div>
-    </div>
-    <div class="row">    
-      <div class="col-md-5">
-        <div class="form-group">
-          <label class=""for="referenciaDigital">Referencia Digital</label>
-          <input type="text" class="form-control required form-control-sm " id="referenciaDigital" name="referenciaDigital" placeholder="Referencia Digital">
-        </div>
-      </div>
       <div class="col-md-3">
         <div class="form-group">
           <label class=""for="fechaPublicacion">Fecha publicación</label>
-          <select class="form-control form-control-sm"" id="fechaPublicacion" name="fechaPublicacion">
+          <select class="form-control form-control-sm" id="fechaPublicacion" name="fechaPublicacion">
             <option>Seleccione</option>
                       <?php 
 
@@ -338,10 +372,33 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
           </select>
         </div>
       </div>
+      
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class=""for="numeroEdicion">Número de Edición</label>
+          <input type="text" class="form-control form-control-sm " id="numeroEdicion" name="numeroEdicion" placeholder="Nº Edición">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">    
+      <div class="col-md-5">
+        <div class="form-group">
+          <label class=""for="referenciaDigital">Referencia Digital</label>
+          <input type="text" class="form-control required form-control-sm " id="referenciaDigital" name="referenciaDigital" placeholder="Referencia Digital">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class=""for="terminosResumen">Epígrafe</label>
+          <input type="text" class="form-control noRequired form-control-sm " id="terminosResumen" name="terminosResumen" placeholder="Epígrafe">
+        </div>
+      </div>
       <div class="col-md-3">
         <div class="form-group">
           <label class=""for="idioma">Idioma</label>
-          <select class="form-control form-control-sm"" id="idioma" name="idioma">
+          <select class="form-control form-control-sm" id="idioma" name="idioma">
             <option value="">Seleccione</option>
             <option value="1">spa.</option>
             <option value="2">ing.</option>         
@@ -349,34 +406,17 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
         </div>
       </div>
 
-    </div>
-    <div class="row">
-
-
-      <div class="col-md-3">
-        <div class="select2-container">
-          <label class="" for="editorial">Editorial</label>
-              <select id="editorial" name="editorial" class="js-example-basic-single form-control-sm" required="true" style="width: 100%;">
-
-
-                
-                <option value="">Seleccione</option>
-              </select>
-        </div>
-      </div> 
-
-      <!-- <div class="col-md-3">
-        <div class="form-group">
-          <label class=""for="fechaIso">Fecha ISO</label>
-          <input type="date" class="form-control required form-control-sm " id="fechaIso" name="fechaIso" placeholder="Fecha ISO">
-        </div>
-      </div> -->
-      
-      
-
       <div class="col-md-3">
         <div class="form-group">
-          <label class="" for="dimensiones">Dimensiones del Libro</label>
+          <label class=""for="iscn">ISCN</label>
+          <input type="text" class="form-control required form-control-sm " id="iscn" name="iscn" placeholder="Iscn">
+        </div>
+      </div>
+
+      
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="" for="dimensiones">Dimensiones</label>
           <input type="text" class="form-control form-control-sm" id="dimensiones" name="dimensiones" placeholder="Dimensiones" data-inputmask="'mask': '9999 x 9999'">
         </div>
       </div>
@@ -386,60 +426,45 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
           <input type="text" class="form-control required form-control-sm " id="isbn" name="isbn" placeholder="Isbn">
         </div>
       </div>
-      <div class="col-md-3">
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+          <hr style="background: #4e73df;">
+        </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
         <div class="form-group">
-          <label class=""for="iscn">ISCN</label>
-          <input type="text" class="form-control required form-control-sm " id="iscn" name="iscn" placeholder="Iscn">
+          <label class=""for="editorial">Editorial</label>
+          <input type="text" class="form-control required form-control-sm " id="editorial" name="editorial" placeholder="Editorial">
         </div>
       </div>
+
   
-      <div class="col-md-3">
-        <div class="form-group">
-        <label class="" for="pais">Pais</label>
-        <select id="pais" name="pais" class="js-example-basic-single" required="true" style="width: 100%;">
-          <option value="">Seleccione</option>
-        </select>
-      </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-group">
-        <label class="">Tipo Coleccion</label>
-        <select id="tipoColeccion" name="tipoColeccion[]" class="js-example-basic-single form-control-sm" required="true" style="width: 100%;">
-          <option value="">Seleccione</option>
-        </select>
-      </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-group required">
-        <label class="">Tipo Literatura</label>
-        <select id="tipoLiteratura" name="tipoLiteratura[]" class="js-example-basic-single form-control-sm" required="true" style="width: 100%;">
-          <option value="">Seleccione</option>
-        </select>
-      </div>
-      </div>
-      <div class="col-md-3">
+  
+      
+      
+      <div class="col-md-6">
         <div class="form-group">
           <label class="" for="asesor">Asesor</label>
           <input type="text" class="form-control required form-control-sm " id="asesor" name="asesor" placeholder="Asesor">
         </div>
       </div>
+      
+      
     </div>
+
     <div class="row">
-
-      <div class="col-md-3">
-        <div class="form-group">
-          <label class="" for="notas">Área de las notas</label>
-          <input type="text" class="form-control required form-control-sm " id="notas" name="notas" placeholder="Notas">
-        </div>
-      </div>
-
       <div class="col-md-3">
         <div class="form-group">
           <label class="" for="numeroClasificacion">Nº de Clasificación</label>
           <input type="text" class="form-control required form-control-sm " id="numeroClasificacion" name="numeroClasificacion" placeholder="Número de Clasificación">
         </div>
       </div>
-
       <div class="col-md-3">
         <div class="form-group">
           <label class="" for="libristicaAutor">Librística del Autor</label>
@@ -458,8 +483,32 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
         </select>
         </div>
       </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+        <label class="" for="pais">Pais</label>
+        <select id="pais" name="pais" class="js-example-basic-single"  style="width: 100%;">
+          <option value="">Seleccione</option>
+        </select>
+      </div>
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="" for="notas">Área de las notas</label>
+          <input type="text" class="form-control required form-control-sm " id="notas" name="notas" placeholder="Notas">
+        </div>
+      </div>
       
-      
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+          <hr style="background: #4e73df;">
+        </div>
     </div>
 
     <div class="row">
@@ -473,12 +522,13 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
     </div>
     
     <div class="row" id="misAutores">
-      <div class="col-md-4 grupos">
+      <div class="col-md-12 grupos">
         <div class="form-group"> 
-          <label class="">Autor</label>
-        <select id="autor" name="autor" multiple="multiple" class="js-example-basic-multiple form-control-sm" style="width: 100%" required>
+          <label class="">Autor(es)</label>
+        <!-- <select id="autor" name="autor" multiple="multiple" class="js-example-basic-multiple form-control-sm" style="width: 100%" required>
             
-          </select>
+          </select> -->
+          <input type="text" name="autor" id="autor" class="form-control">
         </div>
 
         
@@ -517,7 +567,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
       <div class="col-md-3">
         <div class="form-group">
           <label class=""for="numeroInventario">Número Inventario</label>
-          <input type="text" class="form-control form-control-sm " id="numeroInventario" name="numeroInventario" placeholder="Nº Inventario" required="true">
+          <input type="text" class="form-control form-control-sm " id="numeroInventario" name="numeroInventario" placeholder="Nº Inventario" >
         </div>
       </div>
       <div class="col-md-3">
@@ -620,7 +670,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
   <div class="col-md-10">
     <div class="form-group">
       <label>Buscar:</label>
-<input type="text" id="txtBusqueda" name="txtBusqueda" placeholder="Ingrese lo que desea buscar.." class="form-control" required="true">
+<input type="text" id="txtBusqueda" name="txtBusqueda" placeholder="Ingrese lo que desea buscar.." class="form-control" >
     </div>
   </div>
   <div class="col-md-1" style="padding-left: 0px; margin-top: 3px; margin-left: 10px">
@@ -669,56 +719,56 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 $(document).ready(function() {
 
 // SELECT DE AUTORES
-    $.ajax({
-     url: "../../controller/LibroController.php",
-    method: 'POST',
-    data: {key:'searchAutor2'},
-    success: function (d) {  
-      d = JSON.parse(d);             
-        $('#autor').select2({
-            data: d,
-            language: 'es',
-            dropdownParent: $('#nuevoPrestamo'),
-            placeholder: 'Seleccione'
+  //   $.ajax({
+  //    url: "../../controller/LibroController.php",
+  //   method: 'POST',
+  //   data: {key:'searchAutor2'},
+  //   success: function (d) {  
+  //     d = JSON.parse(d);             
+  //       $('#autor').select2({
+  //           data: d,
+  //           language: 'es',
+  //           dropdownParent: $('#nuevoPrestamo'),
+  //           placeholder: 'Seleccione'
 
-        });
-    }
-  });
+  //       });
+  //   }
+  // });
 
 // SELECT DE EDITORIAL
 
-$.ajax({
-     url: "../../controller/LibroController.php",
-    method: 'POST',
-    data: {key:'selectEditorial'},
-    success: function (d) {  
-      d = JSON.parse(d);             
-        $('#editorial').select2({
-            data: d,
-            language: 'es',
-            dropdownParent: $('#nuevoPrestamo'),
-            placeholder: 'Seleccione'
-        });
-    }
-  });
+// $.ajax({
+//      url: "../../controller/LibroController.php",
+//     method: 'POST',
+//     data: {key:'selectEditorial'},
+//     success: function (d) {  
+//       d = JSON.parse(d);             
+//         $('#editorial').select2({
+//             data: d,
+//             language: 'es',
+//             dropdownParent: $('#nuevoPrestamo'),
+//             placeholder: 'Seleccione'
+//         });
+//     }
+//   });
 
 //SELECT TIPO COLECCION
 
 
-$.ajax({
-     url: "../../controller/LibroController.php",
-    method: 'POST',
-    data: {key:'tipoColeccion'},
-    success: function (d) {  
-      d = JSON.parse(d);                  
-        $('#tipoColeccion').select2({
-            data: d,
-            language: 'es',
-            dropdownParent: $('#nuevoPrestamo'),
-            placeholder: 'Seleccione'
-        });
-    }
-  });
+// $.ajax({
+//      url: "../../controller/LibroController.php",
+//     method: 'POST',
+//     data: {key:'tipoColeccion'},
+//     success: function (d) {  
+//       d = JSON.parse(d);                  
+//         $('#tipoColeccion').select2({
+//             data: d,
+//             language: 'es',
+//             dropdownParent: $('#nuevoPrestamo'),
+//             placeholder: 'Seleccione'
+//         });
+//     }
+//   });
 
 // SELECT PAIS
 
@@ -739,20 +789,20 @@ $.ajax({
 
 // SELECT TIPO LITERATURA
 
-$.ajax({
-     url: "../../controller/LibroController.php",
-    method: 'POST',
-    data: {key:'tipoLiteratura'},
-    success: function (d) {  
-      d = JSON.parse(d);         
-        $('#tipoLiteratura').select2({
-            data: d,
-            language: 'es',
-            dropdownParent: $('#nuevoPrestamo'),
-            placeholder: 'Seleccione'
-        });
-    }
-  });
+// $.ajax({
+//      url: "../../controller/LibroController.php",
+//     method: 'POST',
+//     data: {key:'tipoLiteratura'},
+//     success: function (d) {  
+//       d = JSON.parse(d);         
+//         $('#tipoLiteratura').select2({
+//             data: d,
+//             language: 'es',
+//             dropdownParent: $('#nuevoPrestamo'),
+//             placeholder: 'Seleccione'
+//         });
+//     }
+//   });
 
 
 });

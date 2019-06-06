@@ -32,7 +32,13 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
   <link href="../../resources/bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../../resources/sweetalert-master/dist/sweetalert.css">
 </head>
-
+<style>
+.greenL {
+  border-left: 3px solid green;
+  height: 100%;
+  padding-left: 10px;
+}
+</style>
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -333,7 +339,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 
 </div>
 <div class="row">
-<div class="col-md-8">
+<div class="col-md-12">
             <div class="form-group">
  <div class="custom-control custom-radio custom-control-inline">
     <input type="radio" id="sNombre" name="search" class="custom-control-input" value="1" checked>
@@ -346,6 +352,14 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 <div class="custom-control custom-radio custom-control-inline">
   <input type="radio" id="sIsbn" name="search" class="custom-control-input" value="3">
     <label class="custom-control-label" for="sIsbn">ISBN</label>
+</div>
+<div class="custom-control custom-radio custom-control-inline">
+  <input type="radio" id="sEpigrafe" name="search" class="custom-control-input" value="4">
+    <label class="custom-control-label" for="sEpigrafe">EPÍGRAFE</label>
+</div>
+<div class="custom-control custom-radio custom-control-inline">
+  <input type="radio" id="sInventario" name="search" class="custom-control-input" value="5">
+    <label class="custom-control-label" for="sInventario">N° INVENTARIO</label>
 </div>
     <!-- <div class="custom-control custom-radio custom-control-inline">
 <input type="radio" id="sNombre" name="search" class="custom-control-input" value="1" checked>
@@ -493,6 +507,155 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
     </div>
   </div>
 </div>
+
+
+<!-- MODAL INFO LIBRO -->
+
+<div class="modal fade bd-example-modal-lg" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" style="width: 3000px;">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h6 class="modal-title">Información de Documento</h6>
+          <!-- <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button> -->
+        </div>
+      <div class="modal-body"  id="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group row">
+            <p class=" col-sm-2 font-weight-normal">Título</p>
+            <div class="col-sm-10">
+              <div class="greenL"><p class="font-weight-bold" id="txtNombre"><!-- Mejoramiento de las instalaciones existentes de la Sala Cuna y habilitación de un edificio aledaño Centro de Orientación --></p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group row">
+            <p class=" col-sm-2 font-weight-normal">Autor(es)</p>
+            <div class="col-sm-10">
+              <div class="greenL">
+                <p class="font-weight-normal" id="txtAutor"> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+       <div class="col-md-6">
+          <div class="form-group row">
+            <p class=" col-sm-4 font-weight-normal">Inventario: </p>
+            <div class="col-sm-8">
+              <div class="greenL">
+                <p class="font-weight-bold" id="txtInventario"> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <p class=" col-sm-3 font-weight-normal">Clasificación: </p>
+            <div class="col-sm-9">
+              <div class="greenL">
+                <p class="font-weight-bold" id="txtClasificacion"> </p>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <hr style="background: #4e73df;">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group row">
+            <p class=" col-sm-2 font-weight-normal">Epígrafes: </p>
+            <div class="col-sm-10">
+              <p class="font-weight-bold" id="txtEpigrafe"> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group row">
+            <p class=" col-sm-6 font-weight-normal">Edición: </p>
+            <div class="col-sm-6">
+              <p class="font-weight-bold" id="txtEdicion"> </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="form-group row">
+            <p class=" col-sm-2 font-weight-normal">Editorial: </p>
+            <div class="col-sm-10">
+              <div><p class="font-weight-bold" id="txtEditorial"> </p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <p class=" col-sm-4 font-weight-normal">Asesor: </p>
+            <div class="col-sm-8">
+              <p class="font-weight-bold" id="txtAsesor"> </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group row">
+            <p class=" col-sm-4 font-weight-normal">F.Publicación: </p>
+            <div class="col-sm-8">
+              <p class="font-weight-bold" id="txtFecha"> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <hr style="background: #4e73df;">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group row">
+            <p class=" col-sm-2 font-weight-normal">Tabla de Contenido: </p>
+            <div class="col-sm-10">
+              <p class="font-weight-bold"> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div> <!-- modal body -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="cerrarInfo">Cerrar</button>
+        <!-- <button type="button" class="btn btn-primary" id="ok" value="registrar">Realizar Prestamo</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+  .modal {
+  overflow-y:auto;
+}
+</style>
+<!-- FIN MODAL INFO LIBRO -->
 
 <!-- MODALES -->
 </html>
