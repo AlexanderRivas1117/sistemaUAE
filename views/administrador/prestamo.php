@@ -626,7 +626,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
           <div class="form-group row">
             <p class=" col-sm-2 font-weight-normal">Tabla de Contenido: </p>
             <div class="col-sm-10">
-              <p class="font-weight-bold"> </p>
+              <p class="font-weight-bold" id="txtContenido"> </p>
             </div>
           </div>
         </div>

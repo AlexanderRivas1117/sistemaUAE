@@ -3,6 +3,47 @@
 require_once '../vendor/autoload.php';
 require_once '../app/config.php';
 
+$mes = $_REQUEST['mes'];
+
+
+if ($mes==1) {
+	$nombreMes='Enero';
+}
+if ($mes==2) {
+	$nombreMes='Febrero';
+}
+if ($mes==3) {
+	$nombreMes='Marzo';
+}
+if ($mes==4) {
+	$nombreMes='Abril';
+}
+if ($mes==5) {
+	$nombreMes='Mayo';
+}
+if ($mes==6) {
+	$nombreMes='Junio';
+}
+if ($mes==7) {
+	$nombreMes='Julio';
+}
+if ($mes==8) {
+	$nombreMes='Agosto';
+}
+if ($mes==9) {
+	$nombreMes='Septiembre';
+}
+if ($mes==10) {
+	$nombreMes='Octubre';
+}
+if ($mes==11) {
+	$nombreMes='Noviembre';
+}
+if ($mes==12) {
+	$nombreMes='Diciembre';
+}
+
+
 $html = '<table border="1" style="border-collapse: collapse;width:100%;">';
 	$html .= '<tr>';
 			$html .= '<td colspan="8" style="text-align:center;">';
@@ -36,7 +77,7 @@ $html = '<table border="1" style="border-collapse: collapse;width:100%;">';
 
 	$html .= '<tr>';
 			$html .= '<td colspan="8" style="text-align:left;">';
-				$html .= 'Informe correspondiente al mes de ';
+				$html .= 'Informe correspondiente al mes de '.'<b>'.$nombreMes.'</b>';
 			$html .= '</td>';
 	$html .= '</tr>';
 
@@ -87,13 +128,14 @@ inner join libro l
 on iv.idLibro= l.id
 inner join carrera c
 on u.idCarrera=c.id
-where datediff(curdate(), p.fechaDevolver)>0';
+where datediff(curdate(), p.fechaDevolver)>0 and p.estado=1 and month(p.fechaRealizacion) = "'.$mes.'"';
 $con = conectar();
 				$result = $con->query($sql);
 				mysqli_close($con);
 
-$i = 0;
-foreach ($result as $row) {
+
+$i=0;
+	foreach ($result as $row) {
 	$i++;
 
 	$html .= '<tr>';
@@ -110,7 +152,8 @@ foreach ($result as $row) {
 		$html .= '</td>';
 
 		$html .= '<td style="text-align:left;">';
-				$html .= $row['fechaDevolver'];
+
+				$html .= date("d-m-Y", strtotime($row['fechaDevolver']));
 		$html .= '</td>';
 
 		$html .= '<td style="text-align:left;">';
@@ -131,6 +174,48 @@ foreach ($result as $row) {
 	$html .= '</tr>';
 
 }
+
+for ($i; $i < 25; $i++) {
+	$html .= '<tr>';
+		$html .= '<td style="text-align:center;">';
+				$html .= $i;
+		$html .= '</td>';
+
+		$html .= '<td style="text-align:center;">';
+				
+		$html .= '</td>';
+
+		$html .= '<td style="text-align:left;">';
+				
+		$html .= '</td>';
+
+		$html .= '<td style="text-align:left;">';
+				
+		$html .= '</td>';
+
+		$html .= '<td style="text-align:left;">';
+				
+		$html .= '</td>';
+
+		$html .= '<td style="text-align:center;">';
+				
+		$html .= '</td>';
+
+		$html .= '<td style="text-align:left;">';
+				
+		$html .= '</td>';
+
+		$html .= '<td style="text-align:center;">';
+				
+		$html .= '</td>';
+	$html .= '</tr>';
+}
+
+
+
+	
+
+
 
 
 	

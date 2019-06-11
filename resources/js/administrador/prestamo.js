@@ -676,7 +676,7 @@ $(document).on("click",".info",function(){
 			$("#txtEditorial").html(data[0].editorial);
 			$("#txtAsesor").html(data[0].asesor);
 			$("#txtFecha").html(data[0].fecha);
-			
+			$("#txtContenido").html(data[0].contenido);
 
 
 			$('#modalInventario').modal('toggle');

@@ -116,7 +116,7 @@ function guardarDocumento()
 	$dataLibro = $_POST['dataLibro'];
 	//var_dump(json_decode($dataLibro));
 	$objLibro = new Libro();
-	// //$dataLibro = json_decode($dataLibro);
+	//$dataLibro = json_decode($dataLibro);
 	// //var_dump($dataLibro);
 	 echo $objLibro->guardarDocumento($dataLibro);
 }

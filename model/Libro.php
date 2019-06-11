@@ -120,7 +120,17 @@ where iv.numeroInventario='{$id}'";
 
     public function getInfoLibro($id)
     {
-        $sql = "select * from libro where id='".$id."'";
+        $sql = "SELECT l.nombre as titulo,
+                l.cantidadPaginas,l.informacionAdicional,l.epigrafe,
+                l.numeroEdicion,l.referenciaDigital,l.fechaPublicacion,
+                l.idioma,l.isbn,l.idEditorial,l.idPais,l.idioma,l.iscn,l.dimensiones,
+                l.asesor,l.clasificacion,l.libristica,l.detallesFisicos,l.notas,l.contenido,l.autor,
+                iv.id as idInventario,iv.numeroInventario,iv.fechaAdquisicion,iv.precio,iv.facilitante,
+                iv.entrego,iv.fechaEntrega,iv.formaAdquisicion,iv.volumen
+                from libro l
+                inner join inventario iv
+                on iv.idLibro = l.id
+                where l.id='".$id."'";
         $info = $this->con->query($sql);
 
         mysqli_set_charset($this->con, "utf8");
@@ -136,7 +146,7 @@ where iv.numeroInventario='{$id}'";
                 $json .= $obj.",";
             }
             $json = substr($json,0, strlen($json)-1);
-            mysqli_free_result($innfo);
+            mysqli_free_result($info);
         }
         else
         {
@@ -224,42 +234,42 @@ where iv.numeroInventario='{$id}'";
     {
         $data = json_decode($dataLibro);
 
-        $nombre = $data[1]->value;
-        $tituloParalelo = $data[2]->value;
+        $tipoColeccion = $data[1]->value;
+        $tipoLiteratura = $data[2]->value;
+        $nombre = $data[3]->value;
+        $tituloParalelo = $data[4]->value;
+        $cantidadPaginas = $data[5]->value;
+        $informacionAdicional = $data[6]->value;
+        $fechaPublicacion = $data[7]->value;
+        $numeroEdicion = $data[8]->value;
+        $referenciaDigital = $data[9]->value;
+        $terminosResumen = $data[10]->value;
+        $idioma = $data[11]->value;
+        $iscn = $data[12]->value;
+        $dimensiones = $data[13]->value;
+        $isbn = $data[14]->value;
+        $idEditorial = $data[15]->value;
+        $asesor = $data[16]->value;
+        $numeroClasificacion = $data[17]->value;
+        $libristicaAutor = $data[18]->value;
+        $detallesFisicos = $data[19]->value;
+        $idPais = $data[20]->value;
+        $notas = $data[21]->value;
+        $contenido = $data[22]->value;
 
-        $cantidadPaginas = $data[3]->value;
-        $informacionAdicional = $data[4]->value;
-        $terminosResumen = $data[5]->value;
-        $numeroEdicion = $data[6]->value;
-        $referenciaDigital = $data[7]->value;
-        $fechaPublicacion = $data[8]->value;
-        $idioma = $data[9]->value;
-        $idEditorial = $data[10]->value;
-        $dimensiones = $data[11]->value;
-        $isbn = $data[12]->value;
-        $iscn = $data[13]->value;
-        
+        //CAMPO NUEVO
+        $autor = $data[23]->value;
 
-        $idPais = $data[14]->value;
-        $tipoColeccion = $data[15]->value;
-        $tipoLiteratura = $data[16]->value;
-        $asesor = $data[17]->value;
-        $notas = $data[18]->value;
-        $numeroClasificacion = $data[19]->value;
-        $libristicaAutor = $data[20]->value;
-        $detallesFisicos = $data[21]->value;
-
-        $numeroInventario = $data[22]->value;
-        $fechaAdquisicion = $data[23]->value;
-        $precio = $data[24]->value;
-        $facilitante = $data[25]->value;
-        $entrego = $data[26]->value;
-        $fechaEntrega = $data[27]->value;
-        $formaAdquisicion = $data[28]->value;
-        $volumen = $data[29]->value;
+        $numeroInventario = $data[24]->value;
+        $fechaAdquisicion = $data[25]->value;
+        $precio = $data[26]->value;
+        $facilitante = $data[27]->value;
+        $entrego = $data[28]->value;
+        $fechaEntrega = $data[29]->value;
+        $formaAdquisicion = $data[30]->value;
+        $volumen = $data[31]->value;
 
 
-        
         if($tituloParalelo!='')
         {
             $nombre = $nombre.' - '.$tituloParalelo;
@@ -293,7 +303,9 @@ where iv.numeroInventario='{$id}'";
         '".$numeroClasificacion."',
         '".$libristicaAutor."',
         '".$detallesFisicos."',
-        '".$dimensiones."');";
+        '".$dimensiones."',
+        '".$autor."',
+        '".$contenido."');";
 
         $res = $this->con->query($sql);
         $data = array();

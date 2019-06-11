@@ -365,7 +365,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 
                       for ($i=2019 ; $i >=  1950 ; $i--) { 
                        ?>
-                       <option><?php echo $i ?></option>
+                       <option value="<?php echo $i ?>"><?php echo $i ?></option>
                        <?php 
                         }
                         ?>
@@ -511,17 +511,18 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
         </div>
     </div>
 
+
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
           <label class="" for="tablaContenido">Tabla de Contenido</label>
           <textarea class="form-control" id="tablaContenido" rows="4" name="tablaContenido"></textarea>        
-        </select>
+      
         </div>
       </div>
     </div>
-    
-    <div class="row" id="misAutores">
+
+    <div class="row">
       <div class="col-md-12 grupos">
         <div class="form-group"> 
           <label class="">Autor(es)</label>
@@ -636,9 +637,411 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
     <div class="row">
         
     </div>
-    <button type="button" name="previous" class="previous btn btn-info" value="Previous" style="margin-left: 520px;">Anterior</button>
+    <button type="button" name="previous" id="previous" class="previous btn btn-info" value="Previous" style="margin-left: 520px;">Anterior</button>
     <button type="button" class="btn btn-danger" name="clo" data-dismiss="modal" >Cerrar</button>
     <button type="submit" id="enviar" name="submit" class="submit btn btn-success" value="Submit">Enviar</button>
+
+   
+    </form>
+
+  </fieldset>
+  </form>
+  </div>
+</div>
+</div>
+<!-- AQUI -->
+<!-- TABLA DATOS USUARIO -->
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- FIN NUEVO LIBRO -->
+
+
+<!-- EDITAR LIBRO -->
+<div class="modal fade bd-example-modal-lg" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+  <div class="modal-dialog modal-lg" role="document" style="width: 3000px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Editar Libro</h5>
+      </div>
+      <div class="modal-body"  id="modal-body " style="max-height: calc(110vh - 190px);
+    overflow-y: auto;">
+
+ <style type="text/css">
+  /*#regiration_form form:not(:first-of-type) {
+    display: none;
+  }*/
+  #infoEdit2  {
+    display: none;
+  }
+  
+  </style>
+<!-- AQUI -->
+<div id="infoLibroEdit">
+  <fieldset id="infoEdit1">
+<form id="dataEdit1" method="POST" action="#" autocomplete="off">
+    <h6 class="h6 mb-4 ">INFORMACION DEL DOCUMENTO</h6> 
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+        <label>Tipo Coleccion</label>
+        <select id="tipoColeccionE" name="tipoColeccionE" class="form-control form-control-sm">
+          <option value="">Seleccione</option>
+          <option value="COLECCIÓN GENERAL">COLECCIÓN GENERAL</option>
+          <option value="COLECCIÓN DE TESIS">COLECCIÓN DE TESIS</option>
+          <option value="COLECCIÓN PERLA">COLECCIÓN PERLA</option>
+          <option value="COLECCION DE DIPLOMADO">COLECCION DE DIPLOMADO</option>
+          <option value="COLECCIÓN NORTAR BARTOLO">COLECCIÓN NORTAR BARTOLO</option>
+          <option value="COLECCION DE REFERENCIA">COLECCION DE REFERENCIA</option>
+          <option value="COLECCION GC">COLECCION GC</option>
+          <option value="COLECCION DE AUDIOVISUALES">COLECCION DE AUDIOVISUALES</option>
+
+        </select>
+      </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group required">
+        <label class="">Tipo Documento</label>
+        <select id="tipoDocumentoE" name="tipoDocumentoE" class="form-control form-control-sm">
+          <option value="">Seleccione</option>
+          <option value="LIBRO">LIBRO</option>
+          <option value="TESIS">TESIS</option>
+          <option value="REVISTA">REVISTA</option>
+          <option value="MANUALES">MANUALES</option>
+          <option value="RECURSO ELECTRÓNICO">RECURSO ELECTRÓNICO</option>
+          <option value="CD">CD</option>
+          <option value="BRAILE">BRAILE</option>
+          <option value="VIDEO GRABACIÓN">VIDEO GRABACIÓN</option>
+        </select>
+      </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5">
+        <div class="form-group">
+          <label class="" for="nombreE">Título de Documento</label>
+          <input type="text" class="form-control required form-control-sm " id="nombreE" name="nombreE" placeholder="Titulo">
+        </div>
+      </div>
+
+
+      <div class="col-md-5">
+        <div class="form-group">
+          <label class="" for="tituloParaleloE">Titulo Paralelo</label>
+          <input type="text" class="form-control required form-control-sm " id="tituloParaleloE" name="tituloParaleloE" placeholder="Titulo Paralelo">
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="form-group">
+          <label class=""for="cantidadPaginasE">Cant. Págs.</label>
+<input type="number" class="form-control required form-control-sm" id="cantidadPaginasE" name="cantidadPaginasE" placeholder="Nº págs">
+        </div>
+      </div>
+    </div> <!-- row -->
+    <div class="row">
+        <div class="col-md-12">
+          <hr style="background: #4e73df;">
+        </div>
+    </div>
+
+    <div class="row">
+
+      
+
+      <div class="col-md-5">
+        <div class="form-group">
+          <label class=""for="informacionAdicionalE">Información Adicional</label>
+          <input type="textarea" class="form-control form-control-sm" id="informacionAdicionalE" name="informacionAdicionalE" placeholder="Información Adicional">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class=""for="fechaPublicacionE">Fecha publicación</label>
+          <select class="form-control form-control-sm" id="fechaPublicacionE" name="fechaPublicacionE">
+            <option>Seleccione</option>
+                      <?php 
+
+                      for ($i=2019 ; $i >=  1950 ; $i--) { 
+                       ?>
+                       <option><?php echo $i ?></option>
+                       <?php 
+                        }
+                        ?>
+          </select>
+        </div>
+      </div>
+      
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class=""for="numeroEdicionE">Número de Edición</label>
+          <input type="text" class="form-control form-control-sm " id="numeroEdicionE" name="numeroEdicionE" placeholder="Nº Edición">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">    
+      <div class="col-md-5">
+        <div class="form-group">
+          <label class=""for="referenciaDigitalE">Referencia Digital</label>
+          <input type="text" class="form-control required form-control-sm " id="referenciaDigitalE" name="referenciaDigitalE" placeholder="Referencia Digital">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class=""for="terminosResumenE">Epígrafe</label>
+          <input type="text" class="form-control noRequired form-control-sm " id="terminosResumenE" name="terminosResumenE" placeholder="Epígrafe">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class=""for="idiomaE">Idioma</label>
+          <select class="form-control form-control-sm" id="idiomaE" name="idiomaE">
+            <option value="">Seleccione</option>
+            <option value="1">spa.</option>
+            <option value="2">ing.</option>         
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class=""for="iscnE">ISCN</label>
+          <input type="text" class="form-control required form-control-sm " id="iscnE" name="iscnE" placeholder="Iscn">
+        </div>
+      </div>
+
+      
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="" for="dimensionesE">Dimensiones</label>
+          <input type="text" class="form-control form-control-sm" id="dimensionesE" name="dimensionesE" placeholder="Dimensiones">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class=""for="isbnE">ISBN</label>
+          <input type="text" class="form-control required form-control-sm " id="isbnE" name="isbnE" placeholder="Isbn">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+          <hr style="background: #4e73df;">
+        </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class=""for="editorialE">Editorial</label>
+          <input type="text" class="form-control required form-control-sm " id="editorialE" name="editorialE" placeholder="Editorial">
+        </div>
+      </div>
+
+  
+  
+      
+      
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="" for="asesorE">Asesor</label>
+          <input type="text" class="form-control required form-control-sm " id="asesorE" name="asesorE" placeholder="Asesor">
+        </div>
+      </div>
+      
+      
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="" for="numeroClasificacionE">Nº de Clasificación</label>
+          <input type="text" class="form-control required form-control-sm " id="numeroClasificacionE" name="numeroClasificacionE" placeholder="Número de Clasificación">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="" for="libristicaAutorE">Librística del Autor</label>
+          <input type="text" class="form-control required form-control-sm " id="libristicaAutorE" name="libristicaAutorE" placeholder="Librística del Autor">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="" for="detallesFisicosE">Detalles Físicos</label>
+          <select class="form-control form-control-sm " id="detallesFisicosE" name="detallesFisicosE">
+              <option value="">Seleccione</option>
+              <option value="col">Col.</option>
+              <option value="b y n">B & N</option>
+        
+        </select>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+        <label class="" for="paisE">Pais</label>
+        <select id="paisE" name="paisE" class="js-example-basic-single"  style="width: 100%;">
+          <option value="">Seleccione</option>
+        </select>
+      </div>
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="" for="notasE">Área de las notas</label>
+          <input type="text" class="form-control required form-control-sm " id="notasE" name="notasE" placeholder="Notas">
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+          <hr style="background: #4e73df;">
+        </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="" for="tablaContenidoE">Tabla de Contenido</label>
+          <textarea class="form-control" id="tablaContenidoE" rows="4" name="tablaContenidoE"></textarea>        
+      
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 grupos">
+        <div class="form-group"> 
+          <label class="">Autor(es)</label>
+        <!-- <select id="autor" name="autor" multiple="multiple" class="js-example-basic-multiple form-control-sm" style="width: 100%" required>
+            
+          </select> -->
+          <input type="text" name="autor" id="autorE" class="form-control">
+        </div>
+
+        
+        </div>
+    </div>
+<section class="row">
+  <h1 class="col-md-9"></h1>
+
+  
+<div class="btn-group col-md-3" role="group">
+    <p class="float-left">
+      <a>
+        <button type="button" name="close" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </a>
+      <a>
+        <button type="submit" name="siguienteEdit" class="next btn btn-info" value="Next" id="siguienteEdit">Siguiente</button>
+      </a>
+    </p>
+  </div>
+</section>
+
+
+
+ 
+ 
+     </form>
+
+  </fieldset>
+
+  <fieldset id="infoEdit2">
+<form id="dataEdit2" method="POST">
+  
+    <h6 class="h6 mb-4 ">Editando en Inventario</h6> 
+
+    <div class="row">     
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class=""for="numeroInventarioE">Número Inventario</label>
+          <input type="text" class="form-control form-control-sm " id="numeroInventarioE" name="numeroInventarioE" placeholder="Nº Inventario" >
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class=""for="fechaAdquisicionE">Fecha Adquisición</label>
+          <input type="date" class="form-control required form-control-sm " id="fechaAdquisicionE" name="fechaAdquisicionE" placeholder="Fecha Adquisición" >
+
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class=""for="precioE">Precio</label>
+          <input type="text" class="form-control required form-control-sm " id="precioE" name="precioE" placeholder="$00.00" required>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class=""for="facilitanteE">Facilitante</label>
+          <input type="text" class="form-control required form-control-sm " id="facilitanteE" name="facilitanteE" placeholder="facilitante">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class=""for="entregoE">Entregó</label>
+          <input type="text" class="form-control required form-control-sm " id="entregoE" name="entregoE" placeholder="Entregó">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class=""for="fechaEntregaE">Fecha Entrega</label>
+          <input type="date" class="form-control required form-control-sm " id="fechaEntregaE" name="fechaEntregaE" placeholder="Fecha Entrega">
+        </div>
+      </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="" for="formaAdquisicionE">Forma Adquisición</label>
+                <select class="form-control  form-control-sm " id="formaAdquisicionE" name="formaAdquisicionE">
+                      <option value="">Seleccione</option>
+                      <option value="compra">Compra</option>
+                      <option value="donación">Donación</option>
+        </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class=""for="volumenE">Volumen</label>
+                <!-- <input type="number" class="form-control required form-control-sm " id="volumen" name="volumen" placeholder="Volumen"> -->
+                <select id="volumenE" class="form-control form-control-sm" name="volumenE">
+                  <option value="1">I</option>
+                  <option value="2">II</option>
+                  <option value="3">III</option>
+                  <option value="4">IV</option>
+                  <option value="5">V</option>
+                  <option value="6">VI</option>
+                  <option value="7">VII</option>
+                  <option value="8">VII</option>
+                  <option value="9">IX</option>
+                  <option value="10">X</option>
+
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        
+    </div>
+    <button type="button" name="previous" class="btn btn-info" id="previousEdit" value="previous" style="margin-left: 520px;">Anterior</button>
+    <button type="button" class="btn btn-danger" name="clo" data-dismiss="modal" >Cerrar</button>
+    <button type="submit" id="guardarCambios" name="submit" class="submit btn btn-success" value="Submit">Enviar</button>
 
    
     </form>
@@ -654,64 +1057,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
     </div>
   </div>
 </div>
-<!-- FIN NUEVO LIBRO -->
-   <!-- EDITAR LIBRO -->
-  <div class="modal fade" id="modalAutor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Buscar Autores</h5>
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button> -->
-      </div>
-      <div class="modal-body">
-<div class="row">
-  <div class="col-md-10">
-    <div class="form-group">
-      <label>Buscar:</label>
-<input type="text" id="txtBusqueda" name="txtBusqueda" placeholder="Ingrese lo que desea buscar.." class="form-control" >
-    </div>
-  </div>
-  <div class="col-md-1" style="padding-left: 0px; margin-top: 3px; margin-left: 10px">
-    <br>
-    <button type="button" class="btn btn-success btn-sm" id="btnNuevo" value="nuevo">Nuevo</button>
-  </div>
-
-</div>
-
-<br>
-
-<!-- TABLA LIBROS -->
-<DIV class="row">
-
-  <div class="col-md-12 table-responsive">
-     <table class="table table-bordered" id="listadoLibros" width="100%" cellspacing="0">
-        <th>Código Autor</th>
-        <th>Nombre</th>
-        <th>Seleccionar</th>
-      </thead>
-      <tbody id="sinDatos">
-          <tr >
-            <td colspan="4">
-              <h7 class="h9">No hay registros</h7>
-            </td>
-          </tr>         
-      </tbody>
-    </table>
-  </div>
-</DIV>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" id="cerrar">Cerrar</button>
-        <!-- <button type="button" class="btn btn-primary" id="ok" value="registrar">Realizar Prestamo</button> -->
-      </div>
-    </div>
-
-  </div>
-
-</div>
+<!-- FIN EDITAR LIBRO -->
 
 
 
@@ -784,8 +1130,24 @@ $.ajax({
             dropdownParent: $('#nuevoPrestamo'),
             placeholder: 'Seleccione'
         });
+        $('#paisE').select2({
+            data: d,
+            language: 'es',
+            dropdownParent: $('#edit'),
+            placeholder: 'Seleccione'
+        });
     }
   });
+
+// $.ajax({
+//      url: "../../controller/LibroController.php",
+//     method: 'POST',
+//     data: {key:'selectPais'},
+//     success: function (d) {  
+//       d = JSON.parse(d);           
+        
+//     }
+//   });
 
 // SELECT TIPO LITERATURA
 
@@ -807,6 +1169,10 @@ $.ajax({
 
 });
 </script>
+
+
+
+<!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
 
 
 <!-- FIN EDITAR -->

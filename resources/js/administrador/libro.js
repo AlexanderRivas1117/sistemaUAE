@@ -21,74 +21,37 @@ $("#cerrar").click(function(){
 
 $("#listadoLibros").DataTable({
 
-          // "language": {
-          //     "sProcessing":    "Procesando...",
-          //     "sLengthMenu":    "Mostrar _MENU_ registros",
-          //     "sZeroRecords":   "No se encontraron resultados",
-          //     "sEmptyTable":    "Ningún dato disponible en esta tabla",
-          //     "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-          //     "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
-          //     "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
-          //     "sInfoPostFix":   "",
-          //     "sSearch":        "Buscar:",
-          //     "sUrl":           "",
-          //     "sInfoThousands":  ",",
-          //     "sLoadingRecords": "Cargando...",
-          //     "oPaginate": {
-          //         "sFirst":    "Primero",
-          //         "sLast":    "Último",
-          //         "sNext":    "Siguiente",
-          //         "sPrevious": "Anterior"
-          //     },
-          //     "oAria": {
-          //         "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-          //         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-          //     }
-          // }
+          "language": {
+              "sProcessing":    "Procesando...",
+              "sLengthMenu":    "Mostrar _MENU_ registros",
+              "sZeroRecords":   "No se encontraron resultados",
+              "sEmptyTable":    "Ningún dato disponible en esta tabla",
+              "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":   "",
+              "sSearch":        "Buscar:",
+              "sUrl":           "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst":    "Primero",
+                  "sLast":    "Último",
+                  "sNext":    "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              }
+          }
           //fin de la configuracion del data table
       });
 
 var validado = false;
 var butonclick = false;
-var campos_max          = 2;   //max de 10 campos
-var x = 0;
-var y = 0;
-var numCaja=1;
 
-$('#add_field').click (function(e) {
 
-$("#modalAutor").modal({backdrop: 'false',keyboard: false});
-  
-//$("#modalAutor").modal({backdrop: 'static',keyboard: false});
-
-                /*e.preventDefault();     //prevenir novos clicks
-        if (x < campos_max) {
-                $('#listas').append('<div class="col-md-3">\
-                                <label>Autor</label>\
-                                <input type="text" name="campo[]" class="form-control txtAutor">\
-                                <a href="#" class="remover_campo">Remover</a>\
-                                </div>');
-                        x++;
-                }*/
-        });
-        // Remover o div anterior
-        $('#listas').on("click",".remover_campo",function(e) {
-                e.preventDefault();
-                $(this).parent('div').remove();
-                x--;
-                if(x==0)
-                {
-                  y=0;
-                }
-                if(y==0)
-                {
-                  $("#add_field").attr("hidden",true);
-                  $("#find").attr("hidden",false);
-                }
-                numCaja--;
-        });
-
-//
 var current = 1,current_step,next_step,steps;
   steps = $("fieldset").length;
   $(".next").click(function(){
@@ -108,14 +71,23 @@ var current = 1,current_step,next_step,steps;
 
   });
 
-  $(".previous").click(function(){
+  $("#previous").click(function(){
     current_step = $("#data2").parent();
     next_step = $("#data2").parent().prev();
     next_step.show();
     current_step.hide();
     setProgressBar(--current);
   });
+
   setProgressBar(current);
+
+  $("#previousEdit").click(function(){
+    current_step = $("#dataEdit2").parent();
+    next_step = $("#dataEdit2").parent().prev();
+    next_step.show();
+    current_step.hide();
+    setProgressBar(--current);
+  });
 
   // Change progress bar action
   function setProgressBar(curStep){
@@ -126,17 +98,6 @@ var current = 1,current_step,next_step,steps;
       .html(percent+"%");   
   }
 
-  $("#enviar").click(function(){
-    
-    // var ret = validate("info2",9);
-    // //ret==1
-    // if(ret!=1)
-    // {
-    //   guardarDocumento();
-    // }
-
-  });
-	//
 
 
 
@@ -205,6 +166,31 @@ function validarNumeroInventario()
       });
 }
 
+$("#dataEdit1").submit(function( event ) {
+
+event.preventDefault();
+
+  
+      //var parametros = $(this).serialize();
+      //alert(parametros);
+
+      // if(event.isDefaultPrevented)
+      // {
+
+        event.preventDefault();
+        // alert("prevent");
+
+        current_step = $(this).parent();
+        next_step = $(this).parent().next();
+    
+        next_step.show();
+        current_step.hide();
+        setProgressBar(++current);
+
+      // } 
+      
+    });
+
 $("#data1").submit(function( event ) {
 
 event.preventDefault();
@@ -235,42 +221,51 @@ event.preventDefault();
     });
 
 $("#enviar").click(function(e){
-  //alert(21);
-  //e.preventDefault();
-
 var evento = e;
   $("#data2").submit(function(ev){
     
     ev.preventDefault();
-    evento = ev;
-
-
-     
+    evento = ev;  
   });
 
 if(evento.isDefaultPrevented)
-    {
-      
+    {  
       //var  p = JSON.stringify($('#infoLibro  input,select').serialize();
-      guardarDocumento();
-      
+      guardarDocumento();    
     }
-
-  
 
 });
 
+$("#guardarCambios").click(function(e){
+var evento = e;
+  $("#dataEdit2").submit(function(ev){
+    
+    ev.preventDefault();
+    evento = ev;  
+  });
+
+if(evento.isDefaultPrevented)
+    {  
+      //var  p = JSON.stringify($('#infoLibro  input,select').serialize();
+      guardarCambios();    
+    }
+
+});
+
+function guardarCambios() {
+  var dataLibro = JSON.stringify($('#infoLibroEdit *').not(".js-example-basic-multiple").serializeArray());
+  console.log(dataLibro);
+}
 
 
 // FIN FUNCION DE VALIDACION
 
 function guardarDocumento() {
 
-  var dataLibro = JSON.stringify($('#infoLibro input,select').not(".js-example-basic-multiple").serializeArray());
+  var dataLibro = JSON.stringify($('#infoLibro input,select,textarea').not(".js-example-basic-multiple").serializeArray());
   $(".txtAutor").attr("disabled", false);
 
-  var dataAutores = JSON.stringify($('#autor').serializeArray());
-  //alert(dataAutores);
+
   //console.log(JSON.parse(dataLibro));
 
   $.ajax({
@@ -285,35 +280,10 @@ function guardarDocumento() {
           //console.log(data.idLibro['idLibro']);
           if(data.estado==true)
           {
-                var id= data.idLibro['idLibro'];
-                id = parseInt(id);
+                // var id= data.idLibro['idLibro'];
+                // id = parseInt(id);
 
 
-                // CREAR DETALLE-AUTOR
-$.each(JSON.parse(dataAutores),function(){
-
-          idAutor = this.value;
-
-          $.ajax({
-
-        type: 'POST',
-        data: {idAutor: idAutor, id: id,key:'detalleAutor'},
-        url: "../../controller/LibroController.php",
-        success: function(da)
-        {
-         
-          var d = JSON.parse(da);
-          console.log(d);
-          
-        },
-        error: function(xhr, status)
-        {
-
-        }
-
-              });
-         });
-                // FIN
                 swal({
                 title: "Exito!",
                 text: data.descripcion,
@@ -323,7 +293,7 @@ $.each(JSON.parse(dataAutores),function(){
                 closeOnCancel: true
                 });
                 setTimeout(function(){
-                  location.reload();
+                  //location.reload();
                 },1000);
                 
 
@@ -506,7 +476,7 @@ $(document).on("click",".Editar",  function(){
 
 
 
-  $("#editarLibro").modal({backdrop: 'static',keyboard: false});
+  $("#edit").modal({backdrop: 'static',keyboard: false});
   $.ajax({
         type: 'POST',
         data: {id: id, key:'editar'},
@@ -516,20 +486,38 @@ $(document).on("click",".Editar",  function(){
           data = JSON.parse(data);
           console.log(data);
 
-          $("#nombreEdit").val(data[0].nombre);
-          $("#cantidadPaginasEdit").val(data[0].cantidadPaginas);
-          $("#informacionAdicionalEdit").val(data[0].informacionAdicional);
-          $("#terminosResumenEdit").val(data[0].terminosResumen);
-          $("#numeroEdicionEdit").val(data[0].numeroEdicion);
-          $("#referenciaDigitalEdit").val(data[0].referenciaDigital);
-          $("#fechaIsoEdit").val(data[0].fechaIso);
-          $("#fechaPublicacionEdit").val(data[0].fechaPublicacion);
-          $("#idiomaEdit").val(data[0].idioma);
-          $("#isbnEdit").val(data[0].isbn);
-          $("#editorialEdit").val(data[0].idEditorial);
-          $("#paisEdit").val(data[0].idPais);
-          $("#tipoColeccionEdit").val(data[0].idTipoColeccion);
-          $("#tipoLiteraturaEdit").val(data[0].idTipoLiteratura);
+          $("#nombreE").val(data[0].titulo);
+          $("#cantidadPaginasE").val(data[0].cantidadPaginas);
+          $("#informacionAdicionalE").val(data[0].informacionAdicional);
+          $("#terminosResumenE").val(data[0].epigrafe);
+          $("#numeroEdicionE").val(data[0].numeroEdicion);
+          $("#referenciaDigitalE").val(data[0].referenciaDigital);
+
+          $("#fechaPublicacionE").val(data[0].fechaPublicacion);
+          $("#idiomaE").val(data[0].idioma);
+          $("#isbnE").val(data[0].isbn);
+          $("#editorialE").val(data[0].idEditorial);
+          $("#paisE").val(data[0].idPais);
+          $('#paisE').select2().trigger('change');
+          $("#tipoColeccionE").val(data[0].idTipoColeccion);
+          $("#tipoDocumentoE").val(data[0].idTipoLiteratura);
+          $("#iscnE").val(data[0].iscn);
+          $("#dimensionesE").val(data[0].iscn);
+          $("#asesorE").val(data[0].asesor);
+          $("#numeroClasificacionE").val(data[0].clasificacion);
+          $("#libristicaAutorE").val(data[0].libristica);
+          $("#detallesFisicosE").val(data[0].detallesFisicos);
+          $("#notasE").val(data[0].notas);
+          $("#tablaContenidoE").val(data[0].notas);
+          $("#autorE").val(data[0].autor);
+          $("#numeroInventarioE").val(data[0].numeroInventario);
+          $("#fechaAdquisicionE").val(data[0].fechaAdquisicion);
+          $("#precioE").val(data[0].precio);
+          $("#facilitanteE").val(data[0].facilitante);
+          $("#entregoE").val(data[0].entrego);
+          $("#fechaEntregaE").val(data[0].fechaEntrega);
+          $("#formaAdquisicionE").val(data[0].formaAdquisicion);
+          $("#volumenE").val(data[0].volumen);
         },
         error: function(xhr, status)
         {
@@ -537,21 +525,21 @@ $(document).on("click",".Editar",  function(){
         }
       });
 
-  $.ajax({
-        type: 'POST',
-        data: {id: id, key:'getAutores'},
-        url: "../../controller/LibroController.php",
-        success: function(data)
-        {
-          //data = JSON.parse(data);
-          console.log(data);
+  // $.ajax({
+  //       type: 'POST',
+  //       data: {id: id, key:'getAutores'},
+  //       url: "../../controller/LibroController.php",
+  //       success: function(data)
+  //       {
+  //         //data = JSON.parse(data);
+  //         console.log(data);
 
-        },
-        error: function(xhr, status)
-        {
+  //       },
+  //       error: function(xhr, status)
+  //       {
 
-        }
-      });
+  //       }
+  //     });
 
 
 
@@ -632,7 +620,11 @@ swal("¡Aviso!",
 
 
 
-});
+}); //fin eliminar
+
+//EDITAR
+
+//FIN EDITAR
 
   //FIN
 });

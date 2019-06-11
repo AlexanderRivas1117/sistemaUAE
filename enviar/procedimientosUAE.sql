@@ -15,14 +15,14 @@ BEGIN
    inner join inventario iv on iv.idLibro = l.id 
    where 
    nombre like concat('%', p_2, '%')
-   AND iv.estadoMaterial!='Prestado' limit 10;
+   AND iv.estadoMaterial='Disponible' limit 10;
  END IF;
  -- BUSQUEDA POR NOMBRE DE AUTOR
   IF p_1=2 THEN
    select l.nombre,inv.id as idInventario,inv.numeroInventario 
 	from libro l
 		inner join inventario inv on inv.idLibro=l.id
-	where l.autor like concat('%', p_2, '%') AND inv.estadoMaterial!='Prestado' AND inv.eliminado!=1 limit 10;
+	where l.autor like concat('%', p_2, '%') AND inv.estadoMaterial='Disponible' AND inv.eliminado!=1 limit 10;
  END IF;
  
  -- BUSQUEDA POR ISBN
@@ -30,7 +30,7 @@ BEGIN
    select l.nombre,iv.id as idInventario,iv.numeroInventario 
 	from libro l 
     inner join inventario iv on iv.idLibro = l.id 
-where isbn like concat(p_2, '%') AND iv.estadoMaterial!='Prestado' AND iv.eliminado!=1 limit 10;
+where isbn like concat(p_2, '%') AND iv.estadoMaterial='Disponible' AND iv.eliminado!=1 limit 10;
  END IF;
  
  
@@ -39,7 +39,7 @@ where isbn like concat(p_2, '%') AND iv.estadoMaterial!='Prestado' AND iv.elimin
    select l.nombre,iv.id as idInventario,iv.numeroInventario 
 	from libro l 
     inner join inventario iv on iv.idLibro = l.id 
-where l.epigrafe like concat(p_2, '%') AND iv.estadoMaterial!='Prestado' AND iv.eliminado!=1 limit 10;
+where l.epigrafe like concat(p_2, '%') AND iv.estadoMaterial='Disponible' AND iv.eliminado!=1 limit 10;
  END IF;
  
   -- BUSQUEDA POR NUMERO INVENTARIO
@@ -47,7 +47,7 @@ where l.epigrafe like concat(p_2, '%') AND iv.estadoMaterial!='Prestado' AND iv.
    select l.nombre,iv.id as idInventario,iv.numeroInventario 
 	from libro l 
     inner join inventario iv on iv.idLibro = l.id 
-where iv.numeroInventario like concat(p_2, '%') AND iv.estadoMaterial!='Prestado' AND iv.eliminado!=1 limit 10;
+where iv.numeroInventario like concat(p_2, '%') AND iv.estadoMaterial='Disponible' AND iv.eliminado!=1 limit 10;
  END IF;
 END $$
 DELIMITER ;
@@ -180,11 +180,11 @@ DROP PROCEDURE IF exists `bibliotecauae`.`guardarDocumento` $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `guardarDocumento`(in p_nombre varchar(40),in p_cantidadPaginas int,
 in p_informacionAdicional varchar(25),in p_terminosResumen varchar(40),in p_numeroEdicion int,
 in p_referenciaDigital varchar(50),in p_fechaPublicacion date,in p_idioma varchar(15),
-in p_isbn varchar(20),in p_idEditorial text, in p_idPais int,in p_idTipoColeccion int,in p_idTipoLiteratura int,
+in p_isbn varchar(20),in p_idEditorial text, in p_idPais int,in p_idTipoColeccion text,in p_idTipoLiteratura text,
 in p_numeroInventario varchar(40),in p_fechaAdquisicion date,in p_volumen int,in p_formaAdquisicion varchar(40),
 in p_precio varchar(40),in p_facilitante varchar(40),in p_entrego varchar(40),
 in p_fechaEntrega date,in p_iscn text,in p_asesor text,in p_notas text,in p_clasificacion text,in p_libristica text,
-in p_detallesFisicos text,in p_dimensiones text)
+in p_detallesFisicos text,in p_dimensiones text,in p_autor text,in p_contenido text)
 BEGIN
 INSERT INTO `libro` 
 (`nombre`, `cantidadPaginas`,
@@ -192,13 +192,13 @@ INSERT INTO `libro`
  `referenciaDigital`, `fechaPublicacion`, `idioma`,
  `isbn`, `idEditorial`, `idPais`, `idTipoColeccion`, `idTipoLiteratura`, `eliminado`,
 `iscn`,`asesor`,`notas`,`clasificacion`,`libristica`,
-`detallesFisicos`,`dimensiones`)
+`detallesFisicos`,`dimensiones`,`autor`,`contenido`)
  VALUES (p_nombre, p_cantidadPaginas,
  p_informacionAdicional, p_terminosResumen, p_numeroEdicion,
  p_referenciaDigital, p_fechaPublicacion, p_idioma,
  p_isbn, p_idEditorial, p_idPais, p_idTipoColeccion, p_idTipoLiteratura,0,
 	p_iscn,p_asesor,p_notas,p_clasificacion,p_libristica,
-	p_detallesFisicos,p_dimensiones);
+	p_detallesFisicos,p_dimensiones,p_autor,p_contenido);
  
 
 SET @idLibro := (SELECT max(id) FROM libro);
@@ -249,14 +249,8 @@ DELIMITER $$
 DROP PROCEDURE IF exists `bibliotecauae`.`infoLibro` $$
 CREATE PROCEDURE `bibliotecauae`.`infoLibro`()
 	BEGIN
-select l.id,iv.numeroInventario,l.nombre,l.numeroEdicion,l.idioma,l.idEditorial as editorial,p.nombre as pais,tCol.nombre as tipoColeccion,
-tLi.nombre as tipoLiteratura,l.idioma as detalleautorID,l.autor from libro l
-inner join pais p
-	on p.id=l.idPais
-inner join tipoColeccion tCol
-	on l.idTipoColeccion=tCol.id
-inner join tipoLiteratura tLi
-	on tLi.id=l.idTipoLiteratura
+select l.id,iv.numeroInventario,l.nombre,l.numeroEdicion,l.idioma,l.idEditorial as editorial,l.idTipoColeccion as tipoColeccion,
+l.idTipoLiteratura as tipoLiteratura,l.autor from libro l
 inner join inventario iv
 	on iv.idLibro=l.id
 where l.eliminado!=1
@@ -647,8 +641,24 @@ where (l.clasificacion like "COL.NB&1%"
    SELECT count(p.idUsuario) as totalUsuarios from prestamo p 
    inner join usuario u on p.idUsuario = u.id 
    inner join carrera c on u.idCarrera = c.id 
-   where month(p.fechaRealizacion) = 6 and p.estado=1 and c.id=14
+   where month(p.fechaRealizacion) = 6 and p.estado=1 and c.id=14;
 
 
 
+-- SELECT * FROM libro l
+-- LEFT JOIN inventario iv ON iv.idLibro = l.id
+-- SELECT * FROM inventario iv
+-- RIGHT JOIN libro l ON iv.idLibro = l.id;
+
+select l.nombre as titulo,
+l.cantidadPaginas,l.informacionAdicional,l.epigrafe,
+l.numeroEdicion,l.referenciaDigital,l.fechaPublicacion,
+l.idioma,l.isbn,l.idEditorial,l.idPais,l.idioma,l.iscn,l.dimensiones,
+l.asesor,l.clasificacion,l.libristica,l.detallesFisicos,l.notas,l.contenido,l.autor,
+iv.id as idInventario,iv.numeroInventario,iv.fechaAdquisicion,iv.precio,iv.facilitante,
+iv.entrego,iv.fechaEntrega,iv.formaAdquisicion,iv.volumen
+ from libro l
+ inner join inventario iv
+ on iv.idLibro = l.id
+ where l.id=26388
 

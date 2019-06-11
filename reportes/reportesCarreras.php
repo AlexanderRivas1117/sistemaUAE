@@ -3,8 +3,56 @@
 require_once '../vendor/autoload.php';
 require_once '../app/config.php';
 
-$mes = 6;
-$diasMes = 30;
+$mes = $_REQUEST['mes'];
+if ($mes==4 || $mes==6 || $mes==9 || $mes==11) {
+	$diasMes = 30;
+}
+
+if ($mes==1 || $mes==3 || $mes==5 || $mes==7 || $mes==8 || $mes==10 || $mes==12) {
+	$diasMes = 31;
+}
+else
+{
+	$diasMes==28;
+}
+
+if ($mes==1) {
+	$nombreMes='Enero';
+}
+if ($mes==2) {
+	$nombreMes='Febrero';
+}
+if ($mes==3) {
+	$nombreMes='Marzo';
+}
+if ($mes==4) {
+	$nombreMes='Abril';
+}
+if ($mes==5) {
+	$nombreMes='Mayo';
+}
+if ($mes==6) {
+	$nombreMes='Junio';
+}
+if ($mes==7) {
+	$nombreMes='Julio';
+}
+if ($mes==8) {
+	$nombreMes='Agosto';
+}
+if ($mes==9) {
+	$nombreMes='Septiembre';
+}
+if ($mes==10) {
+	$nombreMes='Octubre';
+}
+if ($mes==11) {
+	$nombreMes='Noviembre';
+}
+if ($mes==12) {
+	$nombreMes='Diciembre';
+}
+
 
 $html = '<html>';
 	$html .= '<table border="1" style="border-collapse: collapse;width:100%;">';
@@ -40,7 +88,7 @@ $html = '<html>';
 
 	$html .= '<tr>';
 			$html .= '<td colspan="16" style="text-align:left;">';
-				$html .= 'Informe correspondiente al mes de ';
+				$html .= 'Informe correspondiente al mes de '.'<b>'.$nombreMes.'</b>';
 			$html .= '</td>';
 	$html .= '</tr>';
 

@@ -872,13 +872,18 @@ ALTER TABLE `usuario`
   ADD CONSTRAINT `usuario_ibfk_4` FOREIGN KEY (`idCarrera`) REFERENCES `carrera` (`id`);
 COMMIT;
 
-ALTER TABLE `libro` CHANGE `nombre` `nombre` TEXT CHARACTER SET utf8 COLLATE utf8_spanish2_ci NULL DEFAULT NULL;
-ALTER TABLE `libro` CHANGE `autor` `autor` TEXT CHARACTER SET utf8 COLLATE utf8_spanish2_ci NULL DEFAULT NULL;
-ALTER TABLE `libro` CHANGE `isbn` `isbn` TEXT CHARACTER SET utf8 COLLATE utf8_spanish2_ci NULL DEFAULT NULL;
-ALTER TABLE `libro` CHANGE `epigrafe` `epigrafe` TEXT CHARACTER SET utf8 COLLATE utf8_spanish2_ci NULL DEFAULT NULL;
-ALTER TABLE `usuario` CHANGE `carnet` `carnet` TEXT CHARACTER SET utf8 COLLATE utf8_spanish2_ci NULL DEFAULT NULL;
-ALTER TABLE `inventario` CHANGE `numeroInventario` `numeroInventario` TEXT CHARACTER SET utf8 COLLATE utf8_spanish2_ci NULL DEFAULT NULL;
+ALTER TABLE `libro` CHANGE `nombre` `nombre` TEXT CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL;
+ALTER TABLE `libro` CHANGE `autor` `autor` TEXT CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL;
+ALTER TABLE `libro` CHANGE `isbn` `isbn` TEXT CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL;
+ALTER TABLE `libro` CHANGE `epigrafe` `epigrafe` TEXT CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL;
+ALTER TABLE `usuario` CHANGE `carnet` `carnet` TEXT CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL;
+ALTER TABLE `inventario` CHANGE `numeroInventario` `numeroInventario` TEXT CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+alter table libro modify idTipoColeccion text null;
+ 
+ 
