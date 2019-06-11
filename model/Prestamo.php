@@ -25,7 +25,7 @@ class Prestamo
 
     public function searchPrestamo($txt,$tipo)
     {
-       $sql = "call obtenerPrestamos('".$tipo."','".$txt."');";
+       $sql = "call obtenerPrestamos('{$tipo}','{$txt}');";
         mysqli_set_charset($this->con, "utf8");
         $json = "";
         $info = $this->con->query($sql);
@@ -42,7 +42,7 @@ class Prestamo
         }
         else
         {
-            $fila['estado'] = false;
+            $fila['estado'] = $this->con->error;
             $obj = json_encode($fila);
             $json .= $obj;
         }
@@ -89,7 +89,7 @@ class Prestamo
         $info = $this->con->query($sql);
         $data = array();
 
-        if($info->num_rows>=3)
+        if($info->num_rows>=100)
         {
             $data['estado'] = false;
             $data['descripcion'] = "No tiene prestamos disponibles";

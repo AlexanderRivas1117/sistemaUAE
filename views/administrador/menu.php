@@ -51,9 +51,24 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Precesos</h6>
+            <h6 class="collapse-header">Procesos</h6>
             <a class="collapse-item" href="usuariosListado.php">Gestión de Usuarios</a>
             <a class="collapse-item" href="prestamo.php">Gestión de Préstamos</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- REPORTES -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#repos" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Reportes</span>
+        </a>
+        <div id="repos" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Reportes Estadísticos</h6>
+            <a class="collapse-item" href="usuariosListado.php">Estadísticos de Préstamos</a>
+            <a class="collapse-item" href="usuariosListado.php">Usuarios con Mora</a>
           </div>
         </div>
       </li>

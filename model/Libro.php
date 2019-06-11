@@ -19,9 +19,7 @@ class Libro
     public function getInfo($id)
     {
         $sql = "SELECT l.id,iv.numeroInventario,l.nombre,l.numeroEdicion,l.idEditorial as editorial,
-tLi.nombre as tipoLiteratura,l.autor,l.clasificacion,l.epigrafe,l.asesor,l.contenido,l.fechaPublicacion from libro l
-inner join tipoLiteratura tLi
-    on tLi.id=l.idTipoLiteratura
+l.idTipoLiteratura as tipoLiteratura,l.autor,l.clasificacion,l.epigrafe,l.asesor,l.contenido,l.fechaPublicacion from libro l
 inner join inventario iv
     on iv.idLibro=l.id
 where iv.numeroInventario='{$id}'";

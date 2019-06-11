@@ -114,7 +114,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                                             <td>".$value['carnet']."</td>
                                             <td>
                                                 
-                                                <button type='button' class='btn btn-info btn-circle' id='".$value['id']."' value='Editar'><i class='fas fa-edit'></i></button>
+                                                <button type='button' class='btn btn-info btn-circle btn-sm' id='".$value['id']."' value='Editar'><i class='fas fa-edit'></i></button>
                                                 
                                             </td>
                                           </tr>";
@@ -435,27 +435,18 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 <div class="row">
   <div class="col-md-5">
     <div class="form-group">
-
 <div class="custom-control custom-radio custom-control-inline">
-    <input type="radio" id="sInventario" name="buscar" class="custom-control-input" value="1" checked>
-    <label class="custom-control-label" for="sInventario">Inventario</label>
+    <input type="radio" id="ssInventario" name="buscar" class="custom-control-input" value="1" checked="">
+    <label class="custom-control-label" for="ssInventario">Inventario</label>
 </div>
 <div class="custom-control custom-radio custom-control-inline">
- <input type="radio" id="sCarnet" name="buscar" class="custom-control-input" value="2">
-    <label class="custom-control-label" for="sCarnet">Carnet</label>
+ <input type="radio" id="ssCarnet" name="buscar" class="custom-control-input" value="2">
+    <label class="custom-control-label" for="ssCarnet">Carnet</label>
 </div>
-
-
-
-
-
-      <!-- <div class="custom-control custom-radio custom-control-inline">
-<input type="radio" id="sInventario" name="buscar" class="custom-control-input" value="1" checked>
-    <label class="custom-control-label" for="sInventario">Inventario</label>
-<input type="radio" id="sCarnet" name="buscar" class="custom-control-input" value="2">
-    <label class="custom-control-label" for="sCarnet">Carnet</label>
-      </div> -->
     </div>  
+
+
+
   </div>
   <div class="col-md-3 col-md-offset-2">
     <div class="form-group">

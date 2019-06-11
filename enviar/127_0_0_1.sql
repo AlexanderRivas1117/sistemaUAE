@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
+-- drop database bibliotecauae;
 -- Base de datos: `bibliotecauae`
 --
 CREATE DATABASE IF NOT EXISTS `bibliotecauae` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci;
@@ -480,6 +480,7 @@ INSERT INTO `municipio` (`id`, `nombre`, `idDepartamento`) VALUES
 CREATE TABLE `pais` (
   `id` int(11) NOT NULL,
   `nombre` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `iso` TEXT DEFAULT NULL,
   `estado` int(10) DEFAULT NULL,
   `fechaRegistro` date DEFAULT NULL,
   `fechaEliminacion` datetime DEFAULT NULL
@@ -845,8 +846,9 @@ ALTER TABLE `libro`
   ADD CONSTRAINT `libro_ibfk_3` FOREIGN KEY (`idTipoColeccion`) REFERENCES `tipocoleccion` (`id`),
   ADD CONSTRAINT `libro_ibfk_4` FOREIGN KEY (`idTipoLiteratura`) REFERENCES `tipoliteratura` (`id`);
 
--- ALTER TABLE libro DROP FOREIGN KEY `libro_ibfk_3`;
--- ALTER TABLE libro DROP FOREIGN KEY `libro_ibfk_4`;
+
+ALTER TABLE libro DROP FOREIGN KEY `libro_ibfk_3`;
+ALTER TABLE libro DROP FOREIGN KEY `libro_ibfk_4`;
 --
 -- Filtros para la tabla `municipio`
 --
@@ -869,6 +871,13 @@ ALTER TABLE `usuario`
   ADD CONSTRAINT `usuario_ibfk_3` FOREIGN KEY (`idMunicipio`) REFERENCES `municipio` (`id`),
   ADD CONSTRAINT `usuario_ibfk_4` FOREIGN KEY (`idCarrera`) REFERENCES `carrera` (`id`);
 COMMIT;
+
+ALTER TABLE `libro` CHANGE `nombre` `nombre` TEXT CHARACTER SET utf8 COLLATE utf8_spanish2_ci NULL DEFAULT NULL;
+ALTER TABLE `libro` CHANGE `autor` `autor` TEXT CHARACTER SET utf8 COLLATE utf8_spanish2_ci NULL DEFAULT NULL;
+ALTER TABLE `libro` CHANGE `isbn` `isbn` TEXT CHARACTER SET utf8 COLLATE utf8_spanish2_ci NULL DEFAULT NULL;
+ALTER TABLE `libro` CHANGE `epigrafe` `epigrafe` TEXT CHARACTER SET utf8 COLLATE utf8_spanish2_ci NULL DEFAULT NULL;
+ALTER TABLE `usuario` CHANGE `carnet` `carnet` TEXT CHARACTER SET utf8 COLLATE utf8_spanish2_ci NULL DEFAULT NULL;
+ALTER TABLE `inventario` CHANGE `numeroInventario` `numeroInventario` TEXT CHARACTER SET utf8 COLLATE utf8_spanish2_ci NULL DEFAULT NULL;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

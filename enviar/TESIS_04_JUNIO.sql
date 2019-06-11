@@ -15907,7 +15907,7 @@ INSERT INTO inventario(numeroInventario,idLibro) VALUES ('T07877',7826);
 -- update libro set idPais=1,idTipoColeccion=241,idTipoLiteratura=1,eliminado=0; 
 
 
+update libro set eliminado=0; 
 
 -- update inventario set estadoMaterial="Disponible",eliminado=0;
-
 

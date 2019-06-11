@@ -423,3 +423,232 @@ DELIMITER ;
 
 DELIMITER ;
 
+
+-- working --
+
+select COUNT(*) as ObrasGenerales from libro where clasificacion LIKE "COL.NB&0%" LIMIT 10;
+
+-- OBRAS GENERALES-- 
+select count(*) as "generalidades" from prestamo p
+inner join inventario iv
+on p.idInventario=iv.id
+inner join libro l
+on iv.idLibro=l.id
+where l.clasificacion like "COL.NB&0%" 
+   or l.clasificacion like "CPERLA&0%" 
+   or l.clasificacion like "0%" -- obras generales
+   or l.clasificacion like "C.DPI&0%" -- diplomados
+   or l.clasificacion like "DIP&0%" -- diplomados
+   or l.clasificacion like "0%" -- libros
+   or l.clasificacion like "REF.&0%" -- libros
+   or l.clasificacion like "JSA.&0%" -- libros
+   and iv.estadoMaterial="Prestado";
+
+-- FILOSOFIA -- 
+select count(*) as "filosofia" from prestamo p
+inner join inventario iv
+on p.idInventario=iv.id
+inner join libro l
+on iv.idLibro=l.id
+where l.clasificacion like "COL.NB&1%" 
+   or l.clasificacion like "CPERLA&1%" 
+   or l.clasificacion like "1%" -- obras generales
+   or l.clasificacion like "C.DPI&1%" -- diplomados
+   or l.clasificacion like "DIP&1%" -- diplomados
+   or l.clasificacion like "1%" -- libros
+   or l.clasificacion like "REF.&1%" -- libros
+   or l.clasificacion like "JSA.&1%" -- libros
+   and iv.estadoMaterial="Prestado";
+
+-- RELIGION --
+select count(*) as "religion" from prestamo p
+inner join inventario iv
+on p.idInventario=iv.id
+inner join libro l
+on iv.idLibro=l.id
+where l.clasificacion like "COL.NB&2%" 
+   or l.clasificacion like "CPERLA&2%" 
+   or l.clasificacion like "2%" -- obras generales
+   or l.clasificacion like "C.DPI&2%" -- diplomados
+   or l.clasificacion like "DIP&2%" -- diplomados
+   or l.clasificacion like "2%" -- libros
+   or l.clasificacion like "REF.&2%" -- libros
+   or l.clasificacion like "JSA.&2%" -- libros
+   and iv.estadoMaterial="Prestado";
+
+-- ciencias sociales -- 
+select count(*) as "cienciasSociales" from prestamo p
+inner join inventario iv
+on p.idInventario=iv.id
+inner join libro l
+on iv.idLibro=l.id
+where l.clasificacion like "COL.NB&3%" 
+   or l.clasificacion like "CPERLA&3%" 
+   or l.clasificacion like "3%" -- obras generales
+   or l.clasificacion like "C.DPI&3%" -- diplomados
+   or l.clasificacion like "DIP&3%" -- diplomados
+   or l.clasificacion like "3%" -- libros
+   or l.clasificacion like "REF.&3%" -- libros
+   or l.clasificacion like "JSA.&3%" -- libros
+   and iv.estadoMaterial="Prestado";
+
+-- LENGUAS 400--
+select count(*) as "lenguas" from prestamo p
+inner join inventario iv
+on p.idInventario=iv.id
+inner join libro l
+on iv.idLibro=l.id
+where l.clasificacion like "COL.NB&4%" 
+   or l.clasificacion like "CPERLA&4%" 
+   or l.clasificacion like "4%" -- obras generales
+   or l.clasificacion like "C.DPI&4%" -- diplomados
+   or l.clasificacion like "DIP&4%" -- diplomados
+   or l.clasificacion like "4%" -- libros
+   or l.clasificacion like "REF.&4%" -- libros
+   or l.clasificacion like "JSA.&4%" -- libros
+   and iv.estadoMaterial="Prestado";
+
+-- Ciencias puras 500 --
+select count(*) as "cienciasPuras" from prestamo p
+inner join inventario iv
+on p.idInventario=iv.id
+inner join libro l
+on iv.idLibro=l.id
+where l.clasificacion like "COL.NB&5%" 
+   or l.clasificacion like "CPERLA&5%" 
+   or l.clasificacion like "5%" -- obras generales
+   or l.clasificacion like "C.DPI&5%" -- diplomados
+   or l.clasificacion like "DIP&5%" -- diplomados
+   or l.clasificacion like "5%" -- libros
+   or l.clasificacion like "REF.&5%" -- libros
+   or l.clasificacion like "JSA.&5%" -- libros
+   and iv.estadoMaterial="Prestado";
+
+-- CIENCIAS APLICADAS 600--
+select count(*) as "cienciasAplicadas" from prestamo p
+inner join inventario iv
+on p.idInventario=iv.id
+inner join libro l
+on iv.idLibro=l.id
+where l.clasificacion like "COL.NB&6%" 
+   or l.clasificacion like "CPERLA&6%" 
+   or l.clasificacion like "6%" -- obras generales
+   or l.clasificacion like "C.DPI&6%" -- diplomados
+   or l.clasificacion like "DIP&6%" -- diplomados
+   or l.clasificacion like "6%" -- libros
+   or l.clasificacion like "REF.&6%" -- libros
+   or l.clasificacion like "JSA.&6%" -- libros
+   and iv.estadoMaterial="Prestado";
+   
+-- BELLAS ARTES 700 -- 
+select count(*) as "bellasArtes" from prestamo p
+inner join inventario iv
+on p.idInventario=iv.id
+inner join libro l
+on iv.idLibro=l.id
+where l.clasificacion like "COL.NB&7%" 
+   or l.clasificacion like "CPERLA&7%" 
+   or l.clasificacion like "7%" -- obras generales
+   or l.clasificacion like "C.DPI&7%" -- diplomados
+   or l.clasificacion like "DIP&7%" -- diplomados
+   or l.clasificacion like "7%" -- libros
+   or l.clasificacion like "REF.&7%" -- libros
+   or l.clasificacion like "JSA.&7%" -- libros
+   and iv.estadoMaterial="Prestado";
+
+-- LITERATURA 800 --
+select count(*) as "bellasArtes" from prestamo p
+inner join inventario iv
+on p.idInventario=iv.id
+inner join libro l
+on iv.idLibro=l.id
+where l.clasificacion like "COL.NB&8%" 
+   or l.clasificacion like "CPERLA&8%" 
+   or l.clasificacion like "8%" -- obras generales
+   or l.clasificacion like "C.DPI&8%" -- diplomados
+   or l.clasificacion like "DIP&8%" -- diplomados
+   or l.clasificacion like "8%" -- libros
+   or l.clasificacion like "REF.&8%" -- libros
+   or l.clasificacion like "JSA.&8%" -- libros
+   and iv.estadoMaterial="Prestado";
+
+-- HISTORIA 900 --
+select count(*) as "historia" from prestamo p
+inner join inventario iv
+on p.idInventario=iv.id
+inner join libro l
+on iv.idLibro=l.id
+where l.clasificacion like "COL.NB&9%" 
+   or l.clasificacion like "CPERLA&9%" 
+   or l.clasificacion like "9%" -- obras generales
+   or l.clasificacion like "C.DPI&9%" -- diplomados
+   or l.clasificacion like "DIP&9%" -- diplomados
+   or l.clasificacion like "9%" -- libros
+   or l.clasificacion like "REF.&9%" -- libros
+   or l.clasificacion like "JSA.&9%" -- libros
+   and iv.estadoMaterial="Prestado";
+   
+-- obtener numero inventario por clasificacion --    
+select numeroInventario,l.clasificacion from inventario iv
+inner join libro l
+on iv.idLibro= l.id
+where l.clasificacion like "CPERLA&9%";
+
+
+select count(distinct idUsuario) as totalUsuarios from prestamo where day(fechaRealizacion) = 8 and month(fechaRealizacion) = 7;
+
+select count(distinct p.idUsuario) as hombres from prestamo p
+inner join usuario u
+on p.idUsuario = u.id
+where u.genero='Masculino' and
+day(fechaRealizacion) = '{$i}' and month(fechaRealizacion) = '{$mes}';
+
+
+select iv.numeroInventario,l.nombre,p.fechaDevolver,u.nombre as nombreUsuario,
+u.carnet,c.nombre as carrera,datediff(curdate(), p.fechaDevolver) as multa 
+from prestamo p
+inner join inventario iv
+on p.idInventario = iv.id
+inner join usuario u
+on p.idUsuario = u.id
+inner join libro l
+on iv.idLibro= l.id
+inner join carrera c
+on u.idCarrera=c.id
+where datediff(curdate(), p.fechaDevolver)>0;
+
+
+select distinct(c.nombre),c.id from prestamo p
+inner join usuario u 
+on p.idUsuario = u.id
+inner join carrera c
+on u.idCarrera=c.id;
+
+select c.nombre from prestamo p
+inner join usuario u 
+on p.idUsuario = u.id
+inner join carrera c
+on u.idCarrera=c.id
+inner join inventario iv
+on p.idInventario=iv.id
+inner join libro l
+on iv.idLibro=l.id
+where (l.clasificacion like "COL.NB&1%" 
+   or l.clasificacion like "CPERLA&1%" 
+   or l.clasificacion like "1%" -- obras generales
+   or l.clasificacion like "C.DPI&1%" -- diplomados
+   or l.clasificacion like "DIP&1%" -- diplomados
+   or l.clasificacion like "1%" -- libros
+   or l.clasificacion like "REF.&1%" -- libros
+   or l.clasificacion like "JSA.&1%") -- libros
+   and iv.estadoMaterial="Prestado" and month(p.fechaRealizacion)=6;
+   
+   
+   SELECT count(p.idUsuario) as totalUsuarios from prestamo p 
+   inner join usuario u on p.idUsuario = u.id 
+   inner join carrera c on u.idCarrera = c.id 
+   where month(p.fechaRealizacion) = 6 and p.estado=1 and c.id=14
+
+
+
+

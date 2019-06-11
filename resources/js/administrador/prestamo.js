@@ -665,6 +665,7 @@ $(document).on("click",".info",function(){
 		url: '../../controller/LibroController.php',
 		success: function (data) {
 			data = JSON.parse(data);
+			console.log(data);
 			// alert(data.nombre);
 			$("#txtNombre").html(data[0].nombre);
 			$("#txtAutor").html(data[0].autor);
