@@ -16,6 +16,113 @@ class Libro
 		$this->con = conectar();
 	}
 
+    public function guardarCambios($data)
+    {
+        $data = json_decode($data);
+        // var_dump($data);
+        $tipoColeccion = $data[0]->value;
+        $tipoLiteratura = $data[1]->value;
+        $nombre = $data[2]->value;
+        $tituloParalelo = $data[3]->value;
+        $cantidadPaginas = $data[4]->value;
+        $informacionAdicional = $data[5]->value;
+        $fechaPublicacion = $data[6]->value;
+        $numeroEdicion = $data[7]->value;
+        $referenciaDigital = $data[8]->value;
+        $terminosResumen = $data[9]->value;
+        $idioma = $data[10]->value;
+        $iscn = $data[11]->value;
+        $dimensiones = $data[12]->value;
+        $isbn = $data[13]->value;
+        $idEditorial = $data[14]->value;
+        $asesor = $data[15]->value;
+        $numeroClasificacion = $data[16]->value;
+        $libristicaAutor = $data[17]->value;
+        $detallesFisicos = $data[18]->value;
+        $idPais = $data[19]->value;
+        $notas = $data[20]->value;
+        $contenido = $data[21]->value;
+
+        //CAMPO NUEVO
+        $autor = $data[22]->value;
+
+        $numeroInventario = $data[23]->value;
+        $fechaAdquisicion = $data[24]->value;
+        $precio = $data[25]->value;
+        $facilitante = $data[26]->value;
+        $entrego = $data[27]->value;
+        $fechaEntrega = $data[28]->value;
+        $formaAdquisicion = $data[29]->value;
+        $volumen = $data[30]->value;
+
+        $idLibro = $data[31]->value;
+        $idInventario = $data[32]->value;
+
+
+        if($tituloParalelo!='')
+        {
+            $nombre = $nombre.' - '.$tituloParalelo;
+        }
+        //LIBRO 
+        $sql = "UPDATE libro set 
+        idTipoColeccion='{$tipoColeccion}',
+        idTipoLiteratura='{$tipoLiteratura}',
+        nombre='{$nombre}',
+        cantidadPaginas='{$cantidadPaginas}',
+        informacionAdicional='{$informacionAdicional}',
+        fechaPublicacion='{$fechaPublicacion}',
+        numeroEdicion='{$numeroEdicion}',
+        referenciaDigital='{$numeroEdicion}',
+        epigrafe='{$terminosResumen}',
+        idioma='{$idioma}',
+        iscn='{$iscn}',
+        dimensiones='{$dimensiones}',
+        isbn='{$isbn}',
+        idEditorial='{$idEditorial}',
+        asesor='{$asesor}',
+        clasificacion='{$numeroClasificacion}',
+        libristica='{$libristicaAutor}',
+        detallesFisicos='{$detallesFisicos}',
+        idPais='{$idPais}',
+        notas='{$notas}',
+        contenido='{$contenido}',
+        autor='{$autor}' WHERE id='{$idLibro}'";
+        mysqli_set_charset($this->con, "utf8");
+        $info = $this->con->query($sql);
+        //FIN LIBRO
+
+        //INVENTARIO 
+        $sql = "UPDATE inventario set numeroInventario='{$numeroInventario}',
+                fechaAdquisicion='{$fechaAdquisicion}',
+                precio='{$precio}',
+                facilitante='{$facilitante}',
+                entrego='{$entrego}',
+                fechaEntrega='{$fechaEntrega}',
+                formaAdquisicion='{$formaAdquisicion}',
+                volumen='{$volumen}' where id='{$idInventario}'";
+        //mysqli_set_charset($this->con, "utf8");
+        $info = $this->con->query($sql);
+        //FIN INVENTARIO
+        
+
+        if($info)
+            {
+                $data['estado'] = true;
+                
+                $data['descripcion'] = "Documento modificado exitosamente!";
+                
+            }else
+            {
+                $data['estado'] = $this->con->error;
+                $data['descripcion'] = "¡Error al modificar documento".$this->con->error;
+            }
+
+            mysqli_close($this->con);
+
+        return json_encode($data);
+        
+    }
+
     public function getInfo($id)
     {
         $sql = "SELECT l.id,iv.numeroInventario,l.nombre,l.numeroEdicion,l.idEditorial as editorial,
@@ -85,42 +192,18 @@ where iv.numeroInventario='{$id}'";
         $info = $this->con->query($sql);
 
         $clientes = array();
-        // if($info->num_rows>0)
-        // {
-            // while ($fila =$info->fetch_assoc()) 
-            // {
-            //     $fila['estado'] = true;
-            //     $obj = json_encode($fila);
-            //     $json .= $obj.",";
-            // }
-            // $json = substr($json,0, strlen($json)-1);
-             //creamos un array
-
             while($row = mysqli_fetch_array($info)) 
             { 
                 $id=$row['id'];
                 $nombre=$row['nombre'];
-    
-
-                //$clientes[] = array('id'=> $id, 'text'=> $nombre);
-
             }
-        // }
-        // else
-        // {
-        //     $fila['estado'] = false;
-        //     $obj = json_encode($fila);
-        //     $json .= $obj;
-        // }
-        
-/*        return '{"data":['.$json.']}'; */
-        //return '['.$json.']';   
+
     return json_encode($clientes);
     }
 
     public function getInfoLibro($id)
     {
-        $sql = "SELECT l.nombre as titulo,
+        $sql = "SELECT l.idTipoColeccion,l.idTipoLiteratura,l.nombre as titulo,l.id as idLibro,
                 l.cantidadPaginas,l.informacionAdicional,l.epigrafe,
                 l.numeroEdicion,l.referenciaDigital,l.fechaPublicacion,
                 l.idioma,l.isbn,l.idEditorial,l.idPais,l.idioma,l.iscn,l.dimensiones,
@@ -174,37 +257,7 @@ where iv.numeroInventario='{$id}'";
         $all = [];
         if ($info->num_rows>0) {           
             $all = $info;
-            //var_dump($dato);
 
-            // foreach ($dato as $i => $d) {
-            //     // echo $d['nombre'];
-            //     //  echo $d['autor'];
-            //     //var_dump($d);
-            //      $con2  = conectar();
-                
-            //      $librosID = $d['id'];  
-
-            //         $sql2 = "call obtenerAutores('".$librosID."')";
-            //         $info2 = $con2->query($sql2); 
-            //     $autor = "";   
-            //     while ($filaAutores =$info2->fetch_assoc()) 
-            //         {
-            //             //$autor.=$filaAutores['nombre']."--LIBRO: ".$librosID."#######";
-                        
-            //             $autor.= $filaAutores['nombre'].",";                       
-            //         }
-            //         $autor = substr($autor,0, strlen($autor)-1);
-            //         //echo $autor."#######";;
-            //         //unset($d['detalleautorID']);
-            //         $d['detalleautorID'] = $autor;
-            //         $all[$i] = $d;
-            //         //var_dump($d);
-            //         //echo "#######" . PHP_EOL;
-            //         //echo "\n\n";
-            //         //echo $d['detalleautorID'];
-                    
-            // }
-            
         }else{
             $all[] = false;
         }

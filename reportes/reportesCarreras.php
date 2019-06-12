@@ -4,6 +4,7 @@ require_once '../vendor/autoload.php';
 require_once '../app/config.php';
 
 $mes = $_REQUEST['mes'];
+$anio = date("Y");
 if ($mes==4 || $mes==6 || $mes==9 || $mes==11) {
 	$diasMes = 30;
 }
@@ -195,7 +196,7 @@ $html = '<html>';
 				$sql = "SELECT count(p.idUsuario) as totalUsuarios from prestamo p 
    inner join usuario u on p.idUsuario = u.id 
    inner join carrera c on u.idCarrera = c.id 
-   where month(p.fechaRealizacion) = '{$mes}' and p.estado=1 and c.id='{$idCarrera}'";
+   where month(p.fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and p.estado=1 and c.id='{$idCarrera}'";
 				$con = conectar();
 				$result = $con->query($sql);
 				$result = $result->fetch_assoc();
@@ -211,7 +212,7 @@ $html = '<html>';
 			$sql = "SELECT count(p.idUsuario) as hombres from prestamo p 
 				   inner join usuario u on p.idUsuario = u.id 
 				   inner join carrera c on u.idCarrera = c.id 
-				   where month(p.fechaRealizacion) = '{$mes}' and p.estado=1 and c.id='{$idCarrera}' and u.genero='Masculino'";
+				   where month(p.fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and p.estado=1 and c.id='{$idCarrera}' and u.genero='Masculino'";
 				$con = conectar();
 				$result = $con->query($sql);
 				$result = $result->fetch_assoc();
@@ -224,7 +225,7 @@ $html = '<html>';
 				$sql = "SELECT count(p.idUsuario) as mujeres from prestamo p 
 				   inner join usuario u on p.idUsuario = u.id 
 				   inner join carrera c on u.idCarrera = c.id 
-				   where month(p.fechaRealizacion) = '{$mes}' and p.estado=1 and c.id='{$idCarrera}' and u.genero='Femenino'";
+				   where month(p.fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and p.estado=1 and c.id='{$idCarrera}' and u.genero='Femenino'";
 				$con = conectar();
 				$result = $con->query($sql);
 				$result = $result->fetch_assoc();
@@ -252,7 +253,7 @@ $html = '<html>';
 				   or l.clasificacion like '{$c}%' -- libros
 				   or l.clasificacion like 'REF.&{$c}%' -- libros
 				   or l.clasificacion like 'JSA.&{$c}%')-- libros
-				   and iv.estadoMaterial='Prestado' and month(p.fechaRealizacion) = '{$mes}' and p.estado=1 and c.id='{$idCarrera}' ";
+				   and iv.estadoMaterial='Prestado' and month(p.fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and p.estado=1 and c.id='{$idCarrera}' ";
 				$con = conectar();
 				$result = $con->query($sql);
 				$result = $result->fetch_assoc();

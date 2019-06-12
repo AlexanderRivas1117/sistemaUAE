@@ -4,7 +4,7 @@ require_once '../vendor/autoload.php';
 require_once '../app/config.php';
 
 $mes = $_REQUEST['mes'];
-
+$anio = date("Y");
 
 if ($mes==1) {
 	$nombreMes='Enero';
@@ -128,7 +128,7 @@ inner join libro l
 on iv.idLibro= l.id
 inner join carrera c
 on u.idCarrera=c.id
-where datediff(curdate(), p.fechaDevolver)>0 and p.estado=1 and month(p.fechaRealizacion) = "'.$mes.'"';
+where datediff(curdate(), p.fechaDevolver)>0 and p.estado=1 and year(fechaRealizacion) = "'.$anio.'" and month(p.fechaRealizacion) = "'.$mes.'"';
 $con = conectar();
 				$result = $con->query($sql);
 				mysqli_close($con);

@@ -3,6 +3,7 @@
 require_once '../vendor/autoload.php';
 require_once '../app/config.php';
 
+$anio=  date("Y");
 $mes = $_REQUEST['mes'];
 if ($mes==4 || $mes==6 || $mes==9 || $mes==11) {
 	$diasMes = 30;
@@ -13,7 +14,7 @@ if ($mes==1 || $mes==3 || $mes==5 || $mes==7 || $mes==8 || $mes==10 || $mes==12)
 }
 else
 {
-	$diasMes==28;
+	$diasMes=28;
 }
 
 if ($mes==1) {
@@ -178,7 +179,7 @@ $html = '<html>';
 
 			$html .= '<td style="text-align:center; vertical-aling: middle;">';
 
-				$sql = "SELECT count(idUsuario) as totalUsuarios from prestamo where day(fechaRealizacion) = '{$i}' and month(fechaRealizacion) = '{$mes}'and estado=1;";
+			$sql = "SELECT count(idUsuario) as totalUsuarios from prestamo where day(fechaRealizacion) = '{$i}' and month(fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and estado=1;";
 				$con = conectar();
 				$result = $con->query($sql);
 				$result = $result->fetch_assoc();
@@ -193,7 +194,7 @@ $html = '<html>';
 						inner join usuario u
 						on p.idUsuario = u.id
 						where u.genero='Masculino' and
-						day(fechaRealizacion) = '{$i}' and month(fechaRealizacion) = '{$mes}' and p.estado=1;";
+						day(fechaRealizacion) = '{$i}' and month(fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and p.estado=1;";
 				$con = conectar();
 				$result = $con->query($sql);
 				$result = $result->fetch_assoc();
@@ -208,7 +209,7 @@ $html = '<html>';
 						inner join usuario u
 						on p.idUsuario = u.id
 						where u.genero='Femenino' and
-						day(fechaRealizacion) = '{$i}' and month(fechaRealizacion) = '{$mes}' and p.estado=1";
+						day(fechaRealizacion) = '{$i}' and month(fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and p.estado=1";
 				$con = conectar();
 				$result = $con->query($sql);
 				$result = $result->fetch_assoc();
@@ -235,7 +236,7 @@ $html = '<html>';
 				   or l.clasificacion like 'REF.&{$c}%' -- libros
 				   or l.clasificacion like 'JSA.&{$c}%')-- libros
 				   and iv.estadoMaterial='Prestado' and
-					day(p.fechaRealizacion) = '{$i}' and month(p.fechaRealizacion) = '{$mes}' and p.estado=1";
+					day(p.fechaRealizacion) = '{$i}' and month(p.fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and p.estado=1";
 				$con = conectar();
 				$result = $con->query($sql);
 				$result = $result->fetch_assoc();

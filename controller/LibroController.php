@@ -61,6 +61,9 @@ if (isset($_POST['key'])) {
 		case 'getInfo':
 			getInfo();
 			break;
+		case 'guardarCambios':
+			guardarCambios();
+			break;
 		
 		default:
 			# code...
@@ -68,6 +71,14 @@ if (isset($_POST['key'])) {
 	}
 }
 
+function guardarCambios()
+{
+	$dataLibro = $_POST['dataLibro'];
+	//var_dump(json_decode($dataLibro));
+	$objLibro = new Libro();
+
+	echo $objLibro->guardarCambios($dataLibro);
+}
 
 function getInfo()
 {

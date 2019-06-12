@@ -253,8 +253,58 @@ if(evento.isDefaultPrevented)
 });
 
 function guardarCambios() {
-  var dataLibro = JSON.stringify($('#infoLibroEdit *').not(".js-example-basic-multiple").serializeArray());
-  console.log(dataLibro);
+  var dataLibro = JSON.stringify($('#infoLibroEdit').find('select, textarea, input').not(".js-example-basic-multiple").serializeArray());
+  //console.log(dataLibro);
+
+  $.ajax({
+        type: 'POST',
+        data: {dataLibro: dataLibro, key:'guardarCambios'},
+        url: "../../controller/LibroController.php",
+        success: function(data)
+        {
+          data = JSON.parse(data);
+          console.log(data);
+          
+          //console.log(data.idLibro['idLibro']);
+          if(data.estado==true)
+          {
+                // var id= data.idLibro['idLibro'];
+                // id = parseInt(id);
+                swal({
+                title: "Exito!",
+                text: data.descripcion,
+                timer: 1000,
+                type: 'success',
+                closeOnConfirm: true,
+                closeOnCancel: true
+                });
+                setTimeout(function(){
+                  location.reload();
+                },1000);
+                
+
+          }
+          else
+          {
+            // swal({
+            //     title: "Error!",
+            //     text: data.descripcion,
+            //     timer: 1000,
+            //     type: 'error', 
+            //     closeOnConfirm: true,
+            //     closeOnCancel: true
+            //     });
+            //     setTimeout(function(){
+            //       //location.reload();
+            //     },1000);
+          }
+        },
+        error: function(xhr, status)
+        {
+
+        }
+      }); //FIN AJAX
+
 }
 
 
@@ -262,7 +312,7 @@ function guardarCambios() {
 
 function guardarDocumento() {
 
-  var dataLibro = JSON.stringify($('#infoLibro input,select,textarea').not(".js-example-basic-multiple").serializeArray());
+  var dataLibro = JSON.stringify($('#infoLibro select,textarea,input').not(".js-example-basic-multiple").serializeArray());
   $(".txtAutor").attr("disabled", false);
 
 
@@ -472,10 +522,6 @@ $(document).on("click",".Editar",  function(){
 
   var id = $(this).attr('id');
  
-
-
-
-
   $("#edit").modal({backdrop: 'static',keyboard: false});
   $.ajax({
         type: 'POST',
@@ -508,7 +554,7 @@ $(document).on("click",".Editar",  function(){
           $("#libristicaAutorE").val(data[0].libristica);
           $("#detallesFisicosE").val(data[0].detallesFisicos);
           $("#notasE").val(data[0].notas);
-          $("#tablaContenidoE").val(data[0].notas);
+          $("#tablaContenidoE").val(data[0].contenido);
           $("#autorE").val(data[0].autor);
           $("#numeroInventarioE").val(data[0].numeroInventario);
           $("#fechaAdquisicionE").val(data[0].fechaAdquisicion);
@@ -518,30 +564,14 @@ $(document).on("click",".Editar",  function(){
           $("#fechaEntregaE").val(data[0].fechaEntrega);
           $("#formaAdquisicionE").val(data[0].formaAdquisicion);
           $("#volumenE").val(data[0].volumen);
+          $("#idInventarioE").val(data[0].idInventario);
+          $("#idLibroE").val(id);
         },
         error: function(xhr, status)
         {
 
         }
       });
-
-  // $.ajax({
-  //       type: 'POST',
-  //       data: {id: id, key:'getAutores'},
-  //       url: "../../controller/LibroController.php",
-  //       success: function(data)
-  //       {
-  //         //data = JSON.parse(data);
-  //         console.log(data);
-
-  //       },
-  //       error: function(xhr, status)
-  //       {
-
-  //       }
-  //     });
-
-
 
 });
 

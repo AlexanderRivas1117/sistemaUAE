@@ -210,7 +210,7 @@ INSERT INTO `inventario`
 `precio`, `estadoMaterial`, `fechaEstado`, `facilitante`, `entrego`, `fechaEntrega`,`eliminado`) 
 
 VALUES (NULL, p_numeroInventario, @idLibro, p_fechaAdquisicion, p_volumen, p_formaAdquisicion, p_precio, 
-p_facilitante, 'Disponible', curdate(),p_entrego, p_fechaEntrega,0);
+'Disponible', curdate(),p_facilitante,p_entrego, p_fechaEntrega,0);
 
 END$$
 
@@ -250,11 +250,11 @@ DROP PROCEDURE IF exists `bibliotecauae`.`infoLibro` $$
 CREATE PROCEDURE `bibliotecauae`.`infoLibro`()
 	BEGIN
 select l.id,iv.numeroInventario,l.nombre,l.numeroEdicion,l.idioma,l.idEditorial as editorial,l.idTipoColeccion as tipoColeccion,
-l.idTipoLiteratura as tipoLiteratura,l.autor from libro l
+l.idTipoLiteratura as tipoLiteratura,l.autor,iv.fechaEstado from libro l
 inner join inventario iv
 	on iv.idLibro=l.id
 where l.eliminado!=1
-    order by l.id DESC limit 3000;    
+    order by l.id DESC;    
     END $$
 DELIMITER ;
 -- 
@@ -660,5 +660,22 @@ iv.entrego,iv.fechaEntrega,iv.formaAdquisicion,iv.volumen
  from libro l
  inner join inventario iv
  on iv.idLibro = l.id
- where l.id=26388
+ where l.id=26388;
+ 
+select count(*) from inventario where year(fechaAdquisicion)=1970;
 
+-- vista para table
+
+CREATE VIEW getAllView AS select l.id,iv.numeroInventario,l.nombre,l.numeroEdicion,l.idioma,l.idEditorial as editorial,l.idTipoColeccion as tipoColeccion,
+l.idTipoLiteratura as tipoLiteratura,l.autor,iv.fechaEstado from libro l
+inner join inventario iv
+	on iv.idLibro=l.id
+where l.eliminado!=1
+    order by l.id DESC; 
+    
+ select   l.id,iv.numeroInventario,l.nombre,l.numeroEdicion,l.idioma,l.idEditorial as editorial,l.idTipoColeccion as tipoColeccion,
+l.idTipoLiteratura as tipoLiteratura,l.autor,iv.fechaEstado from libro l
+inner join inventario iv
+    on iv.idLibro=l.id;
+
+select * from getAllView;

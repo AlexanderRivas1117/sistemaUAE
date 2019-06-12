@@ -1035,6 +1035,8 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                 </select>
             </div>
         </div>
+        <input type="hidden" name="idLibroE" id="idLibroE">
+        <input type="hidden" name="idInventarioE" id="idInventarioE">
     </div>
     <div class="row">
         
