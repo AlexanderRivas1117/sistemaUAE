@@ -44,7 +44,17 @@ $("#listadoLibros").DataTable({
                   "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
                   "sSortDescending": ": Activar para ordenar la columna de manera descendente"
               }
-          }
+          },
+          "scrollX": true,
+                "pagingType": "numbers",
+                "processing": true,
+                "serverSide": true,
+                "ajax": "column-search/server.php",
+                order: [[2, 'asc']],
+                columnDefs: [{
+                    targets: "_all",
+                    orderable: false
+                 }]
           //fin de la configuracion del data table
       });
 

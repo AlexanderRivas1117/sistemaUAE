@@ -673,9 +673,14 @@ inner join inventario iv
 where l.eliminado!=1
     order by l.id DESC; 
     
- select   l.id,iv.numeroInventario,l.nombre,l.numeroEdicion,l.idioma,l.idEditorial as editorial,l.idTipoColeccion as tipoColeccion,
+ select l.id,iv.numeroInventario,l.nombre,l.numeroEdicion,l.idioma,l.idEditorial as editorial,l.idTipoColeccion as tipoColeccion,
 l.idTipoLiteratura as tipoLiteratura,l.autor,iv.fechaEstado from libro l
 inner join inventario iv
     on iv.idLibro=l.id;
+    
+select iv.numeroInventario,l.nombre,iv.precio,iv.fechaEstado from inventario iv,libro l where iv.idLibro=l.id;
 
 select * from getAllView;
+
+SET @id := (SELECT id from libro);
+SELECT CONCAT('<button type="button" class="btn btn-info btn-circle Editar btn-sm" id="',iv.id,"' value='Editar'><i class='fas fa-edit'></i></button>") as edit;

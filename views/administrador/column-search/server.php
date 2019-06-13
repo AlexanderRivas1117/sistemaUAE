@@ -29,9 +29,9 @@ $columns = array(
     array( 'db' => '`l`.`nombre`',  'dt' => 1, 'field' => 'nombre' ),
     array( 'db' => '`l`.`autor`',   'dt' => 2, 'field' => 'autor' ),
     array( 'db' => '`l`.`idEditorial`',     'dt' => 3, 'field' => 'idEditorial'),
-    array( 'db' => '`l`.`idTipoColeccion`',     'dt' => 3, 'field' => 'idTipoColeccion'),
-    array( 'db' => '`l`.`autor`',     'dt' => 4, 'field' => 'autor' ),
-    array( 'db' => '`l`.`autor`',     'dt' => 4, 'field' => 'edit' )
+    array( 'db' => '`l`.`idTipoColeccion`',     'dt' => 4, 'field' => 'idTipoColeccion' ),
+
+    array( 'db' => '`l`.`autor`',     'dt' => 5, 'field' => 'edit' )
 );
 
  

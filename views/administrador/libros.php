@@ -125,29 +125,29 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                   <tbody>
 
                    <?php 
-                            $objLibro = new Libro();
-                            $data = $objLibro->getAll();
-                            if ($data!=false) {
-                                foreach ($data as  $value) {
+                            // $objLibro = new Libro();
+                            // $data = $objLibro->getAll();
+                            // if ($data!=false) {
+                            //     foreach ($data as  $value) {
                                     
-                                    echo "<tr>
-                                            <td class=''>".$value['numeroInventario']."</td>
-                                            <td class=''>".$value['nombre']."</td>
-                                            <td class=''>".$value['autor']."</td>
-                                            <td class=''>".$value['editorial']."</td>
+                            //         echo "<tr>
+                            //                 <td class=''>".$value['numeroInventario']."</td>
+                            //                 <td class=''>".$value['nombre']."</td>
+                            //                 <td class=''>".$value['autor']."</td>
+                            //                 <td class=''>".$value['editorial']."</td>
                                             
-                                            <td class=''>".$value['tipoColeccion']."</td>
-                                            <td>
+                            //                 <td class=''>".$value['tipoColeccion']."</td>
+                            //                 <td>
                                                 
                                                 
 
-                                                <button type='button' class='btn btn-info btn-circle Editar btn-sm' id='".$value['id']."' value='Editar'><i class='fas fa-edit'></i></button>
-                                                <button type='button' class='btn btn-danger btn-circle Eliminar btn-sm' id='".$value['id']."' value='Eliminar'><i class='fas fa-trash'></i></button>
+                            //                     <button type='button' class='btn btn-info btn-circle Editar btn-sm' id='".$value['id']."' value='Editar'><i class='fas fa-edit'></i></button>
+                            //                     <button type='button' class='btn btn-danger btn-circle Eliminar btn-sm' id='".$value['id']."' value='Eliminar'><i class='fas fa-trash'></i></button>
                                                 
-                                            </td>
-                                          </tr>";
-                                }
-                            }
+                            //                 </td>
+                            //               </tr>";
+                            //     }
+                            // }
 
                          ?>
                     

@@ -239,8 +239,7 @@ class SSP {
         // Main query to actually get the data
         if($joinQuery){
             $col = SSP::pluck($columns, 'db', $joinQuery);
-            $query =  "SELECT SQL_CALC_FOUND_ROWS ".implode(", ", $col).",
-            CONCAT('<button>hola</button>') as edit
+            $query =  "SELECT SQL_CALC_FOUND_ROWS ".implode(", ", $col)."
 			 $joinQuery
 			 $where
 			 $extraWhere
