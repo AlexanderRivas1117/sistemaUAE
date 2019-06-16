@@ -243,7 +243,7 @@ class SSP {
 			 $joinQuery
 			 $where
 			 $extraWhere
-			 $groupBy LIMIT 10";
+			 $groupBy ORDER by iv.id DESC LIMIT 5";
         }else{
             $query =  "SELECT SQL_CALC_FOUND_ROWS `".implode("`, `", SSP::pluck($columns, 'db'))."`
 			 FROM `$table`

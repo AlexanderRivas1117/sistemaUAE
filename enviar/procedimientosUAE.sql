@@ -179,7 +179,7 @@ DELIMITER $$
 DROP PROCEDURE IF exists `bibliotecauae`.`guardarDocumento` $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `guardarDocumento`(in p_nombre varchar(40),in p_cantidadPaginas int,
 in p_informacionAdicional varchar(25),in p_terminosResumen varchar(40),in p_numeroEdicion int,
-in p_referenciaDigital varchar(50),in p_fechaPublicacion date,in p_idioma varchar(15),
+in p_referenciaDigital varchar(50),in p_fechaPublicacion int,in p_idioma varchar(15),
 in p_isbn varchar(20),in p_idEditorial text, in p_idPais int,in p_idTipoColeccion text,in p_idTipoLiteratura text,
 in p_numeroInventario varchar(40),in p_fechaAdquisicion date,in p_volumen int,in p_formaAdquisicion varchar(40),
 in p_precio varchar(40),in p_facilitante varchar(40),in p_entrego varchar(40),
@@ -684,3 +684,17 @@ select * from getAllView;
 
 SET @id := (SELECT id from libro);
 SELECT CONCAT('<button type="button" class="btn btn-info btn-circle Editar btn-sm" id="',iv.id,"' value='Editar'><i class='fas fa-edit'></i></button>") as edit;
+
+SELECT "Enero",(SELECT count(*) from prestamo where month(fechaRealizacion)=1 and year(fechaRealizacion)=2019) as cantidad,
+	   (SELECT count(*) from prestamo where month(fechaRealizacion)=2 and year(fechaRealizacion)=2019) as febrero,
+       (SELECT count(*) from prestamo where month(fechaRealizacion)=3 and year(fechaRealizacion)=2019) as marzo,
+       (SELECT count(*) from prestamo where month(fechaRealizacion)=4 and year(fechaRealizacion)=2019) as abril,
+       (SELECT count(*) from prestamo where month(fechaRealizacion)=5 and year(fechaRealizacion)=2019) as mayo,
+       (SELECT count(*) from prestamo where month(fechaRealizacion)=6 and year(fechaRealizacion)=2019) as junio
+       
+       
+       
+       
+       
+       
+       

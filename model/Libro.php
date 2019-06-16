@@ -287,40 +287,40 @@ where iv.numeroInventario='{$id}'";
     {
         $data = json_decode($dataLibro);
 
-        $tipoColeccion = $data[1]->value;
-        $tipoLiteratura = $data[2]->value;
-        $nombre = $data[3]->value;
-        $tituloParalelo = $data[4]->value;
-        $cantidadPaginas = $data[5]->value;
-        $informacionAdicional = $data[6]->value;
-        $fechaPublicacion = $data[7]->value;
-        $numeroEdicion = $data[8]->value;
-        $referenciaDigital = $data[9]->value;
-        $terminosResumen = $data[10]->value;
-        $idioma = $data[11]->value;
-        $iscn = $data[12]->value;
-        $dimensiones = $data[13]->value;
-        $isbn = $data[14]->value;
-        $idEditorial = $data[15]->value;
-        $asesor = $data[16]->value;
-        $numeroClasificacion = $data[17]->value;
-        $libristicaAutor = $data[18]->value;
-        $detallesFisicos = $data[19]->value;
-        $idPais = $data[20]->value;
-        $notas = $data[21]->value;
-        $contenido = $data[22]->value;
+        $tipoColeccion = $data[0]->value;
+        $tipoLiteratura = $data[1]->value;
+        $nombre = $data[2]->value;
+        $tituloParalelo = $data[3]->value;
+        $cantidadPaginas = $data[4]->value;
+        $informacionAdicional = $data[5]->value;
+        $fechaPublicacion = $data[6]->value;
+        $numeroEdicion = $data[7]->value;
+        $referenciaDigital = $data[8]->value;
+        $terminosResumen = $data[9]->value;
+        $idioma = $data[10]->value;
+        $iscn = $data[11]->value;
+        $dimensiones = $data[12]->value;
+        $isbn = $data[13]->value;
+        $idEditorial = $data[14]->value;
+        $asesor = $data[15]->value;
+        $numeroClasificacion = $data[16]->value;
+        $libristicaAutor = $data[17]->value;
+        $detallesFisicos = $data[18]->value;
+        $idPais = $data[19]->value;
+        $notas = $data[20]->value;
+        $contenido = $data[21]->value;
 
         //CAMPO NUEVO
-        $autor = $data[23]->value;
+        $autor = $data[22]->value;
 
-        $numeroInventario = $data[24]->value;
-        $fechaAdquisicion = $data[25]->value;
-        $precio = $data[26]->value;
-        $facilitante = $data[27]->value;
-        $entrego = $data[28]->value;
-        $fechaEntrega = $data[29]->value;
-        $formaAdquisicion = $data[30]->value;
-        $volumen = $data[31]->value;
+        $numeroInventario = $data[23]->value;
+        $fechaAdquisicion = $data[24]->value;
+        $precio = $data[25]->value;
+        $facilitante = $data[26]->value;
+        $entrego = $data[27]->value;
+        $fechaEntrega = $data[28]->value;
+        $formaAdquisicion = $data[29]->value;
+        $volumen = $data[30]->value;
 
 
         if($tituloParalelo!='')

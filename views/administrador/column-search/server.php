@@ -31,7 +31,7 @@ $columns = array(
     array( 'db' => '`l`.`idEditorial`',     'dt' => 3, 'field' => 'idEditorial'),
     array( 'db' => '`l`.`idTipoColeccion`',     'dt' => 4, 'field' => 'idTipoColeccion' ),
 
-    array( 'db' => '`l`.`autor`',     'dt' => 5, 'field' => 'edit' )
+    array( 'db' => '`l`.`autor`',     'dt' => 5, 'field' => 'autor' )
 );
 
  
