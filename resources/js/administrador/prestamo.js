@@ -279,47 +279,48 @@ $("#realizar").on('click',function(){
 	{
 		//REALIZAR NUEVO PRESTAMO
 		var dataPrestamo = JSON.stringify($('#infoPrestamo  input').serializeArray());
-		$.ajax({
-				type: 'POST',
-				data: {dataPrestamo: dataPrestamo, key:'nuevoPrestamo'},
-				url: "../../controller/PrestamoController.php",
-				success: function(data)
-				{
-					data = JSON.parse(data);
-					if(data.estado==true)
-					{
-                            swal({
-								title: "Exito!",
-								text: data.descripcion,
-								timer: 1000,
-								type: 'success',
-								closeOnConfirm: true,
-								closeOnCancel: true
-								});
-								setTimeout(function(){
-									location.reload();
-								},1000);
-					}
-					else
-					{
-						swal({
-								title: "Error!",
-								text: data.descripcion,
-								timer: 1000,
-								type: 'error', 
-								closeOnConfirm: true,
-								closeOnCancel: true
-								});
-								setTimeout(function(){
-									location.reload();
-								},1000);
-					}
-				},
-				error: function(xhr, status)
-				{
+		console.log(dataPrestamo);
+		// $.ajax({
+		// 		type: 'POST',
+		// 		data: {dataPrestamo: dataPrestamo, key:'nuevoPrestamo'},
+		// 		url: "../../controller/PrestamoController.php",
+		// 		success: function(data)
+		// 		{
+		// 			data = JSON.parse(data);
+		// 			if(data.estado==true)
+		// 			{
+  //                           swal({
+		// 						title: "Exito!",
+		// 						text: data.descripcion,
+		// 						timer: 1000,
+		// 						type: 'success',
+		// 						closeOnConfirm: true,
+		// 						closeOnCancel: true
+		// 						});
+		// 						setTimeout(function(){
+		// 							location.reload();
+		// 						},1000);
+		// 			}
+		// 			else
+		// 			{
+		// 				swal({
+		// 						title: "Error!",
+		// 						text: data.descripcion,
+		// 						timer: 1000,
+		// 						type: 'error', 
+		// 						closeOnConfirm: true,
+		// 						closeOnCancel: true
+		// 						});
+		// 						setTimeout(function(){
+		// 							location.reload();
+		// 						},1000);
+		// 			}
+		// 		},
+		// 		error: function(xhr, status)
+		// 		{
 
-				}
-			});
+		// 		}
+		// 	});
 	}
 	butonclick = true;	
 });

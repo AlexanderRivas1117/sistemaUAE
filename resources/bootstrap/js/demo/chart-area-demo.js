@@ -27,7 +27,19 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-// Area Chart Example
+
+//ajax
+var meses = [];
+
+$.ajax({
+  type: 'POST',
+        url: "ajaxAreaChart.php",
+        success: function (data) {
+          data = JSON.parse(data);
+          meses.push(data[0].cantidad,data[1].cantidad,data[2].cantidad,data[3].cantidad,data[4].cantidad,
+                    data[5].cantidad,data[6].cantidad,data[7].cantidad,data[8].cantidad,data[9].cantidad,
+                    data[10].cantidad,data[11].cantidad);
+          // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
@@ -46,7 +58,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [0, 10000, 5000, 1000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+      data: [meses[0],meses[1], meses[2], meses[3], meses[4], meses[5], meses[6], meses[7], meses[8], meses[9], meses[10], meses[11]],
     }],
   },
   options: {
@@ -78,7 +90,8 @@ var myLineChart = new Chart(ctx, {
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return  number_format(value);
+
           }
         },
         gridLines: {
@@ -110,9 +123,15 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return 'Cantidad'+ ': ' + number_format(tooltipItem.yLabel);
         }
       }
     }
   }
 });
+          
+        }
+});
+// fin ajax
+
+

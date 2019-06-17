@@ -685,12 +685,12 @@ select * from getAllView;
 SET @id := (SELECT id from libro);
 SELECT CONCAT('<button type="button" class="btn btn-info btn-circle Editar btn-sm" id="',iv.id,"' value='Editar'><i class='fas fa-edit'></i></button>") as edit;
 
-SELECT "Enero",(SELECT count(*) from prestamo where month(fechaRealizacion)=1 and year(fechaRealizacion)=2019) as cantidad,
-	   (SELECT count(*) from prestamo where month(fechaRealizacion)=2 and year(fechaRealizacion)=2019) as febrero,
-       (SELECT count(*) from prestamo where month(fechaRealizacion)=3 and year(fechaRealizacion)=2019) as marzo,
-       (SELECT count(*) from prestamo where month(fechaRealizacion)=4 and year(fechaRealizacion)=2019) as abril,
-       (SELECT count(*) from prestamo where month(fechaRealizacion)=5 and year(fechaRealizacion)=2019) as mayo,
-       (SELECT count(*) from prestamo where month(fechaRealizacion)=6 and year(fechaRealizacion)=2019) as junio
+SELECT (SELECT count(*) from prestamo where month(fechaRealizacion)=1 and year(fechaRealizacion)=2019),
+	   (SELECT count(*) from prestamo where month(fechaRealizacion)=2 and year(fechaRealizacion)=2019),
+       (SELECT count(*) from prestamo where month(fechaRealizacion)=3 and year(fechaRealizacion)=2019),
+       (SELECT count(*) from prestamo where month(fechaRealizacion)=4 and year(fechaRealizacion)=2019),
+       (SELECT count(*) from prestamo where month(fechaRealizacion)=6 and year(fechaRealizacion)=2019),
+       (SELECT count(*) from prestamo where month(fechaRealizacion)=7 and year(fechaRealizacion)=2019)
        
        
        
