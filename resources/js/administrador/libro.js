@@ -209,8 +209,8 @@ event.preventDefault();
       //var parametros = $(this).serialize();
       //alert(parametros);
 
-      // if(event.isDefaultPrevented)
-      // {
+      if(event.isDefaultPrevented)
+      {
 
         event.preventDefault();
         // alert("prevent");
@@ -226,7 +226,7 @@ event.preventDefault();
 
         //$("#info1").css("display", "none");
         //$("#info2").css("display", "block");
-      // } 
+      } 
       
     });
 
@@ -353,7 +353,7 @@ function guardarDocumento() {
                 closeOnCancel: true
                 });
                 setTimeout(function(){
-                  //location.reload();
+                  location.reload();
                 },1000);
                 
 
@@ -635,7 +635,7 @@ if (isConfirm)
                             closeOnCancel: true
                               }),
                   setTimeout(function(){
-                  //location.reload();
+                  location.reload();
                 },1000);  
               }
 

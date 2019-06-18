@@ -24,6 +24,16 @@ $table = 'inventario';
 // Table's primary key
 $primaryKey = 'id';
 
+// $columns = array(
+//     array( 'db' => '`iv`.`numeroInventario`', 'dt' => 0, 'field' => 'numeroInventario' ),
+//     array( 'db' => '`l`.`nombre`',  'dt' => 1, 'field' => 'nombre' ),
+//     array( 'db' => '`l`.`autor`',   'dt' => 2, 'field' => 'autor' ),
+//     array( 'db' => '`l`.`idEditorial`',     'dt' => 3, 'field' => 'idEditorial'),
+//     array( 'db' => '`l`.`idTipoColeccion`',     'dt' => 4, 'field' => 'idTipoColeccion' ),
+
+//     array( 'db' => '`l`.`autor`',     'dt' => 5, 'field' => 'autor' )
+// );
+
 $columns = array(
     array( 'db' => '`iv`.`numeroInventario`', 'dt' => 0, 'field' => 'numeroInventario' ),
     array( 'db' => '`l`.`nombre`',  'dt' => 1, 'field' => 'nombre' ),
@@ -31,27 +41,11 @@ $columns = array(
     array( 'db' => '`l`.`idEditorial`',     'dt' => 3, 'field' => 'idEditorial'),
     array( 'db' => '`l`.`idTipoColeccion`',     'dt' => 4, 'field' => 'idTipoColeccion' ),
 
-    array( 'db' => '`l`.`autor`',     'dt' => 5, 'field' => 'autor' )
+    array( 'db' => '`l`.`id`',     'dt' => 5, 'field' => 'id' ,'formatter' => function( $d, $row ) {
+            return "<button type='button' class='btn btn-info btn-circle Editar btn-sm' id='".$d."' value='Editar'><i class='fas fa-edit'></i></button>
+                <button type='button' class='btn btn-danger btn-circle Eliminar btn-sm' id='".$d."' value='Eliminar'><i class='fas fa-trash'></i></button>";
+        }),
 );
-
- 
-// Array of database columns which should be read and sent back to DataTables.
-// The `db` parameter represents the column name in the database, while the `dt`
-// parameter represents the DataTables column identifier. In this case simple
-// indexes
-// $columns = array(
-//     array( 'db' => 'numeroInventario', 'dt' => 0 ),
-//     array( 'db' => 'nombre',  'dt' => 1 ),
-//     array( 'db' => 'precio',   'dt' => 2 ),
-//     array( 'db' => 'facilitante', 'dt' => 3,),
-//     array( 'db' => 'fechaEstado','dt' => 4,
-//         'formatter' => function( $d, $row ) {
-//             return date( 'd-m-Y', strtotime($d));
-//         }
-//     )
-   
-// );
-
 
  
 // SQL server connection information

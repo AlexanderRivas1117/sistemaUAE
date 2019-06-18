@@ -767,7 +767,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 
                       for ($i=2019 ; $i >=  1950 ; $i--) { 
                        ?>
-                       <option><?php echo $i ?></option>
+                       <option value="<?php echo $i ?>"><?php echo $i ?></option>
                        <?php 
                         }
                         ?>
