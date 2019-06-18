@@ -15,6 +15,7 @@
   <meta name="author" content="">
 
   <title>Sistema - UAE</title>
+  <link rel = "icon" type = "image/png" href = "logo_UAE.JPG">
 
   <!-- Custom fonts for this template-->
   <link href="/sistemaUAE/resources/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -121,7 +122,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Usuarios con Mora</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Préstamos con Mora</div>
                       <?php 
                       $anio = date('Y');
                       $sql = 'SELECT count(*) as conMora from prestamo p

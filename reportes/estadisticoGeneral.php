@@ -3,7 +3,7 @@
 require_once '../vendor/autoload.php';
 require_once '../app/config.php';
 
-$anio=  date("Y");
+$anio=  $_REQUEST['anio'];
 $mes = $_REQUEST['mes'];
 if ($mes==4 || $mes==6 || $mes==9 || $mes==11) {
 	$diasMes = 30;

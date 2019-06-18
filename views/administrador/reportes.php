@@ -15,6 +15,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
   <meta name="author" content="">
 
   <title>UAE - Tipo Literatura</title>
+  <link rel = "icon" type = "image/png" href = "logo_UAE.JPG">
 
   <!-- Custom fonts for this template -->
   <link href="../../resources/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -82,6 +83,19 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                   <br>
                   <div class="row">
                     <div class="col-md-12">
+                      <select class="form-control" name="anio" required="true">
+                        <option value="">Seleccione Año</option>
+                        <?php for ($i=date("Y"); $i > 1980; $i--) { 
+                          
+                        ?>
+                        <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                      <?php } ?>
+                      </select>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-12">
                       <button type="submit" class="btn btn-success btn-icon-split">
                           <span class="icon text-white-50">
                             <i class="fas fa-file-pdf"></i>
@@ -125,6 +139,19 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                   <br>
                   <div class="row">
                     <div class="col-md-12">
+                      <select class="form-control" name="anio" required="true">
+                        <option value="">Seleccione Año</option>
+                        <?php for ($i=date("Y"); $i > 1980; $i--) { 
+                          
+                        ?>
+                        <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                      <?php } ?>
+                      </select>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-12">
                       <button type="submit" class="btn btn-success btn-icon-split">
                           <span class="icon text-white-50">
                             <i class="fas fa-file-pdf"></i>
@@ -162,6 +189,19 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                         <option value="10">Octubre</option>
                         <option value="11">Noviembre</option>
                         <option value="12">Diciembre</option>
+                      </select>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <select class="form-control" name="anio" required="true">
+                        <option value="">Seleccione Año</option>
+                        <?php for ($i=date("Y"); $i > 1980; $i--) { 
+                          
+                        ?>
+                        <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                      <?php } ?>
                       </select>
                     </div>
                   </div>

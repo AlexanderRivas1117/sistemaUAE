@@ -4,7 +4,7 @@ require_once '../vendor/autoload.php';
 require_once '../app/config.php';
 
 $mes = $_REQUEST['mes'];
-$anio = date("Y");
+$anio = $_REQUEST['anio'];
 
 if ($mes==1) {
 	$nombreMes='Enero';

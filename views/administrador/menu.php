@@ -1,4 +1,4 @@
- <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+ <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #4e73df;">
 
       <!-- Sidebar - Brand -->
       <!-- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -30,15 +30,15 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Documento</span>
+          <span>Documentos</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Libros & Documentos</h6>
             <a class="collapse-item" href="libros.php">Libros</a>
-            <a class="collapse-item" href="editorial.php">Editorial</a>
-            <a class="collapse-item" href="literatura.php">Tipo Literatura</a>
-            <a class="collapse-item" href="autor.php">Autores</a>
+            <a class="collapse-item" href="buscador.php">Buscador</a>
+<!--             <a class="collapse-item" href="literatura.php">Tipo Literatura</a>
+            <a class="collapse-item" href="autor.php">Autores</a> -->
           </div>
         </div>
       </li>

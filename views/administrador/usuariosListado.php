@@ -19,6 +19,7 @@ include_once realpath (dirname (__FILE__).'/../../model/tipoUsuario.php');
   <meta name="author" content="">
 
   <title>UAE - Listado Usuarios</title>
+  <link rel = "icon" type = "image/png" href = "logo_UAE.JPG">
 
   <!-- Custom fonts for this template -->
   <link href="../../resources/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

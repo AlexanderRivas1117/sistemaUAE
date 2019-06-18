@@ -41,6 +41,7 @@ session_start();
 					<div class="col-md-8 input-group" style="width: 250px;">
 						<button type="button" class="btn btn-primary" style="width: 250px;" id="entrar">Ingresar</button>
  					</div>
+
 				</div>
 			</div>
 

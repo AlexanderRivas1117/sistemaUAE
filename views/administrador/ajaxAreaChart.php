@@ -7,7 +7,7 @@ $anio = date('Y');
 $array = array();
 
 for ($i=1; $i < 13; $i++) { 
-	$sql = "SELECT (SELECT count(*) from prestamo where month(fechaRealizacion)='{$i}' and year(fechaRealizacion)='{$anio}' and estado=1) as cantidad";
+	$sql = "SELECT (SELECT count(*) from prestamo where month(fechaRealizacion)='{$i}' and year(fechaRealizacion)='{$anio}') as cantidad";
 	$resultados = $con->query($sql);
 
 	if ($resultados->num_rows>0) {

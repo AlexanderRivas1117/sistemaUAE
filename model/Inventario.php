@@ -74,7 +74,7 @@ class Inventario
         }
         else
         {
-            $json = "";
+            $json = $this->con->error;
         }
         return $retur;
     }
