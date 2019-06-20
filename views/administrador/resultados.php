@@ -38,7 +38,7 @@ require_once realpath (dirname (__FILE__).'/../../model/Prestamo.php');
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>UAE -Resultados de Búsqueda</title>
+  <title>UAE | Resultados de Búsqueda</title>
   <link rel = "icon" type = "image/png" href = "logo_UAE.JPG">
  
 
@@ -375,7 +375,9 @@ if (!isset($_REQUEST['user'])) {
 
 
 <script>
+
 $(document).ready(function() {
+
 $("#listadoLibros").DataTable({
 
           "language": {
@@ -477,7 +479,6 @@ $("#cerrarInfo").click(function(){
 
 
 });
- 
 
 </script>
 <!-- MODALES -->
@@ -629,5 +630,59 @@ $("#cerrarInfo").click(function(){
 }
 </style>
 <!-- FIN MODAL INFO LIBRO -->
+<?php 
 
+    if (!isset($_REQUEST['user'])) {
+       ?>
+          <script>
+            var idleTime = 0;
+            $(document).ready(function(){
+
+              var idleInterval = setInterval("timerIncrement()", 60000); // 1 minute
+
+                $(this).mousemove(function (e) {
+
+               idleTime = 0;
+              });
+              $(this).keypress(function (e) {
+
+               idleTime = 0;
+              });
+
+            });
+            function timerIncrement() {
+              idleTime = idleTime + 1;
+              if (idleTime > 1) { // 20 minutes
+                  window.location.href="buscador.php";            }
+          }
+          </script>
+                    <?php 
+
+                  }
+                  else
+                  {
+                     ?>                
+<script>
+            var idleTime = 0;
+            $(document).ready(function(){
+
+              var idleInterval = setInterval("timerIncrement()", 60000); // 1 minute
+
+                $(this).mousemove(function (e) {
+
+               idleTime = 0;
+              });
+              $(this).keypress(function (e) {
+
+               idleTime = 0;
+              });
+
+            });
+            function timerIncrement() {
+              idleTime = idleTime + 1;
+              if (idleTime > 1) { // 20 minutes
+                  window.location.href="../../indexUser.php";            }
+          }
+          </script> 
+                   <?php } ?>
 </html>

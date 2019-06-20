@@ -244,7 +244,8 @@ $row[ $column['dt'] ] = ($isJoin) ? $column['formatter']( $data[$i][ $column['fi
 			 $joinQuery
 			 $where
 			 $extraWhere
-			 $groupBy ORDER by iv.id DESC LIMIT 5";
+             $having
+			 $groupBy ORDER by iv.id DESC $limit";
         }else{
             $query =  "SELECT SQL_CALC_FOUND_ROWS `".implode("`, `", SSP::pluck($columns, 'db'))."`
 			 FROM `$table`

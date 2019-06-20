@@ -24,7 +24,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>UAE -Buscador de Libros</title>
+  <title>UAE | Buscador de Libros</title>
   <link rel = "icon" type = "image/png" href = "logo_UAE.JPG">
  
 

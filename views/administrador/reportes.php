@@ -14,7 +14,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>UAE - Tipo Literatura</title>
+  <title>UAE | Reportes</title>
   <link rel = "icon" type = "image/png" href = "logo_UAE.JPG">
 
   <!-- Custom fonts for this template -->

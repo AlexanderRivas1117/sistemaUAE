@@ -18,7 +18,7 @@ include_once realpath (dirname (__FILE__).'/../../model/tipoUsuario.php');
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>UAE - Agregar Usuarios</title>
+  <title>UAE | Agregar Usuarios</title>
   <link rel = "icon" type = "image/png" href = "logo_UAE.JPG">
 
   <!-- Custom fonts for this template -->

@@ -14,7 +14,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>UAE - Editorial</title>
+  <title>UAE | Editorial</title>
 
   <!-- Custom fonts for this template -->
   <link href="../../resources/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

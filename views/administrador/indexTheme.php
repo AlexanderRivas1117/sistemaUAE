@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Sistema - UAE</title>
+  <title>Sistema | UAE</title>
   <link rel = "icon" type = "image/png" href = "logo_UAE.JPG">
 
   <!-- Custom fonts for this template-->
