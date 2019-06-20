@@ -32,12 +32,24 @@ if (isset($_POST['key'])) {
 		case 'devolverPrestamo':
 			devolverPrestamo();
 			break;
+		case 'searchUsuario':
+			searchUsuario();
+			break;
+
 		default:
 			# code...
 			break;
 	}
 }
 
+function searchUsuario()
+{
+	$txtBuscar = $_POST['txtBusqueda'];
+	$tipoBusqueda = $_POST['tipoBusqueda'];
+	$objInv = new Inventario();
+	$res = $objInv->searchUsuario($txtBuscar,$tipoBusqueda);
+	echo $res;
+}
 
 function obtIdUsuario()
 {

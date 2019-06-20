@@ -28,6 +28,35 @@ class Inventario
 		$this->con = conectar();
 	}
 
+    public function searchUsuario($txt,$tipo)
+    {
+       $sql = "call searchUsuario('".$tipo."','".$txt."');";
+        mysqli_set_charset($this->con, "utf8");
+        $json = "";
+        $info = $this->con->query($sql);
+       
+        if($info->num_rows>0)
+        {
+            while ($fila =$info->fetch_assoc()) 
+            {
+                $fila['estado'] = true;
+                $obj = json_encode($fila);
+                $json .= $obj.",";
+            }
+            $json = substr($json,0, strlen($json)-1);
+        }
+        else
+        {
+            $fila['estado'] = $this->con->error;
+            $obj = json_encode($fila);
+            $json .= $obj;
+        }
+        
+/*        return '{"data":['.$json.']}'; */
+        return '['.$json.']';   
+    }
+    
+
     public function searchInventario($txt,$tipo)
     {
        $sql = "call searchInventario('".$tipo."','".$txt."');";

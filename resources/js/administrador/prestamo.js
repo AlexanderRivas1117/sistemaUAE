@@ -356,6 +356,13 @@ $("#buscarInventario").on("click",function(){
 
 });
 
+$("#buscarCarnet").on("click",function(){
+	$("#nuevoPrestamo").hide();
+	$("#modalCarnet").modal({backdrop: 'static',keyboard: false});
+
+});
+
+
 $("#btnSearch").on("click",function(){
 	// var nval = $("input:radio[name=search]:checked").val();
 	// alert(nval);
@@ -406,6 +413,52 @@ $("#sinDatos").replaceWith('<tbody id="sinDatos"><tr><td colspan="3"><h7 class="
 
 });
 
+//BUSQUEDA DE USUARIO
+
+$("#txtBusquedaU").on("keyup",function(){
+
+	var txtBusqueda = $("#txtBusquedaU").val();
+	var tipoBusqueda = $("input:radio[name=searchU]:checked").val();
+	if(txtBusqueda!="")
+	{
+		$.ajax({
+
+				type: 'POST',
+				data: {txtBusqueda: txtBusqueda,tipoBusqueda:tipoBusqueda, key:'searchUsuario'},
+				url: "../../controller/PrestamoController.php",
+				success: function(data)
+				{
+					d = JSON.parse(data);
+					console.log(d);
+					if(d[0].estado!=false)
+					{
+
+	$("#sinDatosU").replaceWith("<tbody id='sinDatosU'></body>");
+
+$.each(JSON.parse(data),function(){
+	$("#sinDatosU").append("<tr><td>"+this.carnet+"</td><td>"+this.nombre+"</td><td><button type='button' class='btn btn-success btn-circle seleccionarU btn-sm' id="+this.id+" ><i class='fas fa-check'></i></button>&nbsp;</td></tr>");
+							});
+						
+					}
+					else
+					{
+$("#sinDatosU").replaceWith('<tbody id="sinDatosU"><tr><td colspan="3"><h7 class="h9">No se encontraron registros</h7></td></tr></tbody>');						
+					} 
+				},
+				error: function(xhr, status)
+				{
+
+				}
+
+				});
+	}
+	else
+	{
+		$("#sinDatosU").replaceWith('<tbody id="sinDatosU"><tr><td colspan="4"><h7 class="h9">No se encontraron registros</h7></td></tr></tbody>');
+	}
+
+});
+
 //SELECCION DEL NUMERO INVENTARIO
 
 $(document).on("click",".seleccionar",  function(){
@@ -439,6 +492,18 @@ $(document).on("click",".seleccionar",  function(){
 			// 	}
 			// });
     });
+
+// seleccionar carnet
+$(document).on("click",".seleccionarU",  function(){
+
+		var nCarnet = $(this).attr('id');    
+
+        $("#nuevoPrestamo").show();
+        $('#modalCarnet').modal('toggle');
+        $("#carnet").val(nCarnet);
+        $("#idUsuario").val(nCarnet);
+
+    });
 //CERRAR MODAL INVENTARIO
 
 $("#cerrar").on("click",function(){
@@ -448,6 +513,11 @@ $("#cerrar").on("click",function(){
 
 $("#cerrar2").on("click",function(){
     $('#modalDevoluciones').modal('toggle');
+});
+
+$("#cerrar3").on("click",function(){
+    $("#nuevoPrestamo").show();
+    $('#modalCarnet').modal('toggle');
 });
 
 

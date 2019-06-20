@@ -268,6 +268,12 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
     </div>
     <input type="hidden" name="idUsuario" id="idUsuario">
   </div>
+  <div class="col-md-1" style="padding-left: 0px; margin-top: 8px;">
+
+        <br>
+    <button type="button" class="btn btn-info btn-sm" id="buscarCarnet" value="buscar"><i class='fas fa-search'></i></button>
+
+    </div>
 </div>
 <div class="row">
   <div class="col-md-4">
@@ -366,14 +372,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
   <input type="radio" id="sInventario" name="search" class="custom-control-input" value="5">
     <label class="custom-control-label" for="sInventario">N° INVENTARIO</label>
 </div>
-    <!-- <div class="custom-control custom-radio custom-control-inline">
-<input type="radio" id="sNombre" name="search" class="custom-control-input" value="1" checked>
-    <label class="custom-control-label" for="sNombre">Nombre</label>
-<input type="radio" id="sAutor" name="search" class="custom-control-input" value="2">
-    <label class="custom-control-label" for="sAutor">Autor</label>
-<input type="radio" id="sIsbn" name="search" class="custom-control-input" value="3">
-    <label class="custom-control-label" for="sIsbn">ISBN</label>
-    </div> -->
+
             </div>
 </div>
     
@@ -410,7 +409,81 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
   </div>
 </div>
 
-    <!-- NUEVO -->
+   <!-- modal buscar carnet -->
+<div class="modal fade bd-example-modal-lg" id="modalCarnet" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" style="width: 3000px;">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h6 class="modal-title">Buscar Usuario</h6>
+          <!-- <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button> -->
+        </div>
+      <div class="modal-body"  id="modal-body">
+<div class="row">
+  <div class="col-md-10">
+    <div class="form-group">
+      <label>Buscar:</label>
+<input type="text" id="txtBusquedaU" name="txtBusqueda" placeholder="Ingrese lo que desea buscar.." class="form-control form-control-sm" required="true">
+    </div>
+  </div>
+  <div class="col-md-1" style="padding-left: 0px; margin-top: 3px;">
+    <br>
+    <button type="button" class="btn btn-primary btn-sm" id="btnSearch" value="buscar">Buscar</button>
+  </div>
+
+</div>
+<div class="row">
+<div class="col-md-12">
+            <div class="form-group">
+
+<div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" id="bCarnet" name="searchU" class="custom-control-input" value="1" checked>
+    <label class="custom-control-label" for="bCarnet">Carnet</label>
+</div>
+
+ <div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" id="bNombre" name="searchU" class="custom-control-input" value="2" >
+    <label class="custom-control-label" for="bNombre">Nombre / Apellido</label>
+</div>
+
+            </div>
+</div>
+    
+
+</div>
+<br>
+
+<!-- TABLA LIBROS -->
+<DIV class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered" id="tablaUsuarios" width="100%" cellspacing="0">
+      <thead>
+        <th>Carnet</th>
+        <th>Nombre y Apellido</th>
+        <th>Seleccionar</th>
+      </thead>
+      <tbody id="sinDatosU">
+          <tr >
+            <td colspan="4">
+              <h7 class="h9">No hay registros</h7>
+            </td>
+          </tr>         
+      </tbody>
+    </table>
+  </div>
+</DIV>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="cerrar3">Cerrar</button>
+        <!-- <button type="button" class="btn btn-primary" id="ok" value="registrar">Realizar Prestamo</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+   <!-- fin modal buscar carnet -->
 
 <!-- MODAL DEVOLUCIONES -->
 

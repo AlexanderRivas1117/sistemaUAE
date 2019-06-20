@@ -52,6 +52,32 @@ where iv.numeroInventario like concat(p_2, '%') AND iv.estadoMaterial='Disponibl
 END $$
 DELIMITER ;
 
+-- BUSCAR USUARIO
+
+DELIMITER $$
+DROP PROCEDURE IF exists `bibliotecauae`.`searchUsuario` $$
+CREATE PROCEDURE `bibliotecauae`.`searchUsuario`(in p_1 int, in p_2 varchar(50))
+BEGIN
+-- BUSQUEDA POR NOMBRE DE LIBRO
+ IF p_1=1 THEN
+   select id,carnet,concat_ws(' ',apellido,nombre) as nombre,telefono
+   from usuario
+   where 
+   carnet like concat('%', p_2, '%')
+   AND estado=1 limit 10;
+ END IF;
+ -- BUSQUEDA POR NOMBRE DE AUTOR
+  IF p_1=2 THEN
+   select id,carnet,concat_ws(' ',apellido,nombre) as nombre,telefono
+   from usuario
+	where 
+   concat_ws(' ',apellido,nombre) like concat('%', p_2, '%')
+   AND estado=1 limit 10;
+ END IF;
+END $$
+DELIMITER ;
+
+
 -- GENERAR NUEVO PRESTAMO
 
 DELIMITER $$
