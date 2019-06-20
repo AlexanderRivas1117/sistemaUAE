@@ -59,7 +59,7 @@ include_once realpath (dirname (__FILE__).'/../../model/tipoUsuario.php');
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="listado" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Carnet</th>
@@ -81,23 +81,23 @@ include_once realpath (dirname (__FILE__).'/../../model/tipoUsuario.php');
                   <tbody>
                     
                     <?php 
-                            $objU = new Usuario();
-                            $data = $objU->getAll();
-                            if ($data!=false) {
-                                foreach ($data as  $value) {
+                            // $objU = new Usuario();
+                            // $data = $objU->getAll();
+                            // if ($data!=false) {
+                            //     foreach ($data as  $value) {
                                     
-                                    echo "<tr>
-                                        <td>".$value['carnet']."</td>
-                                            <td>".$value['nombre']."</td>
-                                            <td>".$value['apellido']."</td>
-                                            <td>".$value['telefono']."</td>
-                                            <td>
-                                                <button type='button' class='btn btn-info btn-circle btn-sm editar' id='".$value['id']."' value='Editar'><i class='fas fa-edit'></i></button>
-                                                <button type='button' class='btn btn-danger btn-circle btn-sm eliminar' value='".$value['id']."'><i class='fas fa-trash'></i></button>
-                                            </td>
-                                          </tr>";
-                                }
-                            }
+                            //         echo "<tr>
+                            //             <td>".$value['carnet']."</td>
+                            //                 <td>".$value['nombre']."</td>
+                            //                 <td>".$value['apellido']."</td>
+                            //                 <td>".$value['telefono']."</td>
+                            //                 <td>
+                            //                     <button type='button' class='btn btn-info btn-circle btn-sm editar' id='".$value['id']."' value='Editar'><i class='fas fa-edit'></i></button>
+                            //                     <button type='button' class='btn btn-danger btn-circle btn-sm eliminar' value='".$value['id']."'><i class='fas fa-trash'></i></button>
+                            //                 </td>
+                            //               </tr>";
+                            //     }
+                            // }
 
                          ?>
 

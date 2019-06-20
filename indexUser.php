@@ -66,7 +66,7 @@ if(isset($_REQUEST['estado']))
                   <div class="col-md-12">
                   <div class="form-group">
                     <label class="col-form-label">Tipo Coleccion</label>
-                    <select id="tipoColeccion" name="tipoColeccion" class="custom-select custom-select-lg mb-3 form-control-sm">
+                    <select id="tipoColeccion" name="tipoColeccion" class="custom-select custom-select-md mb-3 form-control-sm">
                       <option value="todos">TODOS</option>
                       <option value="COLECCION GENERAL">COLECCIÓN GENERAL</option>
                       <option value="COLECCION DE TESIS">COLECCIÓN DE TESIS</option>
@@ -84,7 +84,7 @@ if(isset($_REQUEST['estado']))
 
                 <div class="form-group row">
                   <div class="col-sm-12 mb-6 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="libre" placeholder="Búsqueda por título, autor, tabla de contenido" name="libre">
+                    <input type="text" class="form-control form-control-user" id="libre" placeholder="Búsqueda por título, autor, editorial, tabla de contenido" name="libre">
                   </div>
                   
                 </div>
@@ -101,11 +101,17 @@ if(isset($_REQUEST['estado']))
                 </div>
 
                 <div class="form-group row">
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control form-control-user" id="editorial" placeholder="Búsqueda por Editorial" name="editorial">
+                  </div>
+                </div>
+
+                <div class="form-group row">
                   <div class="col-sm-6">
                     <input type="text" class="form-control form-control-user" id="titulo" placeholder="Búsqueda por año" name="anio">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="titulo" placeholder="Búsqueda por año" name="dewey">
+                    <input type="text" class="form-control form-control-user" id="titulo" placeholder="Búsqueda por Dewey" name="dewey">
                   </div>
 
                 </div>

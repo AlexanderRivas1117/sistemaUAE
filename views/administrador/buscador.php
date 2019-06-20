@@ -129,35 +129,42 @@ if(isset($_REQUEST['estado']))
               <div class="form-group row">
                 <label for="libre" class="col-sm-1 col-form-label">Libre</label>
                   <div class="col-sm-8">
-                  <input type="text"  class="form-control" id="libre" placeholder="Búsqueda por título, autor, tabla de contenido" name="libre">
+                  <input type="text"  class="form-control form-control-sm" id="libre" placeholder="Búsqueda por título, autor, tabla de contenido" name="libre">
                   </div>
               </div>
 
               <div class="form-group row">
                 <label for="titulo" class="col-sm-1 col-form-label">Título</label>
                   <div class="col-sm-8">
-                  <input type="text" class="form-control" id="titulo" placeholder="Búsqueda por título" name="titulo">
+                  <input type="text" class="form-control form-control-sm" id="titulo" placeholder="Búsqueda por título" name="titulo">
                   </div>
               </div>
 
               <div class="form-group row">
                 <label for="autor" class="col-sm-1 col-form-label">Autor/a</label>
                   <div class="col-sm-8">
-                  <input type="text" class="form-control" id="autor" placeholder="Búsqueda por Autor/a" name="autor">
+                  <input type="text" class="form-control form-control-sm" id="autor" placeholder="Búsqueda por Autor/a" name="autor">
+                  </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="autor" class="col-sm-1 col-form-label">Editorial</label>
+                  <div class="col-sm-8">
+                  <input type="text" class="form-control form-control-sm" id="editorial" placeholder="Búsqueda por Editorial" name="editorial">
                   </div>
               </div>
 
               <div class="form-group row">
                 <label for="anio" class="col-sm-1 col-form-label">Año</label>
                   <div class="col-sm-4">
-                  <input type="text" class="form-control" id="anio" placeholder="Búsqueda por año" name="anio">
+                  <input type="text" class="form-control form-control-sm" id="anio" placeholder="Búsqueda por año" name="anio">
                   </div>
               </div>
 
               <div class="form-group row">
                 <label for="dewey" class="col-sm-1 col-form-label">Dewey</label>
                   <div class="col-sm-4">
-                  <input type="text" class="form-control" id="dewey" placeholder="Búsqueda por Dewey" name="dewey">
+                  <input type="text" class="form-control form-control-sm" id="dewey" placeholder="Búsqueda por Dewey" name="dewey">
                   </div>
               </div>
 

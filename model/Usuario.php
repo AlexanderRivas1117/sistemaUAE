@@ -220,7 +220,7 @@ INNER JOIN rol r ON u.idRol = r.id WHERE u.estado = 1 and u.carnet = '".$carnet.
         $sentencia = mysqli_prepare($this->con,$sql);
         mysqli_stmt_bind_param(
             $sentencia,
-            'i',
+            's',
             $this->carnet
             );
         $ok = mysqli_stmt_execute($sentencia);

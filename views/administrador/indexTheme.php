@@ -1,6 +1,8 @@
 <?php 
 
  require_once '../../app/config.php';
+ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.php');
+
  $con = conectar();
  ?>
 <!DOCTYPE html>
@@ -63,7 +65,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo number_format($cLibros['cantidadLibros']); ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                      <i class="fas fa-book fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -78,7 +80,7 @@
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Usuarios Registrados</div>
                       <?php 
-                      $sql = "SELECT count(*) as cantidadUsuarios from usuario;";
+                      $sql = "SELECT count(*) as cantidadUsuarios from usuario WHERE estado=1";
                       $cUser = $con->query($sql);
                       $cUser = $cUser->fetch_assoc();
 
@@ -86,7 +88,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo number_format($cUser['cantidadUsuarios']); ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      <i class="fas fa-users fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -98,7 +100,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Préstamos Realizados</div>
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Préstamos sin Devolver</div>
                       <?php 
                       $sql = "SELECT count(*) as cantidadPrestamos from prestamo where estado=1;";
                       $c = $con->query($sql);
@@ -108,7 +110,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo number_format($c['cantidadPrestamos']); ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      <i class="far fa-calendar-alt fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -137,7 +139,7 @@ where datediff(curdate(), p.fechaDevolver)>0 and p.estado=1 and year(fechaRealiz
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo number_format($c['conMora']); ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
+                      <i class="far fa-calendar-times fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>

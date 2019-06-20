@@ -84,20 +84,22 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      <th>N° Inventario</th>
                       <th>Nombre Libro</th>
                       <th>Fecha Realización</th>
                       <th>Nombre</th>
                       <th>Carnet</th>
-                      <th>Acciones</th>
+                      <!-- <th>Acciones</th> -->
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
+                      <th>N° Inventario</th>
                       <th>Nombre Libro</th>
                       <th>Fecha Realización</th>
                       <th>Nombre</th>
                       <th>Carnet</th>
-                      <th>Acciones</th>
+                      <!-- <th>Acciones</th> -->
                     </tr>
                   </tfoot>
                   <tbody>
@@ -109,16 +111,18 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                                 foreach ($data as  $value) {
                                     
                                     echo "<tr>
-                                        <td>".$value['libro']."</td>
+                                            <td>".$value['numeroInventario']."</td>
+                                            <td>".$value['libro']."</td>
                                             <td>".$value['fechaRealizacion']."</td>
                                             <td>".$value['nombre']."</td>
                                             <td>".$value['carnet']."</td>
-                                            <td>
-                                                
-                                                <button type='button' class='btn btn-info btn-circle btn-sm' id='".$value['id']."' value='Editar'><i class='fas fa-edit'></i></button>
-                                                
-                                            </td>
+                                            
                                           </tr>";
+                                          // <td>
+                                                
+                                          //       <button type='button' class='btn btn-info btn-circle btn-sm info ' id='".$value['numeroInventario']."' value='Editar'><i class='fas fa-edit'></i></button>
+                                                
+                                          //   </td>
                                 }
                             }
 
@@ -424,7 +428,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
     <div class="col-md-10">
       <div class="form-group">
       <label>Buscar:</label>
-<input type="text" id="txtBuscar" name="txtBucar" placeholder="Ingrese lo que desea buscar.." class="form-control" required="true">
+<input type="text" id="txtBuscar" name="txtBucar" placeholder="Ingrese lo que desea buscar.." class="form-control form-control-sm" required="true">
       </div>
     </div>
   <div class="col-md-1" style="padding-left: 0px; margin-top: 3px;">

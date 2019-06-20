@@ -15,7 +15,7 @@
       <li class="nav-item">
         <a class="nav-link" href="/sistemaUAE/views/administrador/indexTheme.php">
           <i class="fas fa-home"></i>
-          <span>Home</span></a>
+          <span>Página Principal</span></a>
       </li>
 
       <!-- Divider -->
@@ -78,7 +78,7 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
+          <i class="fas fa-sign-out-alt"></i>
           <span>Administrador</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">

@@ -383,7 +383,7 @@ $("#txtBusqueda").on("keyup",function(){
 	$("#sinDatos").replaceWith("<tbody id='sinDatos'></body>");
 
 $.each(JSON.parse(data),function(){
-	$("#sinDatos").append("<tr><td>"+this.nombre+"</td><td>"+this.numeroInventario+"</td><td><button type='button' class='btn btn-success btn-circle seleccionar btn-sm' id="+this.numeroInventario+" ><i class='fas fa-check'></i></button>&nbsp;<button type='button' class='btn btn-primary btn-circle info btn-sm' id="+this.numeroInventario+" ><i class='fas fa-info'></i></button></td></tr>");
+	$("#sinDatos").append("<tr><td>"+this.nombre+"</td><td>"+this.numeroInventario+"</td><td><button type='button' class='btn btn-success btn-circle seleccionar btn-sm' id="+this.idInventario+" ><i class='fas fa-check'></i></button>&nbsp;<button type='button' class='btn btn-primary btn-circle info btn-sm' id="+this.numeroInventario+" ><i class='fas fa-info'></i></button></td></tr>");
 							});
 						
 					}
@@ -415,28 +415,29 @@ $(document).on("click",".seleccionar",  function(){
         $("#nuevoPrestamo").show();
         $('#modalInventario').modal('toggle');
         $("#codInventario").val(nInventario);
+        $("#idInventario").val(nInventario);
 
-    //OBTENER ID INVENTARIO
-        $.ajax({
-				type: 'POST',
-				data: {codInventario: nInventario, key:'obtIdInventario'},
-				url: "../../controller/PrestamoController.php",
-				success: function(data)
-				{
-					// console(data);
-					if(data!=0)
-					{
-						$.each(JSON.parse(data),function(){
-							 $("#idInventario").val(this.id);
-							});
+   //  //OBTENER ID INVENTARIO
+   //      $.ajax({
+			// 	type: 'POST',
+			// 	data: {codInventario: nInventario, key:'obtIdInventario'},
+			// 	url: "../../controller/PrestamoController.php",
+			// 	success: function(data)
+			// 	{
+			// 		// console(data);
+			// 		if(data!=0)
+			// 		{
+			// 			$.each(JSON.parse(data),function(){
+			// 				 $("#idInventario").val(this.id);
+			// 				});
 								
-					}
-				},
-				error: function(xhr, status)
-				{
+			// 		}
+			// 	},
+			// 	error: function(xhr, status)
+			// 	{
 
-				}
-			});
+			// 	}
+			// });
     });
 //CERRAR MODAL INVENTARIO
 

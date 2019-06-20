@@ -126,12 +126,20 @@ $("#enviar").on('click', function(){
 
 //VALIDAR NUMERO INVENTARIO
 $("#numeroInventario").on('change',function(){
-  validarNumeroInventario();
+
+  var numeroInventario = $("#numeroInventario").val();
+  validarNumeroInventario(numeroInventario);
 });
 
-function validarNumeroInventario()
+$("#numeroInventarioE").on('change',function(){
+  
+  var numeroInventario = $("#numeroInventarioE").val();
+  validarNumeroInventario(numeroInventario);
+});
+
+function validarNumeroInventario(numeroInventario)
 {
-  var numeroInventario = $("#numeroInventario").val();
+  //var numeroInventario = $("#numeroInventario").val();
   $.ajax({
         type: 'POST',
         data: {numeroInventario: numeroInventario, key:'validarNumeroInventario'},
@@ -165,7 +173,7 @@ function validarNumeroInventario()
                             closeOnConfirm: true,
                             closeOnCancel: true
                               });
-                $("#numeroInventario").val("");              
+                numeroInventario.val("");              
               }
 
         },
@@ -564,7 +572,11 @@ $(document).on("click",".Editar",  function(){
           $("#libristicaAutorE").val(data[0].libristica);
           $("#detallesFisicosE").val(data[0].detallesFisicos);
           $("#notasE").val(data[0].notas);
-          $("#tablaContenidoE").val(data[0].contenido);
+
+          // $("#tablaContenidoE").val(data[0].contenido);
+
+          $(".richText-editor").html(data[0].contenido)
+
           $("#autorE").val(data[0].autor);
           $("#numeroInventarioE").val(data[0].numeroInventario);
           $("#fechaAdquisicionE").val(data[0].fechaAdquisicion);

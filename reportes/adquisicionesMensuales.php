@@ -52,40 +52,80 @@ if ($mes==12) {
 
 $html = '<table border="1" style="border-collapse: collapse;width:100%;">';
 	$html .= '<tr>';
+				$html .= '<td colspan="1" style="text-align:center; border-top-style: none; border-left-style: none; border-right-style: none;">';
+				$html .= '<div><img style="margin-bottom:15px;" align="center" width="70" height="70"  src="logo_UAE.jpg"/></div>';
+				$html .= '</td>';
+			$html .= '<td colspan="9" style="text-align:center; border-top-style: none; border-left-style: none; border-right-style: none; margin-bottom:50px;">';
+				
+				$html .= 'UNIVERSIDAD ALBERT EINSTEIN<br>
+								UNIDAD DE BIBLIOTECA<br>
+REPORTE ESTADISTICO DEL SISTEMA DE GESTION BIBLIOGRAFICA AUTOMATIZADO
+';
+			$html .= '</td>';
+	$html .= '</tr>';
+
+	$html .= '<tr>';
+			$html .= '<td colspan="2" style="text-align:left;">';
+				$html .= 'INSTITUCION :  ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="3" style="text-align:center;">';
+				$html .= 'Universidad Albert Einstein ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="2" style="text-align:left;">';
+				$html .= 'TELEFONO: ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="3" style="text-align:center;">';
+				$html .= '2212-7600 Ext. 121';
+			$html .= '</td>';
+
+	$html .= '</tr>';
+
+	$html .= '<tr>';
+			$html .= '<td colspan="2" style="text-align:left;">';
+				$html .= 'NOMBRE DE LA BIBLIOTECA: ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="3" style="text-align:center;">';
+				$html .= 'Biblioteca Especializada UAE ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="2" style="text-align:left;">';
+				$html .= 'CORREO ELECTRÓNICO: ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="3" style="text-align:center;">';
+				$html .= 'biblioteca@uae.edu.sv';
+			$html .= '</td>';
+	$html .= '</tr>';
+
+	$html .= '<tr>';
+			$html .= '<td colspan="2" style="text-align:left;">';
+				$html .= 'DIRECCIÓN: ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="3" style="text-align:center;">';
+				$html .= 'Final y Avenida Albert Einstein y Calle Teotl, Urbanización Lomas de San Francisco.  ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="2" style="text-align:left;">';
+				$html .= 'MUNICIPIO Y DEPARTAMENTO: ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="3" style="text-align:center;">';
+				$html .= 'Antiguo Cuscatlán, La Libertad';
+			$html .= '</td>';
+
+	$html .= '</tr>';
+
+	$html .= '<tr>';
 			$html .= '<td colspan="10" style="text-align:center;">';
-				$html .= 'UBICACIÓN';
+				$html .= 'INFORME DE ADQUISIONES MENSUALES CORRESPONDIENTE A: &nbsp; '.'<b>'.strtoupper($nombreMes).'</b>';
 			$html .= '</td>';
 	$html .= '</tr>';
 
-	$html .= '<tr>';
-			$html .= '<td colspan="5" style="text-align:left;">';
-				$html .= 'Nombre de la Biblioteca';
-			$html .= '</td>';
-			$html .= '<td colspan="5" style="text-align:left;">';
-				$html .= 'Teléfono';
-			$html .= '</td>';
-	$html .= '</tr>';
-
-	$html .= '<tr>';
-			$html .= '<td colspan="5" style="text-align:left;">';
-				$html .= 'Dirección';
-			$html .= '</td>';
-			$html .= '<td colspan="5" style="text-align:left;">';
-				$html .= 'Departamento';
-			$html .= '</td>';
-	$html .= '</tr>';
-
-	$html .= '<tr>';
-			$html .= '<td colspan="10" style="text-align:left;">';
-				$html .= 'Municipio';
-			$html .= '</td>';
-	$html .= '</tr>';
-
-	$html .= '<tr>';
-			$html .= '<td colspan="10" style="text-align:left;">';
-				$html .= 'Informe correspondiente al mes de '.'<b>'.$nombreMes.'</b>';
-			$html .= '</td>';
-	$html .= '</tr>';
 
 	$html .= '<tr>';
 			$html .= '<td style="text-align:center;">';
@@ -109,6 +149,10 @@ $html = '<table border="1" style="border-collapse: collapse;width:100%;">';
 			$html .= '</td>';
 
 			$html .= '<td style="text-align:center;">';
+				$html .= 'Librística';
+			$html .= '</td>';
+
+			$html .= '<td style="text-align:center;">';
 				$html .= 'Edición';
 			$html .= '</td>';
 
@@ -121,10 +165,6 @@ $html = '<table border="1" style="border-collapse: collapse;width:100%;">';
 			$html .= '</td>';
 
 			$html .= '<td style="text-align:center;">';
-				$html .= 'Forma de Adquisición';
-			$html .= '</td>';
-
-			$html .= '<td style="text-align:center;">';
 				$html .= 'Fecha de Adquisición';
 			$html .= '</td>';
 
@@ -132,7 +172,7 @@ $html = '<table border="1" style="border-collapse: collapse;width:100%;">';
 
 
 $sql = "SELECT iv.numeroInventario,l.nombre as titulo,l.autor,l.idTipoColeccion,l.clasificacion,
-l.numeroEdicion,l.idEditorial,l.fechaPublicacion,iv.formaAdquisicion,iv.fechaAdquisicion
+l.numeroEdicion,l.idEditorial,l.libristica,l.fechaPublicacion,iv.formaAdquisicion,iv.fechaAdquisicion
 from inventario iv
 inner join libro l
 on iv.idLibro= l.id
@@ -170,6 +210,10 @@ $i=0;
 		$html .= '</td>';
 
 		$html .= '<td style="text-align:left;">';
+				$html .= $row['libristica'];
+		$html .= '</td>';
+
+		$html .= '<td style="text-align:left;">';
 				$html .= $row['numeroEdicion'];
 		$html .= '</td>';
 
@@ -182,10 +226,6 @@ $i=0;
 		$html .= '</td>';
 
 		$html .= '<td style="text-align:left;">';
-				$html .= $row['formaAdquisicion'];
-		$html .= '</td>';
-
-		$html .= '<td style="text-align:left;">';
 				$html .= date("d-m-Y", strtotime($row['fechaAdquisicion']));
 		$html .= '</td>';
 
@@ -193,7 +233,7 @@ $i=0;
 	$html .= '</tr>';
 	}
 
-for ($i; $i < 16; $i++) {
+for ($i; $i < 12; $i++) {
 	$html .= '<tr>';
 
 		$html .= '<td style="text-align:center;  height:30px;">';

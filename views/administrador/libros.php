@@ -276,6 +276,14 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
   }
   
   </style>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="richText/examples/css/site.css">
+        <link rel="stylesheet" href="richText/src/richtext.min.css">
+        <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+        <script type="text/javascript" src="richText/src/jquery.richtext.js"></script>
+
+
 <!-- AQUI -->
 <div id="infoLibro">
   <fieldset id="info1">
@@ -335,8 +343,8 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 
       <div class="col-md-2">
         <div class="form-group">
-          <label class=""for="cantidadPaginas">Cant. Págs.</label>
-<input type="number" class="form-control required form-control-sm" id="cantidadPaginas" name="cantidadPaginas" placeholder="Nº págs">
+          <label class="" for="cantidadPaginas">Cant. Págs.</label>
+<input type="text" class="form-control required form-control-sm" id="cantidadPaginas" name="cantidadPaginas" placeholder="Nº págs">
         </div>
       </div>
     </div> <!-- row -->
@@ -529,7 +537,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
         <!-- <select id="autor" name="autor" multiple="multiple" class="js-example-basic-multiple form-control-sm" style="width: 100%" required>
             
           </select> -->
-          <input type="text" name="autor" id="autor" class="form-control">
+          <input type="text" name="autor" id="autor" class="form-control form-control-sm">
         </div>
 
         
@@ -639,7 +647,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
     </div>
     <button type="button" name="previous" id="previous" class="previous btn btn-info" value="Previous" style="margin-left: 520px;">Anterior</button>
     <button type="button" class="btn btn-danger" name="clo" data-dismiss="modal" >Cerrar</button>
-    <button type="submit" id="enviar" name="submit" class="submit btn btn-success" value="Submit">Enviar</button>
+    <button type="submit" id="enviar" name="submit" class="submit btn btn-success" value="Submit">Guardar</button>
 
    
     </form>
@@ -738,7 +746,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
       <div class="col-md-2">
         <div class="form-group">
           <label class=""for="cantidadPaginasE">Cant. Págs.</label>
-<input type="number" class="form-control required form-control-sm" id="cantidadPaginasE" name="cantidadPaginasE" placeholder="Nº págs">
+<input type="text" class="form-control required form-control-sm" id="cantidadPaginasE" name="cantidadPaginasE" placeholder="Nº págs">
         </div>
       </div>
     </div> <!-- row -->
@@ -931,7 +939,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
         <!-- <select id="autor" name="autor" multiple="multiple" class="js-example-basic-multiple form-control-sm" style="width: 100%" required>
             
           </select> -->
-          <input type="text" name="autor" id="autorE" class="form-control">
+          <input type="text" name="autor" id="autorE" class="form-control form-control-sm">
         </div>
 
         
@@ -1043,7 +1051,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
     </div>
     <button type="button" name="previous" class="btn btn-info" id="previousEdit" value="previous" style="margin-left: 520px;">Anterior</button>
     <button type="button" class="btn btn-danger" name="clo" data-dismiss="modal" >Cerrar</button>
-    <button type="submit" id="guardarCambios" name="submit" class="submit btn btn-success" value="Submit">Enviar</button>
+    <button type="submit" id="guardarCambios" name="submit" class="submit btn btn-success" value="Submit">Guardar Cambios</button>
 
    
     </form>
@@ -1066,58 +1074,45 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 <script>
 $(document).ready(function() {
 
-// SELECT DE AUTORES
-  //   $.ajax({
-  //    url: "../../controller/LibroController.php",
-  //   method: 'POST',
-  //   data: {key:'searchAutor2'},
-  //   success: function (d) {  
-  //     d = JSON.parse(d);             
-  //       $('#autor').select2({
-  //           data: d,
-  //           language: 'es',
-  //           dropdownParent: $('#nuevoPrestamo'),
-  //           placeholder: 'Seleccione'
-
-  //       });
-  //   }
-  // });
-
-// SELECT DE EDITORIAL
-
-// $.ajax({
-//      url: "../../controller/LibroController.php",
-//     method: 'POST',
-//     data: {key:'selectEditorial'},
-//     success: function (d) {  
-//       d = JSON.parse(d);             
-//         $('#editorial').select2({
-//             data: d,
-//             language: 'es',
-//             dropdownParent: $('#nuevoPrestamo'),
-//             placeholder: 'Seleccione'
-//         });
-//     }
-//   });
-
-//SELECT TIPO COLECCION
 
 
-// $.ajax({
-//      url: "../../controller/LibroController.php",
-//     method: 'POST',
-//     data: {key:'tipoColeccion'},
-//     success: function (d) {  
-//       d = JSON.parse(d);                  
-//         $('#tipoColeccion').select2({
-//             data: d,
-//             language: 'es',
-//             dropdownParent: $('#nuevoPrestamo'),
-//             placeholder: 'Seleccione'
-//         });
-//     }
-//   });
+$('#tablaContenido').richText({
+    // media
+  videoEmbed: false,
 
+  // link
+  urls: false,
+
+  // tables
+  table: false,
+  // uploads
+  imageUpload: false,
+  fileUpload: false,
+  // code
+  removeStyles: false,
+  code: false,
+  height: 150,
+  heightPercentage: 150,
+});
+
+$('#tablaContenidoE').richText({
+      // media
+  videoEmbed: false,
+
+  // link
+  urls: false,
+
+  // tables
+  table: false,
+  // uploads
+  imageUpload: false,
+  fileUpload: false,
+  // code
+  removeStyles: false,
+  code: false,
+  height: 150,
+  heightPercentage: 150,
+});
 // SELECT PAIS
 
 $.ajax({

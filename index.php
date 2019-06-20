@@ -7,6 +7,8 @@ session_start();
 <html>
 <head>
 	<title>Login Sistema Bibliotecario UAE</title>
+  <link rel = "icon" type = "image/png" href = "logo_UAE.JPG">
+    
 	<link rel="stylesheet" type="text/css" href="resources/css/styleLogin.css">
 	
     <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap.css">
@@ -19,7 +21,7 @@ session_start();
     <script type="text/javascript" src="resources/sweetalert-master/dist/sweetalert.min.js"></script>
 
 
-</head>
+</head> 
 <body>
 	<div class="contenedor">
 		
@@ -28,7 +30,7 @@ session_start();
 				<div class="row" style="margin-top: 120px; margin-left: 10px;">
 					<div class="col-md-2 input-group" style="width: 250px;">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-						<input id="usuario" type="text" class="form-control" name="carnet" placeholder="Usuario">
+						<input id="usuario" type="text" class="form-control" name="carnet" placeholder="Usuario" autocomplete="off">
  					</div>
 				</div>
 				<div class="row" style="margin-top: 10px; margin-left: 10px;">

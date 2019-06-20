@@ -3,7 +3,7 @@
 
 require_once realpath (dirname (__FILE__).'/../../app/config.php');
 
-if ($_REQUEST['libre']=="" && $_REQUEST['titulo']=="" && $_REQUEST['autor']=="" && $_REQUEST['anio'] == "" && $_REQUEST['dewey']=="") {
+if ($_REQUEST['libre']=="" && $_REQUEST['titulo']=="" && $_REQUEST['autor']=="" && $_REQUEST['anio'] == "" && $_REQUEST['dewey']=="" && $_REQUEST['editorial']=="") {
 
     if (isset($_REQUEST['user'])) {
        header('Location: ../../indexUser.php?estado=false');
@@ -24,7 +24,7 @@ require_once realpath (dirname (__FILE__).'/../../model/Prestamo.php');
  ?>
  <?php 
 
-include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.php');
+//include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.php');
 
  ?>
 <!DOCTYPE html>
@@ -183,7 +183,9 @@ if (!isset($_REQUEST['user'])) {
                             $where .= " OR l.autor like concat('%','".$_REQUEST['libre']."', '%')";
                             $where .= " OR l.nombre like concat('%','".$_REQUEST['libre']."', '%')";
                             $where .= " OR l.fechaPublicacion like concat('%','".$_REQUEST['libre']."', '%')";
-                            $where .= " OR concat_ws('',l.clasificacion,l.libristica) like concat('%','".$_REQUEST['libre']."', '%') )";
+                            $where .= " OR concat_ws('',l.clasificacion,l.libristica) like concat('%','".$_REQUEST['libre']."', '%')";
+                            $where .= " OR l.idEditorial like concat('%','".$_REQUEST['libre']."', '%'))";
+
 
 
                               $sql .= $campos.$innerJoin.$where.$limit;
@@ -211,6 +213,16 @@ if (!isset($_REQUEST['user'])) {
                             $sql .= $campos.$innerJoin.$where.$limit;
                             $palabra = $_REQUEST['autor'];
                               }
+
+                              if ($_REQUEST['editorial']!='') {
+                                if ($_REQUEST['tipoColeccion']!='todos') {
+                                  $where .= " AND ";
+                                }
+                            $where .= "l.idEditorial like concat('%','".$_REQUEST['editorial']."', '%')";
+                            $sql .= $campos.$innerJoin.$where.$limit;
+                            $palabra = $_REQUEST['editorial'];
+                              }
+
 
                               if ($_REQUEST['anio']!='') {
                                 if ($_REQUEST['tipoColeccion']!='todos') {

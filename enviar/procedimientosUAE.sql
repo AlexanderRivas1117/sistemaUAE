@@ -75,7 +75,7 @@ DROP PROCEDURE IF exists `bibliotecauae`.`allPrestamos` $$
 CREATE PROCEDURE `bibliotecauae`.`allPrestamos`()
 BEGIN
 
-select l.nombre as libro,p.fechaRealizacion,u.nombre,p.id,u.carnet 
+select iv.id as idInventario,iv.numeroInventario,l.nombre as libro,p.fechaRealizacion,u.nombre,p.id,u.carnet 
 from libro l inner join inventario iv
 on iv.idLibro = l.id
 inner join prestamo p
@@ -178,7 +178,7 @@ DELIMITER ;
 DELIMITER $$
 DROP PROCEDURE IF exists `bibliotecauae`.`guardarDocumento` $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `guardarDocumento`(in p_nombre varchar(40),in p_cantidadPaginas int,
-in p_informacionAdicional varchar(25),in p_terminosResumen varchar(40),in p_numeroEdicion int,
+in p_informacionAdicional varchar(25),in p_terminosResumen varchar(40),in p_numeroEdicion text,
 in p_referenciaDigital varchar(50),in p_fechaPublicacion text,in p_idioma varchar(15),
 in p_isbn varchar(20),in p_idEditorial text, in p_idPais int,in p_idTipoColeccion text,in p_idTipoLiteratura text,
 in p_numeroInventario varchar(40),in p_fechaAdquisicion date,in p_volumen int,in p_formaAdquisicion varchar(40),

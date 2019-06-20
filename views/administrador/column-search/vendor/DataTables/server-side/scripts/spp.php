@@ -52,7 +52,7 @@ class SSP {
 
 			$out[] = $row;
 		}
-		// var_dump($out);
+
 		return $out;
 	}
 
@@ -244,11 +244,10 @@ class SSP {
 
 		// Main query to actually get the data
 		$data = self::sql_exec( $db, $bindings,
-			"SELECT `".implode(", ", self::pluck($columns, 'db'))."`
+			"SELECT `".implode("`, `", self::pluck($columns, 'db'))."`
 			 FROM `$table`
 			 $where
-			 $order
-			 $limit"
+			 ORDER by id DESC LIMIT 7"
 		);
 
 		// Data set length after filtering
@@ -333,32 +332,29 @@ class SSP {
 			$whereAllSql = 'WHERE '.$whereAll;
 		}
 
-
-
 		// Main query to actually get the data
 		$data = self::sql_exec( $db, $bindings,
-			"SELECT iv.numeroInventario,l.nombre,iv.precio,iv.facilitante,iv.fechaEstado
-			 FROM inventario iv
-			 INNER JOIN libro l 
-			 ON iv.idLibro=l.id
+			"SELECT `".implode("`, `", self::pluck($columns, 'db'))."`
+			 FROM `$table`
 			 $where
+			 $order
 			 $limit"
 		);
 
 		// Data set length after filtering
 		$resFilterLength = self::sql_exec( $db, $bindings,
-			"SELECT COUNT(iv.id)
-			 FROM inventario iv INNER JOIN libro l $where"
+			"SELECT COUNT(`{$primaryKey}`)
+			 FROM   `$table`
+			 $where"
 		);
-
 		$recordsFiltered = $resFilterLength[0][0];
 
 		// Total data set length
 		$resTotalLength = self::sql_exec( $db, $bindings,
-			"SELECT COUNT({$primaryKey})
-			 FROM  inventario"
+			"SELECT COUNT(`{$primaryKey}`)
+			 FROM   `$table` ".
+			$whereAllSql
 		);
-
 		$recordsTotal = $resTotalLength[0][0];
 
 		/*

@@ -46,44 +46,84 @@ if ($mes==12) {
 
 $html = '<table border="1" style="border-collapse: collapse;width:100%;">';
 	$html .= '<tr>';
-			$html .= '<td colspan="8" style="text-align:center;">';
-				$html .= 'UBICACIÓN';
+				$html .= '<td colspan="1" style="text-align:left; border-top-style: none; border-left-style: none; border-right-style: none;">';
+				$html .= '<div><img style="margin-bottom:15px;" align="center" width="70" height="70"  src="logo_UAE.jpg"/></div>';
+
+				$html .= '</td>';
+			$html .= '<td colspan="7" style="text-align:center; border-top-style: none; border-left-style: none; border-right-style: none; margin-bottom:50px;">';
+				
+				$html .= 'UNIVERSIDAD ALBERT EINSTEIN<br>
+								UNIDAD DE BIBLIOTECA<br>
+REPORTE ESTADISTICO DEL SISTEMA DE GESTION BIBLIOGRAFICA AUTOMATIZADO
+';
 			$html .= '</td>';
 	$html .= '</tr>';
 
 	$html .= '<tr>';
-			$html .= '<td colspan="4" style="text-align:left;">';
-				$html .= 'Nombre de la Biblioteca';
+			$html .= '<td colspan="2" style="text-align:left;">';
+				$html .= 'INSTITUCION :  ';
 			$html .= '</td>';
-			$html .= '<td colspan="4" style="text-align:left;">';
-				$html .= 'Teléfono';
+
+			$html .= '<td colspan="2" style="text-align:center;">';
+				$html .= 'Universidad Albert Einstein ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="2" style="text-align:left;">';
+				$html .= 'TELEFONO: ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="2" style="text-align:center;">';
+				$html .= '2212-7600 Ext. 121';
+			$html .= '</td>';
+
+	$html .= '</tr>';
+
+	$html .= '<tr>';
+			$html .= '<td colspan="2" style="text-align:left;">';
+				$html .= 'NOMBRE DE LA BIBLIOTECA: ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="2" style="text-align:center;">';
+				$html .= 'Biblioteca Especializada UAE ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="2" style="text-align:left;">';
+				$html .= 'CORREO ELECTRÓNICO: ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="2" style="text-align:center;">';
+				$html .= 'biblioteca@uae.edu.sv';
 			$html .= '</td>';
 	$html .= '</tr>';
 
 	$html .= '<tr>';
-			$html .= '<td colspan="4" style="text-align:left;">';
-				$html .= 'Dirección';
+			$html .= '<td colspan="2" style="text-align:left;">';
+				$html .= 'DIRECCIÓN: ';
 			$html .= '</td>';
-			$html .= '<td colspan="4" style="text-align:left;">';
-				$html .= 'Departamento';
+
+			$html .= '<td colspan="2" style="text-align:center;">';
+				$html .= 'Final y Avenida Albert Einstein y Calle Teotl, Urbanización Lomas de San Francisco.  ';
 			$html .= '</td>';
+
+			$html .= '<td colspan="2" style="text-align:left;">';
+				$html .= 'MUNICIPIO Y DEPARTAMENTO: ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="2" style="text-align:center;">';
+				$html .= 'Antiguo Cuscatlán, La Libertad';
+			$html .= '</td>';
+
 	$html .= '</tr>';
 
 	$html .= '<tr>';
-			$html .= '<td colspan="8" style="text-align:left;">';
-				$html .= 'Municipio';
-			$html .= '</td>';
-	$html .= '</tr>';
-
-	$html .= '<tr>';
-			$html .= '<td colspan="8" style="text-align:left;">';
-				$html .= 'Informe correspondiente al mes de '.'<b>'.$nombreMes.'</b>';
+			$html .= '<td colspan="10" style="text-align:center;">';
+				$html .= 'INFORME DE USUARIOS CON MORA, CORRESPONDIENTE AL MES DE: &nbsp; '.'<b>'.strtoupper($nombreMes).'</b>';
 			$html .= '</td>';
 	$html .= '</tr>';
 
 
 	$html .= '<tr>';
-		$html .= '<td style="text-align:center;">';
+		$html .= '<td style="text-align:center;" width="5">';
 				$html .= '#';
 		$html .= '</td>';
 

@@ -54,7 +54,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
             <div class="col-lg-4">
           <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Reporte General Mensual</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Reporte General de Préstamos Mensual</h6>
                 </div>
                 <div class="card-body">
                   <p class="text-xs">Para generar este reporte, por favor seleccione un mes y a continuación de click en Generar</p>
@@ -63,7 +63,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                  
                   <div class="row">
                     <div class="col-md-12">
-                      <select class="form-control input-sm" name="mes" required="true">
+                      <select class="form-control form-control-sm" name="mes" required="true">
                         <option value="">Seleccione</option>
                         <option value="1">Enero</option>
                         <option value="2">Febrero</option>
@@ -83,7 +83,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                   <br>
                   <div class="row">
                     <div class="col-md-12">
-                      <select class="form-control" name="anio" required="true">
+                      <select class="form-control form-control-sm" name="anio" required="true">
                         <option value="">Seleccione Año</option>
                         <?php for ($i=date("Y"); $i > 1980; $i--) { 
                           
@@ -119,7 +119,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 <form method="GET" action="../../reportes/reportesCarreras.php" target="_blank">
                   <div class="row">
                     <div class="col-md-12">
-                      <select class="form-control input-sm" name="mes" required="true">
+                      <select class="form-control form-control-sm" name="mes" required="true">
                         <option value="">Seleccione</option>
                         <option value="1">Enero</option>
                         <option value="2">Febrero</option>
@@ -139,7 +139,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                   <br>
                   <div class="row">
                     <div class="col-md-12">
-                      <select class="form-control" name="anio" required="true">
+                      <select class="form-control form-control-sm" name="anio" required="true">
                         <option value="">Seleccione Año</option>
                         <?php for ($i=date("Y"); $i > 1980; $i--) { 
                           
@@ -175,7 +175,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 <form method="GET" action="../../reportes/usuariosMora.php" target="_blank">
                   <div class="row">
                     <div class="col-md-12">
-                      <select class="form-control input-sm" name="mes" required="true">
+                      <select class="form-control form-control-sm" name="mes" required="true">
                         <option value="">Seleccione</option>
                         <option value="1">Enero</option>
                         <option value="2">Febrero</option>
@@ -195,7 +195,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                   <br>
                   <div class="row">
                     <div class="col-md-12">
-                      <select class="form-control" name="anio" required="true">
+                      <select class="form-control form-control-sm" name="anio" required="true">
                         <option value="">Seleccione Año</option>
                         <?php for ($i=date("Y"); $i > 1980; $i--) { 
                           
@@ -236,7 +236,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 <form method="GET" action="../../reportes/adquisicionesMensuales.php" target="_blank">
                   <div class="row">
                     <div class="col-md-12">
-                      <select class="form-control input-sm" name="mes" required="true">
+                      <select class="form-control form-control-sm" name="mes" required="true">
                         <option value="">Seleccione Mes</option>
                         <option value="1">Enero</option>
                         <option value="2">Febrero</option>
@@ -256,7 +256,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                   <br>
                   <div class="row">
                     <div class="col-md-12">
-                      <select class="form-control input-sm" name="anio" required="true">
+                      <select class="form-control form-control-sm" name="anio" required="true">
                         <option value="">Seleccione Año</option>
                         <?php for ($i=date("Y"); $i > 1980; $i--) { 
                           
@@ -294,7 +294,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                     
                   <div class="row">
                     <div class="col-md-12">
-                      <select class="form-control" name="anio" required="true">
+                      <select class="form-control form-control-sm" name="anio" required="true">
                         <option value="">Seleccione Año</option>
                         <?php for ($i=date("Y"); $i > 1980; $i--) { 
                           

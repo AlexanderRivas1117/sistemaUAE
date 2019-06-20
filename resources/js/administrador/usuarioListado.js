@@ -2,7 +2,8 @@ $(document).ready(function(){
 
 
 
-	$("#listadoUsuarios").DataTable({
+	$("#listado").DataTable({
+    
           "language": {
               "sProcessing":    "Procesando...",
               "sLengthMenu":    "Mostrar _MENU_ registros",
@@ -26,7 +27,17 @@ $(document).ready(function(){
                   "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
                   "sSortDescending": ": Activar para ordenar la columna de manera descendente"
               }
-          }
+          },
+          "scrollX": true,
+                "pagingType": "numbers",
+                "processing": true,
+                "serverSide": true,
+                "ajax": "column-search/server2.php",
+                order: [[2, 'asc']],
+                columnDefs: [{
+                    targets: "_all",
+                    orderable: false
+                 }]
           //fin de la configuracion del data table
       });
   
@@ -200,7 +211,7 @@ function selectDepartamento() {
 //ELIMINAR USUARIO
 $(document).on("click",'.eliminar',function(){
   var id = $(this).val();
-  alert(id);
+  // alert(id);
 
 swal({ 
 title: "¿Desea Eliminar?",
@@ -235,7 +246,10 @@ if (isConfirm)
                             type: 'error',
                             closeOnConfirm: true,
                             closeOnCancel: true
-                              });
+                              }),
+                  setTimeout(function(){
+                  location.reload();
+                },1000);  ;
           }
           else
           {

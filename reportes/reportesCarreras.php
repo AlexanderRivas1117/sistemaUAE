@@ -55,43 +55,83 @@ if ($mes==12) {
 }
 
 
-$html = '<html>';
-	$html .= '<table border="1" style="border-collapse: collapse;width:100%;">';
+$html = '<table border="1" style="border-collapse: collapse;width:100%;">';
 	$html .= '<tr>';
-			$html .= '<td colspan="16" style="text-align:center;">';
-				$html .= 'UBICACIÓN';
+				$html .= '<td colspan="1" style="text-align:center; border-top-style: none; border-left-style: none; border-right-style: none;">';
+				$html .= '<div><img style="margin-bottom:15px;" align="center" width="70" height="70"  src="logo_UAE.jpg"/></div>';
+				$html .= '</td>';
+			$html .= '<td colspan="14" style="text-align:center; border-top-style: none; border-left-style: none; border-right-style: none; margin-bottom:50px;">';
+				
+				$html .= 'UNIVERSIDAD ALBERT EINSTEIN<br>
+								UNIDAD DE BIBLIOTECA<br>
+REPORTE ESTADISTICO DEL SISTEMA DE GESTION BIBLIOGRAFICA AUTOMATIZADO
+';
 			$html .= '</td>';
 	$html .= '</tr>';
 
 	$html .= '<tr>';
-			$html .= '<td colspan="8" style="text-align:left;">';
-				$html .= 'Nombre de la Biblioteca';
+			$html .= '<td colspan="3" style="text-align:left;">';
+				$html .= 'INSTITUCION :  ';
 			$html .= '</td>';
-			$html .= '<td colspan="8" style="text-align:left;">';
-				$html .= 'Teléfono N°';
+
+			$html .= '<td colspan="5" style="text-align:center;">';
+				$html .= 'Universidad Albert Einstein ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="3" style="text-align:left;">';
+				$html .= 'TELEFONO: ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="4" style="text-align:center;">';
+				$html .= '2212-7600 Ext. 121';
+			$html .= '</td>';
+
+	$html .= '</tr>';
+
+	$html .= '<tr>';
+			$html .= '<td colspan="3" style="text-align:left;">';
+				$html .= 'NOMBRE DE LA BIBLIOTECA: ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="5" style="text-align:center;">';
+				$html .= 'Biblioteca Especializada UAE ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="3" style="text-align:left;">';
+				$html .= 'CORREO ELECTRÓNICO: ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="4" style="text-align:center;">';
+				$html .= 'biblioteca@uae.edu.sv';
 			$html .= '</td>';
 	$html .= '</tr>';
 
 	$html .= '<tr>';
-			$html .= '<td colspan="8" style="text-align:left;">';
-				$html .= 'Dirección';
+			$html .= '<td colspan="3" style="text-align:left;">';
+				$html .= 'DIRECCIÓN: ';
 			$html .= '</td>';
-			$html .= '<td colspan="8" style="text-align:left;">';
-				$html .= 'Departamento';
+
+			$html .= '<td colspan="5" style="text-align:center;">';
+				$html .= 'Final y Avenida Albert Einstein y Calle Teotl, Urbanización Lomas de San Francisco.  ';
 			$html .= '</td>';
+
+			$html .= '<td colspan="3" style="text-align:left;">';
+				$html .= 'MUNICIPIO Y DEPARTAMENTO: ';
+			$html .= '</td>';
+
+			$html .= '<td colspan="4" style="text-align:center;">';
+				$html .= 'Antiguo Cuscatlán, La Libertad';
+			$html .= '</td>';
+
 	$html .= '</tr>';
 
 	$html .= '<tr>';
-			$html .= '<td colspan="16" style="text-align:left;">';
-				$html .= 'Municipio';
+			$html .= '<td colspan="15" style="text-align:center;">';
+				$html .= 'INFORME POR CARRERAS, CORRESPONDIENTE AL MES DE: &nbsp; '.'<b>'.strtoupper($nombreMes).'</b>';
 			$html .= '</td>';
 	$html .= '</tr>';
 
-	$html .= '<tr>';
-			$html .= '<td colspan="16" style="text-align:left;">';
-				$html .= 'Informe correspondiente al mes de '.'<b>'.$nombreMes.'</b>';
-			$html .= '</td>';
-	$html .= '</tr>';
+
 
 	$html .= '<tr>';
 			$html .= '<td style="text-align:center; vertical-aling: middle;" rowspan="2">';
@@ -252,8 +292,9 @@ $html = '<html>';
 				   or l.clasificacion like 'DIP&{$c}%' -- diplomados
 				   or l.clasificacion like '{$c}%' -- libros
 				   or l.clasificacion like 'REF.&{$c}%' -- libros
-				   or l.clasificacion like 'JSA.&{$c}%')-- libros
-				   and iv.estadoMaterial='Prestado' and month(p.fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and p.estado=1 and c.id='{$idCarrera}' ";
+				   or l.clasificacion like 'JSA.&{$c}%'
+				   or concat_ws('',clasificacion,libristica) like '%&{$c}%' AND concat_ws('',clasificacion,libristica) like 'T%')-- libros
+				   and iv.estadoMaterial='Prestado' and month(p.fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and c.id='{$idCarrera}' ";
 				$con = conectar();
 				$result = $con->query($sql);
 				$result = $result->fetch_assoc();
@@ -277,7 +318,7 @@ $html = '<html>';
 			
 		}
 
-			for ($r; $r < 11; $r++) { 
+			for ($r; $r < 9; $r++) { 
 			
 			$html .= '<tr>';
 
