@@ -723,4 +723,17 @@ WHERE l.nombre like concat('%','693', '%')
 OR l.autor like concat('%','693', '%') 
 OR l.nombre like concat('%','693', '%') 
 OR l.fechaPublicacion like concat('%','693', '%') 
-OR l.clasificacion like concat('%','693', '%') LIMIT 4
+OR l.clasificacion like concat('%','693', '%') LIMIT 4;
+
+
+-- ELIMINAR REGISTROS REPETIDOS --
+
+DELETE l,table1 FROM inventario table1 
+inner join libro l
+on table1.idLibro=l.id
+INNER JOIN inventario table2 
+WHERE table1.id > table2.id 
+    AND table1.numeroInventario = table2.numeroInventario AND table2.numeroInventario=998;
+
+select distinct(numeroInventario),id from inventario where numeroInventario= 999 limit 5 ;
+

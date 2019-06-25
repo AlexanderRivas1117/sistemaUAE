@@ -57,7 +57,7 @@
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Cantidad de Documentos</div>
                       <?php 
-                      $sql = "SELECT count(*) as cantidadLibros from libro;";
+                      $sql = "SELECT count(*) as cantidadLibros from libro inner join inventario iv on iv.idLibro=libro.id;";
                       $cLibros = $con->query($sql);
                       $cLibros = $cLibros->fetch_assoc();
 

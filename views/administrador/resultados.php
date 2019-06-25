@@ -184,7 +184,8 @@ if (!isset($_REQUEST['user'])) {
                             $where .= " OR l.nombre like concat('%','".$_REQUEST['libre']."', '%')";
                             $where .= " OR l.fechaPublicacion like concat('%','".$_REQUEST['libre']."', '%')";
                             $where .= " OR concat_ws('',l.clasificacion,l.libristica) like concat('%','".$_REQUEST['libre']."', '%')";
-                            $where .= " OR l.idEditorial like concat('%','".$_REQUEST['libre']."', '%'))";
+                            $where .= " OR l.idEditorial like concat('%','".$_REQUEST['libre']."', '%')";
+                            $where .= " OR l.contenido like concat('%','".$_REQUEST['libre']."', '%'))";
 
 
 

@@ -91,7 +91,7 @@ require( 'vendor/DataTables/server-side/scripts/ssp.class.php' );
 //     SSP::complex($_GET, $sql_details, $table, $primaryKey, $columns, null, $sWhere)
 // );
 
-$joinQuery = "FROM `usuario` AS `u` JOIN `carrera` AS `c` ON (`u`.`idCarrera` = `c`.`id`)";
+$joinQuery = "FROM `usuario` AS `u` JOIN `carrera` AS `c` ";
 $extraWhere = "`u`.`estado` = 1";
 $groupBy = "`u`.`id`";
 $having = "";

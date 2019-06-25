@@ -12,3 +12,5 @@ mostrar edicion,editorial,mostrar y agregar asesor,fechaPublicacion
 buscar por epigrafe, numero de inventario
 
 tipo literatura = tipo de documento
+
+SELECT * FROM `inventario` WHERE id > 15536 and id < 25177 ORDER BY id DESC

@@ -32,7 +32,7 @@ $(document).ready(function(){
                 "pagingType": "numbers",
                 "processing": true,
                 "serverSide": true,
-                "ajax": "column-search/server2.php",
+                "ajax": "server-usuario/server2.php",
                 order: [[2, 'asc']],
                 columnDefs: [{
                     targets: "_all",
