@@ -23,6 +23,53 @@ class Prestamo
 		$this->con = conectar();
 	}
 
+    public function guardarCambios($tipoPrestamo,$fechaDevolver,$id)
+    {
+       $sql = "UPDATE prestamo set tipoPrestamo='{$tipoPrestamo}',fechaDevolver='{$fechaDevolver}' WHERE id='{$id}'";
+        $res = $this->con->query($sql);
+        $data = array();
+        if($res){
+            $data['estado'] = true;
+            $data['descripcion'] = "Préstamo editado exitosamente";
+        }else{
+            $data['estado'] = false;
+            $data['descripcion'] = "Error al editar préstamo".$this->db->error;
+        }
+
+        return json_encode($data);
+    }
+
+
+
+    public function getInfo($id)
+    {
+        $sql = "SELECT * from prestamo where id='{$id}'";
+        mysqli_set_charset($this->con, "utf8");
+        $info = $this->con->query($sql);
+        $obj = array();
+       
+        if($info->num_rows>0)
+        {
+            while($row = mysqli_fetch_array($info)) 
+            { 
+                $id=$row['id'];
+                $tipoPrestamo=$row['tipoPrestamo'];
+                $fechaDevolver = $row['fechaDevolver'];
+               
+
+
+                $obj[] = array('id'=> $id, 'tipoPrestamo'=> $tipoPrestamo,'fechaDevolver'=> $fechaDevolver);
+
+            }
+        }
+        else
+        {
+            $obj['estado'] = $this->con->error;
+        }
+        return json_encode($obj); 
+    }
+
+
     public function searchPrestamo($txt,$tipo)
     {
        $sql = "call obtenerPrestamos('{$tipo}','{$txt}');";

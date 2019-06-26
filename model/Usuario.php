@@ -36,7 +36,7 @@ class Usuario
 public function eliminar($id)
     {
         //echo $idLibro;
-        $sql = "UPDATE `usuario` SET `estado` = '0' WHERE `usuario`.`id` = {$id};";
+        $sql = "UPDATE usuario SET estado = 0 WHERE id = '{$id}';";
             $res = $this->con->query($sql);
             $data = array();
             if($res)

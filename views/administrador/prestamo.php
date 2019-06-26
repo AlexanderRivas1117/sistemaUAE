@@ -84,22 +84,24 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      <th>#</th>
                       <th>N° Inventario</th>
                       <th>Nombre Libro</th>
                       <th>Fecha Realización</th>
                       <th>Nombre</th>
                       <th>Carnet</th>
-                      <!-- <th>Acciones</th> -->
+                      <th>Acciones</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
+                      <th>#</th>
                       <th>N° Inventario</th>
                       <th>Nombre Libro</th>
                       <th>Fecha Realización</th>
                       <th>Nombre</th>
                       <th>Carnet</th>
-                      <!-- <th>Acciones</th> -->
+                      <th>Acciones</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -107,22 +109,24 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                    <?php 
                             $objPrestamo = new Prestamo();
                             $data = $objPrestamo->getAll();
+                            $i=0;
                             if ($data!=false) {
                                 foreach ($data as  $value) {
-                                    
+                                    $i++;
                                     echo "<tr>
+                                            <td>".$i."</td>
                                             <td>".$value['numeroInventario']."</td>
                                             <td>".$value['libro']."</td>
                                             <td>".$value['fechaRealizacion']."</td>
                                             <td>".$value['nombre']."</td>
                                             <td>".$value['carnet']."</td>
-                                            
+                                             <td>
+                                                
+                                                <button type='button' class='btn btn-info btn-circle btn-sm edit' id='".$value['id']."' value='Editar'><i class='fas fa-edit'></i></button>
+                                                
+                                            </td>
                                           </tr>";
-                                          // <td>
-                                                
-                                          //       <button type='button' class='btn btn-info btn-circle btn-sm info ' id='".$value['numeroInventario']."' value='Editar'><i class='fas fa-edit'></i></button>
-                                                
-                                          //   </td>
+                                         
                                 }
                             }
 
@@ -169,24 +173,6 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="../../resources/bootstrap/vendor/jquery/jquery.min.js"></script>
@@ -578,153 +564,65 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 </div>
 
 
-<!-- MODAL INFO LIBRO -->
-
-<div class="modal fade bd-example-modal-lg" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document" style="width: 3000px;">
-    <div class="modal-content">
-      <div class="modal-header">
-          <h6 class="modal-title">Información de Documento</h6>
-          <!-- <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button> -->
-        </div>
-      <div class="modal-body"  id="modal-body">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group row">
-            <p class=" col-sm-2 font-weight-normal">Título</p>
-            <div class="col-sm-10">
-              <div class="greenL"><p class="font-weight-bold" id="txtNombre"><!-- Mejoramiento de las instalaciones existentes de la Sala Cuna y habilitación de un edificio aledaño Centro de Orientación --></p>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group row">
-            <p class=" col-sm-2 font-weight-normal">Autor(es)</p>
-            <div class="col-sm-10">
-              <div class="greenL">
-                <p class="font-weight-normal" id="txtAutor"> </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-       <div class="col-md-6">
-          <div class="form-group row">
-            <p class=" col-sm-4 font-weight-normal">Inventario: </p>
-            <div class="col-sm-8">
-              <div class="greenL">
-                <p class="font-weight-bold" id="txtInventario"> </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group row">
-            <p class=" col-sm-3 font-weight-normal">Clasificación: </p>
-            <div class="col-sm-9">
-              <div class="greenL">
-                <p class="font-weight-bold" id="txtClasificacion"> </p>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <hr style="background: #4e73df;">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group row">
-            <p class=" col-sm-2 font-weight-normal">Epígrafes: </p>
-            <div class="col-sm-10">
-              <p class="font-weight-bold" id="txtEpigrafe"> </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-group row">
-            <p class=" col-sm-6 font-weight-normal">Edición: </p>
-            <div class="col-sm-6">
-              <p class="font-weight-bold" id="txtEdicion"> </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div class="form-group row">
-            <p class=" col-sm-2 font-weight-normal">Editorial: </p>
-            <div class="col-sm-10">
-              <div><p class="font-weight-bold" id="txtEditorial"> </p>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group row">
-            <p class=" col-sm-4 font-weight-normal">Asesor: </p>
-            <div class="col-sm-8">
-              <p class="font-weight-bold" id="txtAsesor"> </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="form-group row">
-            <p class=" col-sm-4 font-weight-normal">F.Publicación: </p>
-            <div class="col-sm-8">
-              <p class="font-weight-bold" id="txtFecha"> </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <hr style="background: #4e73df;">
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group row">
-            <p class=" col-sm-2 font-weight-normal">Tabla de Contenido: </p>
-            <div class="col-sm-10">
-              <p class="font-weight-bold" id="txtContenido"> </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      </div> <!-- modal body -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" id="cerrarInfo">Cerrar</button>
-        <!-- <button type="button" class="btn btn-primary" id="ok" value="registrar">Realizar Prestamo</button> -->
-      </div>
-    </div>
-  </div>
-</div>
 
 <style type="text/css">
   .modal {
   overflow-y:auto;
 }
 </style>
-<!-- FIN MODAL INFO LIBRO -->
+
+<!-- MODAL EDITAR PRESTAMO -->
+<div class="modal" tabindex="-1" role="dialog" id="modalEditar">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Préstamo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+<div class="modal-body">
+        <div id="infoEditar">
+          <div class="row">
+  <div class="col-md-8">
+    <div class="form-group">
+      <div class="form-group">
+        <label>Tipo de Préstamo</label><br>
+
+        <div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" id="customRadioInlineE1" name="tipoPrestamoE" value="1" class="custom-control-input">
+    <label class="custom-control-label" for="customRadioInlineE1">En Sala</label>
+        </div>
+<div class="custom-control custom-radio custom-control-inline">
+  <input type="radio" id="customRadioInlineE2" name="tipoPrestamoE" class="custom-control-input" value="2">
+  <label class="custom-control-label" for="customRadioInlineE2">Externo</label>
+</div>
+
+
+      </div>
+    </div>
+                </div>
+</div>
+        </div> <!-- fin row -->
+<div class="row">
+  <div class="col-md-8">
+    <div class="form-group">
+    <label>Fecha a Devolver</label>
+    <input type="date" name="fechaDevolverE" class="form-control form-control-sm" id="fechaDevolverE" >
+    </div>
+  </div>
+<input type="hidden" name="idPrestamoE" id="idPrestamoE">
+</div> <!-- fin row 2 -->
+
+</div> <!-- fin modal-body -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="guardarCambios">Guardar Cambios</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN EDITAR PRESTAMO -->
 
 <!-- MODALES -->
 </html>

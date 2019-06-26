@@ -47,7 +47,8 @@ $("#listadoPrestamos").DataTable({
 			            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
 			            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
 			        }
-			    }
+			    },
+			    "order": [[ 0, "desc" ]]
 			    //fin de la configuracion del data table
 			});
 
@@ -724,41 +725,62 @@ swal("¡Aviso!",
 	});
 
 //INFO LIBRO
-$(document).on("click",".info",function(){
-
-	// $("#nuevoPrestamo").hide();
-	
+$(document).on("click",".edit",function(){
 
 	var id = $(this).attr('id');
-
-
+$("#modalEditar").modal({backdrop: 'static',keyboard: false});
 	$.ajax({
 		type: 'POST',
 		data: {id:id,key:'getInfo'},
-		url: '../../controller/LibroController.php',
+		url: '../../controller/PrestamoController.php',
 		success: function (data) {
 			data = JSON.parse(data);
-			console.log(data);
-			// alert(data.nombre);
-			$("#txtNombre").html(data[0].nombre);
-			$("#txtAutor").html(data[0].autor);
-			$("#txtInventario").html(id);
-			$("#txtClasificacion").html(data[0].clasificacion);
-			$("#txtEpigrafe").html(data[0].epigrafe);
-			$("#txtEdicion").html(data[0].edicion);
-			$("#txtEditorial").html(data[0].editorial);
-			$("#txtAsesor").html(data[0].asesor);
-			$("#txtFecha").html(data[0].fecha);
-			$("#txtContenido").html(data[0].contenido);
-
-
-			$('#modalInventario').modal('toggle');
-			$("#modalInfo").modal({backdrop: 'static',keyboard: false});
+			$("#customRadioInlineE"+data[0].tipoPrestamo+"").prop("checked", true);
+			$("#fechaDevolverE").val(data[0].fechaDevolver);
+			$("#idPrestamoE").val(data[0].id);
 
 		}
 	});
 
 });
+
+$(document).on("click","#guardarCambios",function(){
+
+	var info = JSON.stringify($("#modalEditar").find('input').serializeArray());
+
+// $("#modalEditar").modal({backdrop: 'static',keyboard: false});
+	$.ajax({
+		type: 'POST',
+		data: {info:info,key:'guardarCambios'},
+		url: '../../controller/PrestamoController.php',
+		success: function (data) {
+			data = JSON.parse(data);
+			// console.log(data.estado);
+
+			if(data.estado==true)
+			{
+				//location.reload();
+				swal({
+                    title: "Aviso!",
+                    text: "Préstamo Editado exitosamente",
+                    timer: 70000,
+                    type: 'success',
+                    closeOnConfirm: true,
+                    closeOnCancel: true
+                      }),
+ 					setTimeout(function(){
+							location.reload();
+						},1000);
+			}
+			else
+			{
+				alert(data.descripcion);
+			}
+		}
+	});
+
+});
+
 
 $("#cerrarInfo").click(function(){
 

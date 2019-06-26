@@ -36,10 +36,38 @@ if (isset($_POST['key'])) {
 			searchUsuario();
 			break;
 
+		case 'getInfo':
+			getInfo();
+			break;
+		case 'guardarCambios':
+			guardarCambios();
+			break;
+
 		default:
 			# code...
 			break;
 	}
+}
+
+function guardarCambios()
+{
+	$data = $_POST['info'];
+	$data = json_decode($data);
+	// var_dump($data);
+	$id = $data[2]->value;
+	$fechaDevolver = $data[1]->value;
+	$tipoPrestamo = $data[0]->value;
+	$objPre = new Prestamo();
+	$res = $objPre->guardarCambios($tipoPrestamo,$fechaDevolver,$id);
+	echo $res;
+}
+
+
+function getInfo()
+{
+	$id = $_REQUEST['id'];
+	$objLibro = new Prestamo();
+	echo $objLibro->getInfo($id);
 }
 
 function searchUsuario()

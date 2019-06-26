@@ -108,7 +108,7 @@ inner join prestamo p
 on p.idInventario=iv.id
 inner join usuario u
 on p.idUsuario = u.id
-where iv.estadoMaterial='Prestado' AND p.estado=1 AND p.eliminado!=1;
+where iv.estadoMaterial='Prestado' AND p.estado=1 AND p.eliminado!=1 order by p.id DESC;
 
 END $$
 DELIMITER ;

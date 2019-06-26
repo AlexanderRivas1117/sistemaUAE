@@ -210,7 +210,7 @@ function selectDepartamento() {
 
 //ELIMINAR USUARIO
 $(document).on("click",'.eliminar',function(){
-  var id = $(this).val();
+  var id = $(this).attr('id');
   // alert(id);
 
 swal({ 
@@ -262,7 +262,7 @@ if (isConfirm)
                             closeOnCancel: true
                               }),
                   setTimeout(function(){
-                  //location.reload();
+                  location.reload();
                 },1000);  
               }
 
