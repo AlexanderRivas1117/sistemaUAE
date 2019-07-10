@@ -64,11 +64,40 @@ if (isset($_POST['key'])) {
 		case 'guardarCambios':
 			guardarCambios();
 			break;
+
+		case 'getName':
+			getName();
+			break;
+
+		case 'crearEjemplar':
+			crearEjemplar();
+			break;
 		
 		default:
 			# code...
 			break;
 	}
+}
+
+function crearEjemplar()
+{
+	$data = $_POST['dataLibro'];
+	// var_dump(json_decode($data));
+	$data = json_decode($data);
+	$objLibro = new Libro();
+
+	$numeroInventario = $data[0]->value;
+	$idInventario = $data[1]->value;
+
+	echo $objLibro->crearEjemplar($idInventario,$numeroInventario);
+}
+
+
+function getName()
+{
+	$id = $_REQUEST['id'];
+	$objLibro = new Libro();
+	echo $objLibro->getName($id);
 }
 
 function guardarCambios()
@@ -129,7 +158,7 @@ function guardarDocumento()
 	$objLibro = new Libro();
 	//$dataLibro = json_decode($dataLibro);
 	// //var_dump($dataLibro);
-	 echo $objLibro->guardarDocumento($dataLibro);
+	echo $objLibro->guardarDocumento($dataLibro);
 }
 function searchAutor()
 {

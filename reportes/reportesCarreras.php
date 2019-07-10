@@ -214,7 +214,8 @@ REPORTE ESTADISTICO DEL SISTEMA DE GESTION BIBLIOGRAFICA AUTOMATIZADO
 				inner join usuario u 
 				on p.idUsuario = u.id
 				inner join carrera c
-				on u.idCarrera=c.id;";
+				on u.idCarrera=c.id
+				where month(p.fechaRealizacion) = '{$mes}' and year(p.fechaRealizacion) = '{$anio}'";
 		$con = conectar();
 				$carreras = $con->query($sql);
 				mysqli_close($con);
@@ -236,7 +237,7 @@ REPORTE ESTADISTICO DEL SISTEMA DE GESTION BIBLIOGRAFICA AUTOMATIZADO
 				$sql = "SELECT count(p.idUsuario) as totalUsuarios from prestamo p 
    inner join usuario u on p.idUsuario = u.id 
    inner join carrera c on u.idCarrera = c.id 
-   where month(p.fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and p.estado=1 and c.id='{$idCarrera}'";
+   where month(p.fechaRealizacion) = '{$mes}' and year(p.fechaRealizacion) = '{$anio}' and c.id='{$idCarrera}'";
 				$con = conectar();
 				$result = $con->query($sql);
 				$result = $result->fetch_assoc();
@@ -252,7 +253,7 @@ REPORTE ESTADISTICO DEL SISTEMA DE GESTION BIBLIOGRAFICA AUTOMATIZADO
 			$sql = "SELECT count(p.idUsuario) as hombres from prestamo p 
 				   inner join usuario u on p.idUsuario = u.id 
 				   inner join carrera c on u.idCarrera = c.id 
-				   where month(p.fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and p.estado=1 and c.id='{$idCarrera}' and u.genero='Masculino'";
+				   where month(p.fechaRealizacion) = '{$mes}' and year(p.fechaRealizacion) = '{$anio}' and c.id='{$idCarrera}' and u.genero='Masculino'";
 				$con = conectar();
 				$result = $con->query($sql);
 				$result = $result->fetch_assoc();
@@ -265,7 +266,7 @@ REPORTE ESTADISTICO DEL SISTEMA DE GESTION BIBLIOGRAFICA AUTOMATIZADO
 				$sql = "SELECT count(p.idUsuario) as mujeres from prestamo p 
 				   inner join usuario u on p.idUsuario = u.id 
 				   inner join carrera c on u.idCarrera = c.id 
-				   where month(p.fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and p.estado=1 and c.id='{$idCarrera}' and u.genero='Femenino'";
+				   where month(p.fechaRealizacion) = '{$mes}' and year(p.fechaRealizacion) = '{$anio}' and c.id='{$idCarrera}' and u.genero='Femenino'";
 				$con = conectar();
 				$result = $con->query($sql);
 				$result = $result->fetch_assoc();

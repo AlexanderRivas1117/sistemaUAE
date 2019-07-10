@@ -65,7 +65,7 @@ include_once realpath (dirname (__FILE__).'/../../model/tipoUsuario.php');
                       <th>Carnet</th>
                       <th>Nombre</th>
                       <th>Apellido</th>
-                      <th>Telefono</th>
+                      <th>Carrera</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
@@ -74,7 +74,7 @@ include_once realpath (dirname (__FILE__).'/../../model/tipoUsuario.php');
                       <th>Carnet</th>
                       <th>Nombre</th>
                       <th>Apellido</th>
-                      <th>Telefono</th>
+                      <th>Carrera</th>
                       <th>Acciones</th>
                     </tr>
                   </tfoot>

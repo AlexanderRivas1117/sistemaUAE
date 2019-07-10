@@ -81,7 +81,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="listadoPrestamos" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -189,7 +189,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
   <script src="../../resources/bootstrap/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="../../resources/bootstrap/js/demo/datatables-demo.js"></script>
+  <!-- <script src="../../resources/bootstrap/js/demo/datatables-demo.js"></script> -->
   <script type="text/javascript" src="../../resources/sweetalert-master/dist/sweetalert.min.js"></script>
   
 <script type="text/javascript" src="../../resources/js/administrador/prestamo.js"></script>

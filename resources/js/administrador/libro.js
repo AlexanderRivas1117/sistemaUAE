@@ -244,12 +244,29 @@ var evento = e;
     
     ev.preventDefault();
     evento = ev;  
+
+    // subir imagen
+
+    if(ev.isDefaultPrevented)
+    {  
+        
+
+
+      guardarDocumento();  
+     
+    
+
+    }
+
+      
   });
 
 if(evento.isDefaultPrevented)
     {  
       //var  p = JSON.stringify($('#infoLibro  input,select').serialize();
-      guardarDocumento();    
+      // guardarDocumento();    
+
+
     }
 
 });
@@ -260,13 +277,17 @@ var evento = e;
     
     ev.preventDefault();
     evento = ev;  
-  });
-
-if(evento.isDefaultPrevented)
+    if(evento.isDefaultPrevented)
     {  
       //var  p = JSON.stringify($('#infoLibro  input,select').serialize();
       guardarCambios();    
+
+      
     }
+
+  });
+
+
 
 });
 
@@ -281,11 +302,29 @@ function guardarCambios() {
         success: function(data)
         {
           data = JSON.parse(data);
-          console.log(data);
+          //console.log(data);
           
           //console.log(data.idLibro['idLibro']);
           if(data.estado==true)
           {
+             var id = data.id;
+                      // subir imagen
+              var formElement = document.getElementById("dataEdit2");
+
+              d = new FormData(formElement);
+              // console.log(d);
+              // var d = new FormData($("#data2"));
+              $.ajax({
+              url: "copiar.php?id="+id+"",
+              type: "POST",
+              data:  d,
+              contentType: false,
+              processData:false
+              });
+
+
+      //fin subir imagen
+
                 // var id= data.idLibro['idLibro'];
                 // id = parseInt(id);
                 swal({
@@ -334,6 +373,7 @@ function guardarDocumento() {
   $(".txtAutor").attr("disabled", false);
 
 
+
   //console.log(JSON.parse(dataLibro));
 
   $.ajax({
@@ -351,6 +391,20 @@ function guardarDocumento() {
                 // var id= data.idLibro['idLibro'];
                 // id = parseInt(id);
 
+      // subir imagen
+      var formElement = document.getElementById("data2");
+      d = new FormData(formElement);
+      // var d = new FormData($("#data2"));
+      $.ajax({
+      url: "copiar.php",
+      type: "POST",
+      data:  d,
+      contentType: false,
+      processData:false
+      });
+
+
+      //fin subir imagen
 
                 swal({
                 title: "Exito!",

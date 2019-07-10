@@ -185,6 +185,7 @@ if (!isset($_REQUEST['user'])) {
                             $where .= " OR l.fechaPublicacion like concat('%','".$_REQUEST['libre']."', '%')";
                             $where .= " OR concat_ws('',l.clasificacion,l.libristica) like concat('%','".$_REQUEST['libre']."', '%')";
                             $where .= " OR l.idEditorial like concat('%','".$_REQUEST['libre']."', '%')";
+                            $where .= " OR l.epigrafe like concat('%','".$_REQUEST['libre']."', '%')";
                             $where .= " OR l.contenido like concat('%','".$_REQUEST['libre']."', '%'))";
 
 
@@ -445,18 +446,25 @@ $(document).on("click",".info",function(){
     url: '../../controller/LibroController.php',
     success: function (data) {
       data = JSON.parse(data);
-      console.log(data);
+      //console.log(data);
       // alert(data.nombre);
       $("#txtNombre").html(data[0].nombre);
       $("#txtAutor").html(data[0].autor);
       $("#txtInventario").html(id);
       $("#txtClasificacion").html(data[0].clasificacion);
+      $("#txtLibristica").html(data[0].libristica);
       $("#txtEpigrafe").html(data[0].epigrafe);
       $("#txtEdicion").html(data[0].edicion);
       $("#txtEditorial").html(data[0].editorial);
       $("#txtAsesor").html(data[0].asesor);
       $("#txtFecha").html(data[0].fecha);
       $("#txtContenido").html(data[0].contenido);
+
+      if(data[0].portada!=null)
+      {
+        $("#txtPortada").html('<img src="../../IMAGENES/'+data[0].portada+'" class="rounded" alt="200x200" style="height: 100px;width: 100px;">');
+      }
+      
 
 
       $('#modalInventario').modal('toggle');
@@ -505,8 +513,27 @@ $("#cerrarInfo").click(function(){
                 </div>
             </div>
           </div>
+          <!-- <img src="logo_UAE.JPG" class="rounded float-right" alt="200x200" style="height: 40px;width: 40px;"> -->
+
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group row">
+            <p class=" col-sm-2 font-weight-normal">Portada</p>
+            <div class="col-sm-10">
+              <div class="greenL"><p class="font-weight-bold" id="txtPortada">
+          <!-- <img src="logo_UAE.JPG" class="rounded" alt="200x200" style="height: 100px;width: 100px;"> -->
+                
+              </p>
+                </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-md-12">
           <div class="form-group row">
@@ -533,8 +560,8 @@ $("#cerrarInfo").click(function(){
         </div>
         <div class="col-md-6">
           <div class="form-group row">
-            <p class=" col-sm-3 font-weight-normal">Clasificación: </p>
-            <div class="col-sm-9">
+            <p class=" col-md-3 font-weight-normal">Clasificación: </p>
+            <div class="col-md-9">
               <div class="greenL">
                 <p class="font-weight-bold" id="txtClasificacion"> </p>
               </div>
@@ -543,6 +570,20 @@ $("#cerrarInfo").click(function(){
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group row">
+            <p class=" col-sm-2 font-weight-normal">Librística:</p>
+            <div class="col-sm-10">
+              <div class="greenL">
+                <p class="font-weight-bold" id="txtLibristica"> </p>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-md-12">
           <hr style="background: #4e73df;">

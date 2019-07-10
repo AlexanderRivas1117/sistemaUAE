@@ -61,7 +61,7 @@ $columns = array(
     array( 'db' => '`u`.`carnet`', 'dt' => 0, 'field' => 'carnet' ),
     array( 'db' => '`u`.`nombre`',  'dt' => 1, 'field' => 'nombre' ),
     array( 'db' => '`u`.`apellido`',   'dt' => 2, 'field' => 'apellido' ),
-    array( 'db' => '`c`.`nombre`',     'dt' => 3, 'field' => 'nombre' ),
+    array( 'db' => '`c`.`nombre` as carrera',     'dt' => 3, 'field' => 'carrera' ),
 
     array( 'db' => '`u`.`id`',     'dt' => 4, 'field' => 'id' ,'formatter' => function( $d, $row ) {
             return "<button type='button' class='btn btn-info btn-circle editar btn-sm' id='".$d."' value='Editar'><i class='fas fa-edit'></i></button>

@@ -589,7 +589,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
       <div class="col-md-3">
         <div class="form-group">
           <label class=""for="precio">Precio</label>
-          <input type="text" class="form-control required form-control-sm " id="precio" name="precio" placeholder="$00.00" required>
+          <input type="text" class="form-control form-control-sm " id="precio" name="precio" placeholder="$00.00">
         </div>
       </div>
       <div class="col-md-3">
@@ -643,9 +643,15 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
         </div>
     </div>
     <div class="row">
-        
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class=""for="portada">Portada</label>
+                <input type="file" class="form-control-file" id="portada" name="portada">
+                </select>
+            </div>
+        </div>
     </div>
-    <button type="button" name="previous" id="previous" class="previous btn btn-info" value="Previous" style="margin-left: 520px;">Anterior</button>
+    <button type="button" name="previous" id="previous" class="previous btn btn-info" value="Previous" style="margin-left: 500px;">Anterior</button>
     <button type="button" class="btn btn-danger" name="clo" data-dismiss="modal" >Cerrar</button>
     <button type="submit" id="enviar" name="submit" class="submit btn btn-success" value="Submit">Guardar</button>
 
@@ -1046,8 +1052,14 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
         <input type="hidden" name="idLibroE" id="idLibroE">
         <input type="hidden" name="idInventarioE" id="idInventarioE">
     </div>
-    <div class="row">
-        
+   <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class=""for="portadaE">Portada</label>
+                <input type="file" class="form-control-file" id="portadaE" name="portada">
+                
+            </div>
+        </div>
     </div>
     <button type="button" name="previous" class="btn btn-info" id="previousEdit" value="previous" style="margin-left: 520px;">Anterior</button>
     <button type="button" class="btn btn-danger" name="clo" data-dismiss="modal" >Cerrar</button>
@@ -1149,7 +1161,7 @@ $.ajax({
 // SELECT TIPO LITERATURA
 
 // $.ajax({
-//      url: "../../controller/LibroController.php",
+//     url: "../../controller/LibroController.php",
 //     method: 'POST',
 //     data: {key:'tipoLiteratura'},
 //     success: function (d) {  
@@ -1163,6 +1175,59 @@ $.ajax({
 //     }
 //   });
 
+$(document).on("click",".Ejemplar",function(){
+
+    var id = $(this).attr('id');
+
+    $.ajax({
+    url: "../../controller/LibroController.php",
+    method: 'POST',
+    data: {id:id,key:'getName'},
+    success: function (d) {  
+      d = JSON.parse(d);   
+      //console.log(d);
+      $("#txtNombreEje").html(d[0].nombre);
+      $("#idIv").val(id);
+        $('#modalEjemplar').modal('show');
+    }
+  });
+
+    
+});
+
+$("#nuevoEjemplar").submit(function(ev){
+  ev.preventDefault();
+
+  if(ev.isDefaultPrevented)
+    {  
+      var dataLibro = JSON.stringify($(this).find('input').not(".js-example-basic-multiple").serializeArray());
+      
+      $.ajax({
+    url: "../../controller/LibroController.php",
+    method: 'POST',
+    data: {dataLibro:dataLibro,key:'crearEjemplar'},
+    success: function (d) {  
+      d = JSON.parse(d); 
+      if(d.estado=="existe")
+      {
+        alert("Ya existe un documento con el número de inventario ingresado");
+      }  
+      if(d.estado==true)
+      {
+        location.reload();
+      }
+      if(d.estado==false)
+      {
+        alert(d.descripcion);
+      }
+      //console.log(d);
+     
+    }
+      });
+ 
+    }
+});
+
 
 });
 </script>
@@ -1174,4 +1239,53 @@ $.ajax({
 
 <!-- FIN EDITAR -->
 <!-- MODALES -->
+
+<!-- modal ejemplar -->
+<div class="modal" tabindex="-1" role="dialog" id="modalEjemplar" style="margin-top: 100px;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Agregar Ejemplar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form autocomplete="off" action="#" id="nuevoEjemplar">
+          
+        
+        <div class="row">
+          <div class="col-md-12">
+          <div class="form-group row">
+            <p class=" col-sm-2 font-weight-normal">Título</p>
+            <div class="col-sm-10">
+              <div class="greenL"><p class="font-weight-bold" id="txtNombreEje"></p>
+              </div>
+            </div>
+          </div>
+          <!-- <img src="logo_UAE.JPG" class="rounded float-right" alt="200x200" style="height: 40px;width: 40px;"> -->
+
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+        <div class="form-group">
+          <label class=""for="numeroInventarioEje">Número Inventario</label>
+          <input type="text" class="form-control form-control-sm " id="numeroInventarioEje" name="numeroInventarioE" placeholder="Nº Inventario" autocomplete="off" required="true">
+          <input type="hidden" name="idIv" id="idIv">
+        </div>
+      </div>
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Guardar</button>
+        </form>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 </html>

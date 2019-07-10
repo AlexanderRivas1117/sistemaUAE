@@ -16,6 +16,90 @@ class Libro
 		$this->con = conectar();
 	}
 
+    public function crearEjemplar($idInventario,$numeroInventario)
+    {
+        //echo $idLibro;
+        $sql = "SELECT * from inventario where numeroInventario='{$numeroInventario}' and eliminado=0";
+        $resp = $this->con->query($sql);
+        $data = array();
+
+        //VALIDA SI EXISTE EL NÚMERO DE INVENTARIO
+        if($resp->num_rows>0){
+            $data['estado'] = "existe";
+                
+            $data['descripcion'] = "Número de Inventario ya ha sido usado!";
+            return json_encode($data);
+            die();
+
+        }
+
+        $sql = "INSERT INTO `inventario`( `numeroInventario`, `idLibro`, `fechaAdquisicion`, `volumen`, `formaAdquisicion`, `precio`, `facilitante`, `estadoMaterial`, `fechaEstado`, `solicitante`, `entrego`, `fechaEntrega`, `eliminado`)  SELECT  '{$numeroInventario}', `idLibro`, `fechaAdquisicion`, `volumen`, `formaAdquisicion`, `precio`, `facilitante`, `estadoMaterial`, `fechaEstado`, `solicitante`, `entrego`, `fechaEntrega`, `eliminado` FROM `inventario` WHERE id='{$idInventario}' and eliminado=0";
+        $res = $this->con->query($sql);
+
+        $sql = "INSERT INTO `libro`(`nombre`, `autor`, `cantidadPaginas`, `informacionAdicional`, `epigrafe`, `numeroEdicion`, `referenciaDigital`, `fechaPublicacion`, `idioma`, `isbn`, `idEditorial`, `idTipoColeccion`, `idTipoLiteratura`, `dimensiones`, `iscn`, `idPais`, `asesor`, `notas`, `clasificacion`, `libristica`, `detallesFisicos`, `contenido`, `mfn`, `eliminado`, `portada`) 
+SELECT `nombre`, `autor`, `cantidadPaginas`, `informacionAdicional`, `epigrafe`, `numeroEdicion`, `referenciaDigital`, `fechaPublicacion`, `idioma`, `isbn`, `idEditorial`, `idTipoColeccion`, `idTipoLiteratura`, `dimensiones`, `iscn`, `idPais`, `asesor`, `notas`, `clasificacion`, `libristica`, `detallesFisicos`, `contenido`, `mfn`, `eliminado`, `portada` FROM `libro` WHERE id='{$idInventario}'";
+        $res = $this->con->query($sql);
+
+
+
+            
+            if($res)
+            {
+                $data['estado'] = true;
+                
+                $data['descripcion'] = "Documento agregado exitosamente!";
+                
+            }else
+            {
+                $data['estado'] = false;
+                $data['descripcion'] = "¡Error al agregar documento".$this->con->error;
+            }
+
+        return json_encode($data);
+    }
+
+
+     public function getName($id)
+    {
+        $sql = "SELECT l.id,iv.numeroInventario,l.nombre,l.numeroEdicion,l.idEditorial as editorial,
+l.idTipoLiteratura as tipoLiteratura,l.autor,l.clasificacion,l.libristica,l.epigrafe,l.portada,l.asesor,l.contenido,l.fechaPublicacion from libro l
+inner join inventario iv
+    on iv.idLibro=l.id
+where iv.id='{$id}'";
+        mysqli_set_charset($this->con, "utf8");
+        $info = $this->con->query($sql);
+        $obj = array();
+       
+        if($info->num_rows>0)
+        {
+            while($row = mysqli_fetch_array($info)) 
+            { 
+                $id=$row['id'];
+                $nombre=$row['nombre'];
+                $autor = $row['autor'];
+                $clasificacion = $row['clasificacion'];
+                $libristica = $row['libristica'];
+                $epigrafe = $row['epigrafe'];
+                $edicion = $row['numeroEdicion'];
+                $editorial = $row['editorial'];
+                $asesor = $row['asesor'];
+                $fecha = $row['fechaPublicacion'];
+                $contenido = $row['contenido'];
+                $portada = $row['portada'];
+
+
+                $obj[] = array('id'=> $id, 'nombre'=> $nombre,'autor'=> $autor,'clasificacion'=> $clasificacion,'epigrafe'=> $epigrafe,'edicion'=> $edicion,'editorial'=> $editorial,'asesor'=> $asesor,'contenido'=> $contenido,'fecha'=> $fecha,'libristica'=> $libristica,'portada'=> $portada);
+
+            }
+        }
+        else
+        {
+            $obj['estado'] = $this->con->error;
+        }
+        return json_encode($obj); 
+    }
+
+
     public function guardarCambios($data)
     {
         $data = json_decode($data);
@@ -108,6 +192,7 @@ class Libro
         if($info)
             {
                 $data['estado'] = true;
+                $data['id'] = $idLibro;
                 
                 $data['descripcion'] = "Documento modificado exitosamente!";
                 
@@ -123,10 +208,11 @@ class Libro
         
     }
 
+
     public function getInfo($id)
     {
         $sql = "SELECT l.id,iv.numeroInventario,l.nombre,l.numeroEdicion,l.idEditorial as editorial,
-l.idTipoLiteratura as tipoLiteratura,l.autor,l.clasificacion,l.epigrafe,l.asesor,l.contenido,l.fechaPublicacion from libro l
+l.idTipoLiteratura as tipoLiteratura,l.autor,l.clasificacion,l.libristica,l.epigrafe,l.portada,l.asesor,l.contenido,l.fechaPublicacion from libro l
 inner join inventario iv
     on iv.idLibro=l.id
 where iv.numeroInventario='{$id}'";
@@ -142,15 +228,17 @@ where iv.numeroInventario='{$id}'";
                 $nombre=$row['nombre'];
                 $autor = $row['autor'];
                 $clasificacion = $row['clasificacion'];
+                $libristica = $row['libristica'];
                 $epigrafe = $row['epigrafe'];
                 $edicion = $row['numeroEdicion'];
                 $editorial = $row['editorial'];
                 $asesor = $row['asesor'];
                 $fecha = $row['fechaPublicacion'];
                 $contenido = $row['contenido'];
+                $portada = $row['portada'];
 
 
-                $obj[] = array('id'=> $id, 'nombre'=> $nombre,'autor'=> $autor,'clasificacion'=> $clasificacion,'epigrafe'=> $epigrafe,'edicion'=> $edicion,'editorial'=> $editorial,'asesor'=> $asesor,'contenido'=> $contenido,'fecha'=> $fecha);
+                $obj[] = array('id'=> $id, 'nombre'=> $nombre,'autor'=> $autor,'clasificacion'=> $clasificacion,'epigrafe'=> $epigrafe,'edicion'=> $edicion,'editorial'=> $editorial,'asesor'=> $asesor,'contenido'=> $contenido,'fecha'=> $fecha,'libristica'=> $libristica,'portada'=> $portada);
 
             }
         }

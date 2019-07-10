@@ -116,7 +116,7 @@ if(isset($_REQUEST['estado']))
 
                 <div class="form-group row">
                   <div class="col-sm-12 mb-6 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="libre" placeholder="Búsqueda por título, autor, editorial, tabla de contenido" name="libre">
+                    <input type="text" class="form-control form-control-user" id="libre" placeholder="Búsqueda por título, autor, editorial, tabla de contenido, epígrafe" name="libre">
                   </div>
                   
                 </div>

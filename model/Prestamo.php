@@ -136,7 +136,7 @@ class Prestamo
         $info = $this->con->query($sql);
         $data = array();
 
-        if($info->num_rows>=100)
+        if($info->num_rows>=4)
         {
             $data['estado'] = false;
             $data['descripcion'] = "No tiene prestamos disponibles";

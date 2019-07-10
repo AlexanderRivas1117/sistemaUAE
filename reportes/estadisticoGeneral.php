@@ -217,7 +217,7 @@ REPORTE ESTADISTICO DEL SISTEMA DE GESTION BIBLIOGRAFICA AUTOMATIZADO
 
 			$html .= '<td style="text-align:center; vertical-aling: middle;">';
 
-			$sql = "SELECT count(idUsuario) as totalUsuarios from prestamo where day(fechaRealizacion) = '{$i}' and month(fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and estado=1;";
+			$sql = "SELECT count(idUsuario) as totalUsuarios from prestamo where day(fechaRealizacion) = '{$i}' and month(fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}'";
 				$con = conectar();
 				$result = $con->query($sql);
 				$result = $result->fetch_assoc();
@@ -232,7 +232,7 @@ REPORTE ESTADISTICO DEL SISTEMA DE GESTION BIBLIOGRAFICA AUTOMATIZADO
 						inner join usuario u
 						on p.idUsuario = u.id
 						where u.genero='Masculino' and
-						day(fechaRealizacion) = '{$i}' and month(fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and p.estado=1;";
+						day(fechaRealizacion) = '{$i}' and month(fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}';";
 				$con = conectar();
 				$result = $con->query($sql);
 				$result = $result->fetch_assoc();
@@ -247,7 +247,7 @@ REPORTE ESTADISTICO DEL SISTEMA DE GESTION BIBLIOGRAFICA AUTOMATIZADO
 						inner join usuario u
 						on p.idUsuario = u.id
 						where u.genero='Femenino' and
-						day(fechaRealizacion) = '{$i}' and month(fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}' and p.estado=1";
+						day(fechaRealizacion) = '{$i}' and month(fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}'";
 				$con = conectar();
 				$result = $con->query($sql);
 				$result = $result->fetch_assoc();
@@ -274,7 +274,7 @@ REPORTE ESTADISTICO DEL SISTEMA DE GESTION BIBLIOGRAFICA AUTOMATIZADO
 				   or l.clasificacion like 'REF.&{$c}%' -- libros
 				   or l.clasificacion like 'JSA.&{$c}%'
 				   or concat_ws('',clasificacion,libristica) like '%&{$c}%' AND concat_ws('',clasificacion,libristica) like 'T%')-- libros
-				   and iv.estadoMaterial='Prestado' and
+				   and
 					day(p.fechaRealizacion) = '{$i}' and month(p.fechaRealizacion) = '{$mes}' and year(fechaRealizacion) = '{$anio}'";
 				$con = conectar();
 				$result = $con->query($sql);
