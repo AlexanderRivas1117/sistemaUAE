@@ -3,7 +3,7 @@
 
 require_once realpath (dirname (__FILE__).'/../../app/config.php');
 
-if ($_REQUEST['libre']=="" && $_REQUEST['titulo']=="" && $_REQUEST['autor']=="" && $_REQUEST['anio'] == "" && $_REQUEST['dewey']=="" && $_REQUEST['editorial']=="") {
+if ($_REQUEST['libre']=="" && $_REQUEST['titulo']=="" && $_REQUEST['autor']=="" && $_REQUEST['anio'] == "" && $_REQUEST['dewey']=="" && $_REQUEST['editorial']=="" && $_REQUEST['epigrafe']=="") {
 
     if (isset($_REQUEST['user'])) {
        header('Location: ../../indexUser.php?estado=false');
@@ -244,7 +244,15 @@ if (!isset($_REQUEST['user'])) {
                             
                             $sql .= $campos.$innerJoin.$where.$limit;
                               }
-                            
+
+                              if ($_REQUEST['epigrafe']!='') {
+                                if ($_REQUEST['tipoColeccion']!='todos') {
+                                  $where .= " AND ";
+                                }
+                            $where .= "l.epigrafe like concat('%','".$_REQUEST['epigrafe']."', '%')";
+                            $sql .= $campos.$innerJoin.$where.$limit;
+                            $palabra = $_REQUEST['epigrafe'];
+                              }
                               
 
 

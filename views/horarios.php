@@ -10,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Biblioteca UAE | Busqueda</title>
+  <title>Biblioteca UAE | Horarios</title>
   <link rel = "icon" type = "image/png" href = "../logo_UAE.JPG">
 
   <!-- Custom fonts for this template-->
@@ -60,7 +60,7 @@
   </div>
 </nav>
 <br>
-<p class="h1 text-center">CARTA DE SERVICIOS</p>
+<p class="h1 text-center">HORARIOS DE ATENCIÓN</p>
 <br>
 <style type="text/css">
   .table-info{
@@ -73,165 +73,74 @@
     color: #1d1919;
   }
 </style>
+ <style>
+.vl {
+  border-right: 2px solid #216583;
+  height: 500px;
+}
+</style>
 
 <div class="row">
-  <div class="col-md-1">
+  <div class="col-md-6 vl" >
+    <center >
+      <img src="https://radiodiezdemarzo.com/wp-content/uploads/2017/04/Einstein.jpg" height="500">
+    </center>
     
   </div>
-  <div class="col-md-3">
+ 
+
+
+<br>
+  <div class="col-md-6">
+
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-10">
+
         <table class="col-md-12 table table-hover">
           <thead>
           <th class="p-3 mb-2 bg-info text-white text-center">
-            MATERIAL BIBLIOGRÁFICO
+            LUNES A VIERNES
           </th>
           <tbody>
             <tr class="table-info">
               <td>
                 <p class="h5"><i class="fas fa-chevron-circle-right"></i>
-                  &nbsp;Catalogo de Búsqueda UAE  
-                  &nbsp;<h6>Por: (Titulo, Autor, Materia, Clasificación, Inventario)</h6>
+                  7:00 am. - 6:00 pm. Sin cerrar al mediodía.
                 
                 </p> 
               </td>
             </tr>
-
-            <tr class="table-info">
-              <td>
-                <p class="h5"><i class="fas fa-chevron-circle-right"></i>
-                  &nbsp;Préstamo externo  de material &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bibliográfico                  
-                </p>
-              </td>
-            </tr>
-
-            <tr class="table-info">
-              <td>
-                <p class="h5"><i class="fas fa-chevron-circle-right"></i>
-                  &nbsp;Préstamo interno  de material &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bibliográfico                  
-                </p>
-              </td>
-            </tr>
-
-            <tr class="table-info">
-              <td>
-                <p class="h5"><i class="fas fa-chevron-circle-right"></i>
-                  &nbsp;Renovación de Préstamos                 
-                </p>
-              </td>
-            </tr>
-
-            <tr class="table-info">
-              <td>
-                <p class="h5"><i class="fas fa-chevron-circle-right"></i>
-                  &nbsp;Préstamo prolongado para catedráticos                
-                </p>
-              </td>
-            </tr>
-
-            <tr class="table-info">
-              <td>
-                <p class="h5"><i class="fas fa-chevron-circle-right"></i>
-                  &nbsp;Reserva de material Bibliográfico                
-                </p>
-              </td>
-            </tr>
-
-            <tr class="table-info">
-              <td>
-                <p class="h5"><i class="fas fa-chevron-circle-right"></i>
-                  &nbsp;Fotocopias                
-                </p>
-              </td>
-            </tr>
           </tbody>
           
         </table>
-      </div>      
+      </div>
     </div>
-  </div>
-
-  <div class="col-md-4">
+    <br>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-10">
         <table class="col-md-12 table table-hover">
           <thead>
-          <th class="p-3 mb-2 bg-success text-white text-center">
-            SALAS DE LECTURA
+          <th class="p-3 mb-2 bg-info text-white text-center">
+            SÁBADOS
           </th>
           <tbody>
-            <tr class="table-success">
+            <tr class="table-info">
               <td>
                 <p class="h5"><i class="fas fa-chevron-circle-right"></i>
-                  &nbsp;Amplia sala de lectura grupal  
+                  8:00 am. - 12:00 m.
+                
                 </p> 
-              </td>
-            </tr>
-
-            <tr class="table-success">
-              <td>
-                <p class="h5"><i class="fas fa-chevron-circle-right"></i>
-                  &nbsp;Sala de lectura individual
-                </p> 
-              </td>
-            </tr>
-
-            <tr class="table-success">
-              <td>
-                <p class="h5"><i class="fas fa-chevron-circle-right"></i>
-                  &nbsp;Préstamos de sala de lectura para actividades
-                </p>
               </td>
             </tr>
           </tbody>
           
         </table>
       </div>
-      
     </div>
   </div>
 
 
-  <div class="col-md-3 col-md-offset-2">
-    <div class="row">
-      <div class="col-md-12">
-        <table class="col-md-12 table table-hover">
-          <thead>
-          <th class="p-3 mb-2 bg-warning text-white text-center">
-            OTROS SERVICIOS
-          </th>
-          <tbody>
-            <tr class="table-warning">
-              <td>
-                <p class="h5"><i class="fas fa-chevron-circle-right"></i>
-                  &nbsp;Préstamos de Juego de Ajedrez  
-                </p> 
-              </td>
-            </tr>
-
-            <tr class="table-warning">
-              <td>
-                <p class="h5"><i class="fas fa-chevron-circle-right"></i>
-                  &nbsp;Solvencias
-                </p> 
-              </td>
-            </tr>
-
-            <tr class="table-warning">
-              <td>
-                <p class="h5"><i class="fas fa-chevron-circle-right"></i>
-                  &nbsp;Asesoría en la elaboración de <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bibliografía y citas
-                </p>
-              </td>
-            </tr>
-          </tbody>
-          
-        </table>
-
-      </div>
-      
-    </div>
-  </div>
+  
 </div>
 
 

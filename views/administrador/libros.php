@@ -109,6 +109,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                       <!-- <th>Pais</th> -->
                       <th>Tipo Colección</th>
                       <th>Acciones</th>
+                      <th>Eliminar</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -120,6 +121,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
                       <!-- <th>Pais</th> -->
                       <th>Tipo Colección</th>
                       <th>Acciones</th>
+                      <th>Eliminar</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -416,8 +418,8 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 
       <div class="col-md-3">
         <div class="form-group">
-          <label class=""for="iscn">ISCN</label>
-          <input type="text" class="form-control required form-control-sm " id="iscn" name="iscn" placeholder="Iscn">
+          <label class=""for="iscn">ISSN</label>
+          <input type="text" class="form-control required form-control-sm " id="iscn" name="iscn" placeholder="ISSN">
         </div>
       </div>
 
@@ -495,7 +497,7 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
       <div class="col-md-3">
         <div class="form-group">
         <label class="" for="pais">Pais</label>
-        <select id="pais" name="pais" class="js-example-basic-single"  style="width: 100%;">
+        <select id="pais" name="pais" class="js-example-basic-single"  style="width: 100%;" required="true">
           <option value="">Seleccione</option>
         </select>
       </div>
@@ -824,8 +826,8 @@ include_once realpath (dirname (__FILE__).'/../../app/validacionAdministrador.ph
 
       <div class="col-md-3">
         <div class="form-group">
-          <label class=""for="iscnE">ISCN</label>
-          <input type="text" class="form-control required form-control-sm " id="iscnE" name="iscnE" placeholder="Iscn">
+          <label class=""for="iscnE">ISSN</label>
+          <input type="text" class="form-control required form-control-sm " id="iscnE" name="iscnE" placeholder="ISSN">
         </div>
       </div>
 
@@ -1185,7 +1187,7 @@ $(document).on("click",".Ejemplar",function(){
     data: {id:id,key:'getName'},
     success: function (d) {  
       d = JSON.parse(d);   
-      //console.log(d);
+      console.log(d);
       $("#txtNombreEje").html(d[0].nombre);
       $("#idIv").val(id);
         $('#modalEjemplar').modal('show');

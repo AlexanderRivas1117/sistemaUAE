@@ -420,7 +420,7 @@ function guardarDocumento() {
                 
 
           }
-          else
+          if(data.estado==false)
           {
             swal({
                 title: "Error!",
@@ -433,6 +433,21 @@ function guardarDocumento() {
                 setTimeout(function(){
                   //location.reload();
                 },1000);
+          }
+          if(data.estado=="repetido")
+          {
+            swal({
+                title: "Error!",
+                text: data.descripcion,
+                timer: 1000,
+                type: 'error', 
+                closeOnConfirm: true,
+                closeOnCancel: true
+                });
+                setTimeout(function(){
+                  //location.reload();
+                },1000);
+            // alert(data.descripcion);
           }
         },
         error: function(xhr, status)

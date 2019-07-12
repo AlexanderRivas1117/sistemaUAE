@@ -42,6 +42,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="views/carta_servicios.php">Carta de Servicios</a>
+          <!-- <a class="dropdown-item" href="views/carta_servicios.php">Carta de Servicios</a> -->
+          <a class="dropdown-item" href="views/horarios.php">Horarios de Atención</a>
+          <a class="dropdown-item" href="views/contactenos.php">Contáctenos</a>
           <!-- <a class="dropdown-item" href="#">Another action</a> -->
           <!-- <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a> -->
@@ -52,7 +55,7 @@
       </li> -->
     </ul>
     <span class="navbar-text">
-      Sistema Bibliotecario
+      Sistema Biblioteca Einstein
     </span>
   </div>
 </nav>
@@ -72,7 +75,7 @@
             <div class="p-5">
               <div class="text-left">
 
-                <h2 class="h4 text-gray-900 mb-4">Bienvenido al Sistema Bibliotecario UAE &nbsp; <img src="logo_UAE.JPG" height="70" width="70" class="rounded"></h2>
+                <h2 class="h4 text-gray-900 mb-4">Bienvenido al Sistema Biblioteca Einstein &nbsp; <img src="logo_UAE.JPG" height="70" width="70" class="rounded"></h2>
                 
               </div>
               <div class="text-right">
@@ -146,6 +149,12 @@ if(isset($_REQUEST['estado']))
                     <input type="text" class="form-control form-control-user" id="titulo" placeholder="Búsqueda por Dewey" name="dewey">
                   </div>
 
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control form-control-user" id="epigrafe" placeholder="Búsqueda por Epígrafe" name="epigrafe">
+                  </div>
                 </div>
                 
                 <input type="hidden" name="user">

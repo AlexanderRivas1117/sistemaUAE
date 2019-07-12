@@ -65,7 +65,7 @@ SELECT `nombre`, `autor`, `cantidadPaginas`, `informacionAdicional`, `epigrafe`,
 l.idTipoLiteratura as tipoLiteratura,l.autor,l.clasificacion,l.libristica,l.epigrafe,l.portada,l.asesor,l.contenido,l.fechaPublicacion from libro l
 inner join inventario iv
     on iv.idLibro=l.id
-where iv.id='{$id}'";
+where iv.idLibro='{$id}'";
         mysqli_set_charset($this->con, "utf8");
         $info = $this->con->query($sql);
         $obj = array();
@@ -373,7 +373,20 @@ where iv.numeroInventario='{$id}'";
 
     public function guardarDocumento($dataLibro)
     {
+        
+
         $data = json_decode($dataLibro);
+        $numeroInventario = $data[23]->value;
+        $sql = "SELECT * from inventario where numeroInventario= '{$numeroInventario}'";
+        $res = $this->con->query($sql);
+        if($res->num_rows>0)
+        {
+            $data['estado'] = 'repetido';
+            $data['descripcion'] = "Número de inventario ya ha sido utilizado";
+            return json_encode($data);
+            die();
+        }
+
 
         $tipoColeccion = $data[0]->value;
         $tipoLiteratura = $data[1]->value;
@@ -401,7 +414,8 @@ where iv.numeroInventario='{$id}'";
         //CAMPO NUEVO
         $autor = $data[22]->value;
 
-        $numeroInventario = $data[23]->value;
+        // $numeroInventario = $data[23]->value;
+
         $fechaAdquisicion = $data[24]->value;
         $precio = $data[25]->value;
         $facilitante = $data[26]->value;

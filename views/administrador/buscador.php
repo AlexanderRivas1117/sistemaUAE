@@ -168,6 +168,13 @@ if(isset($_REQUEST['estado']))
                   </div>
               </div>
 
+              <div class="form-group row">
+                <label for="dewey" class="col-sm-1 col-form-label">Epígrafe</label>
+                  <div class="col-sm-4">
+                  <input type="text" class="form-control form-control-sm" id="epigrafe" placeholder="Búsqueda por Epígrafe" name="epigrafe">
+                  </div>
+              </div>
+
               <div class="row">
                 <div class="col-md-9">
                   <div class="float-md-right">

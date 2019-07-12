@@ -43,8 +43,11 @@ $columns = array(
 
     array( 'db' => '`l`.`id`',     'dt' => 5, 'field' => 'id' ,'formatter' => function( $d, $row ) {
             return "<button type='button' class='btn btn-info btn-circle Editar btn-sm' id='".$d."' value='Editar'><i class='fas fa-edit'></i></button>
-                <button type='button' class='btn btn-danger btn-circle Eliminar btn-sm' id='".$d."' value='Eliminar'><i class='fas fa-trash'></i></button>
+                
                 <button type='button' class='btn btn-success btn-circle Ejemplar btn-sm' id='".$d."' value='Ejemplar' title='Agregar Ejemplar'><i class='fas fa-plus'></i></button>";
+        }),
+    array( 'db' => '`iv`.`id`',     'dt' => 6, 'field' => 'id' ,'formatter' => function( $d, $row ) {
+            return "<button type='button' class='btn btn-danger btn-circle Eliminar btn-sm' id='".$d."' value='Eliminar'><i class='fas fa-trash'></i></button>";
         }),
 );
 

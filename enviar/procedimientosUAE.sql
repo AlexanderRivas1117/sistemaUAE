@@ -340,7 +340,8 @@ CREATE PROCEDURE `bibliotecauae`.`eliminarDocumento`(in p_idLibro int)
 	BEGIN
 
 
-SET @idInventario := (SELECT id FROM inventario WHERE idLibro =p_idLibro);
+-- SET @idInventario := (SELECT id FROM inventario WHERE idLibro =p_idLibro);
+SET @idInventario := (SELECT p_idLibro);
 
 
 SET @prestado := (SELECT id FROM prestamo WHERE `prestamo`.`idInventario`= @idInventario  AND estado=0);
@@ -355,13 +356,13 @@ UPDATE detalleautor d SET d.eliminado=1 WHERE d.idLibro = p_idLibro;
 -- DELETE FROM `detalleautor` WHERE `detalleautor`.`idLibro` = p_idLibro;
 
 
-UPDATE prestamo p SET p.eliminado=1 WHERE p.idInventario= @idInventario  AND estado=0;
+-- UPDATE prestamo p SET p.eliminado=1 WHERE p.idInventario= @idInventario  AND estado=0;
 -- DELETE FROM `prestamo` WHERE `prestamo`.`idInventario`= @idInventario  AND estado=0;
 
-UPDATE inventario i SET i.eliminado=1 WHERE i.idLibro = p_idLibro AND i.estadoMaterial="Disponible";
+UPDATE inventario i SET i.eliminado=1 WHERE i.id = p_idLibro AND i.estadoMaterial="Disponible" and i.eliminado=0;
 -- DELETE FROM `inventario` WHERE `inventario`.`idLibro` = p_idLibro AND `inventario`.`estadoMaterial`="Disponible";
 
-UPDATE libro l SET l.eliminado=1 WHERE l.id = p_idLibro;
+UPDATE libro l SET l.eliminado=1 WHERE l.id = p_idLibro ;
 -- DELETE FROM `libro` WHERE `libro`.`id` = p_idLibro;
 
 -- END IF;
